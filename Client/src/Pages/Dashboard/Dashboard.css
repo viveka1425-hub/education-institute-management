@@ -1,0 +1,29 @@
+.card-container {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+
+.dashboard-card {
+    background-color: #614b97;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 8rem;
+    flex: 1;
+    border: 1px solid;
+    border-color: blueviolet;
+    transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    text-align: center;
+    color: white;
+}
