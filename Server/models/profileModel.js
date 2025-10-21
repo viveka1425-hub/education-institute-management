@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 const ProfileSchema = new Schema(
     {
+        userId: {
+            type: mongoose.Types.ObjectId,
+            ref: 'users',
+            require: true
+        },
         id: {
             type: String,
             require: true
@@ -141,7 +146,7 @@ const ProfileSchema = new Schema(
                 default: true
             },
             capacity: {
-                type: Number
+                type: String
             },
             location: {
                 type: String

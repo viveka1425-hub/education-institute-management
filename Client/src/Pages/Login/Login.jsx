@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
-//import { loginUser } from "../../services/authService";
+import { userLogin } from "../../services/userService";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -30,14 +30,25 @@ const LoginPage = () => {
             setSuccess("");
         } else {
             try {
-                //await loginUser(email, password);
+                const data = await userLogin(email, password);
                 // Here you can call your login API
-                console.log("Login:", { email, password });
+                localStorage.setItem('token', data.data.token);
+                localStorage.setItem('user_id', data.data.id);
+                localStorage.setItem('institute_id', data.data.instituteId);
+                localStorage.setItem('role', data.data.role)
+                localStorage.setItem('userId',data.data._id)
+                const userRole = localStorage.getItem("role");
+                console.log(userRole)
                 //setSuccess("Login successful!");
                 setErrors({});
                 setEmail("");
                 setPassword("");
-                navigate("/Dashboard")
+                if (userRole == "admin") {
+                    navigate("/Admin")
+                }
+                else if (userRole == "institute") {
+                    navigate("/Profile/ProfileView")
+                }
             } catch (error) {
                 setErrors({ password: error.message });
             }

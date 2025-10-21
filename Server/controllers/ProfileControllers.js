@@ -5,14 +5,16 @@ const router = express.Router()
 const profileSubmit = async (req, res) => {
     try {
         console.log(req.body)
-        const { name, email, phone, address, city, state, country, pincode, year } = req.body;
-        if (!name || !email || !phone || !address || !city || !state || !country || !pincode || !year) {
+        const { userId, name, email, phone, address, city, state, country, pincode, year } = req.body;
+        if (!userId || !name || !email || !phone || !address || !city || !state || !country || !pincode || !year) {
             return res.status(400).json({ message: "Fill Mandatory fields" });
         }
-        await ProfileSchema.insertOne(req.body);
+        
+        const resp = await ProfileSchema.insertOne(req.body);
         res.send({
             success: true,
-            message: 'Institute Created Successfully'
+            message: 'Institute Created Successfully',
+            instituteId: resp._id
         })
     } catch (error) {
         console.log(error);

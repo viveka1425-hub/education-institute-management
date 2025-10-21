@@ -1,13 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import "../layouts/Header.css";
 import Footer from "./Footer";
-import { Link } from "react-router";
 
-
-const MainLayout = () => {
+const AdminLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [coursesOpen, setCoursesOpen] = useState(false);
+
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
@@ -15,7 +12,6 @@ const MainLayout = () => {
     const closeSidebar = () => {
         setSidebarOpen(false);
     };
-
 
     return (
         <div className="body">
@@ -34,24 +30,8 @@ const MainLayout = () => {
             <div className="main-body">
                 {/* Sidebar */}
                 <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"}`}>
-                    <a href="/Dashboard">Dashboard</a>
-
-                    <div className="">
-                        <a className="dropdown-btn" onClick={() => setCoursesOpen(!coursesOpen)}>
-                            Profile Management
-                            <span className="arrow">{coursesOpen ? "▲" : "▼"}</span> </a>
-
-                        {coursesOpen && (
-                            <div className="dropdown-content">
-                                <Link to="Profile/ProfileView">profile details</Link>
-                                <Link to="Courses/CoursesList">Courses</Link>
-                                <Link to="Facilities/FacilitiesList">facilities</Link>
-                            </div>
-                        )}
-                    </div>
-
-
-                    <a href="/reviews"> reviews</a>
+                    <a href="/Admin">Dashboard</a>
+                    <a href="/Requests">Requests</a>
                 </div>
 
                 {/* Overlay */}
@@ -68,5 +48,4 @@ const MainLayout = () => {
         </div>
     );
 };
-
-export default MainLayout;
+export default AdminLayout;

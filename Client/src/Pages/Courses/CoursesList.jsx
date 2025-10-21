@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 //import { Link } from "react-router-dom";
-import { courseList } from "../../services/profileService";
+import { courseList, EditFacilities } from "../../services/profileService";
 import { useNavigate } from "react-router-dom";
 
-function CoursesList({ updateData }) {
+function CoursesList({  }) {
 
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
@@ -19,10 +19,11 @@ function CoursesList({ updateData }) {
   console.log(courses)
   //const navigate = useNavigate();
 
-  function handleDelete(id) {
+  async function handleDelete(id) {
     const filtered = courses.filter((c) => c.id !== id);
-    const next = { ...data, courses: filtered };
-    updateData(next);
+    const next = { courses: filtered };
+    await EditFacilities(next);
+    await fetchList();
   }
   function handleAddCourse() {
     navigate("/Courses/CoursesCreate", { state: { courses: courses } })

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { facilitiesList } from "../../services/profileService"
+import { EditFacilities, facilitiesList } from "../../services/profileService"
 
 export default function FacilitiesList({ updateData }) {
 
@@ -17,16 +17,19 @@ export default function FacilitiesList({ updateData }) {
   }, []);
   //const navigate = useNavigate();
 
-  function handleDelete(id) {
+  async function handleDelete(id) {
     const filtered = items.filter((f) => f.id !== id);
-    const next = { ...data, facilities: filtered };
-    updateData(next);
+    console.log('filtered', filtered);
+    const obj = { facility: filtered };
+    await EditFacilities(obj);
+    await fetchList()
   }
+
   function handleAddFacility() {
     navigate("/Facilities/FacilitiesCreate", { state: { Facilities: items } })
   }
   function handleEditFacilities(id) {
-    navigate("/Facilities/FacilitiesEdit/" + id, { state: { Facilities: items } })
+    navigate("/Facilities/FacilitiesEdit/" + id, { state: { facilities: items } })
   }
   const getCategoryIcon = (category) => {
     const icons = {
@@ -207,7 +210,7 @@ export default function FacilitiesList({ updateData }) {
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No Facilities Yet</h3>
             <p className="text-gray-600 mb-6">Get started by adding your first facility</p>
             <a
-              href="/Facilities/FacilitiesCreate"
+              onClick={handleAddFacility}
               className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#614b97] to-[#7256b8] text-white font-medium shadow-lg hover:shadow-xl transition-all"
             >
               Add Your First Facility

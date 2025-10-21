@@ -1,11 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
-import { registerprofile } from "../../services/profileService";
+import { addProfile } from "../../services/profileService";
 
-function ProfileCreate({ }) {
+export default function ProfileCreate({ }) {
     const navigate = useNavigate();
+    const location = useLocation();
+    const data = location.state;
+    console.log(data)
+    const existingProfile = data;
     const empty = {
-        id: Date.now().toString(),
         name: "",
         tagline: "",
         description: "",
@@ -24,12 +27,13 @@ function ProfileCreate({ }) {
         logo: "",
         banner: "",
         gallery: [],
+        userId: localStorage.getItem('user_id')
     };
 
     async function handleSave(newProfile) {
         console.log(newProfile)
-        const { id, ...rest } = newProfile;
-        await registerprofile(newProfile)
+        const data = await addProfile(newProfile);
+        localStorage.setItem('institute_id', data.data.instituteId)
         navigate("/Profile/ProfileView");
     }
 
@@ -41,5 +45,5 @@ function ProfileCreate({ }) {
             <ProfileForm initial={empty} onSave={handleSave} />
         </div>
     );
-}
-export default ProfileCreate;
+
+};

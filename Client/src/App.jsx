@@ -4,11 +4,15 @@ import { RouterProvider } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Login from "./Pages/Login/Login";
 import MainLayout from "./layouts/MainLayout";
+import AdminLayout from "./layouts/AdminLayout";
+import Admin from "./Pages/Admin/Admin";
 import RegisterForm from "./Pages/Register/Register";
+
 
 import ProfileView from "./Pages/Profile/ProfileView";
 import ProfileEdit from "./Pages/Profile/ProfileEdit";
 import ProfileCreate from "./Pages/Profile/ProfileCreate";
+import ProfileForm from "./Pages/Profile/ProfileForm";
 
 import CoursesList from "./Pages/Courses/CoursesList";
 import CoursesForm from "./Pages/Courses/CoursesForm";
@@ -20,7 +24,8 @@ import FacilitiesEdit from "./Pages/Facilities/FacilitiesEdit";
 import FacilityForm from "./Pages/Facilities/FacilitiesForm";
 import FacilitiesList from "./Pages/Facilities/FacilitiesList";
 
-//import About from "./pages/About";
+import Requests from "./Pages/Requests/Requests"
+
 
 const STORAGE_KEY = "institute_data_v1";
 const defaultData = {
@@ -76,11 +81,11 @@ const defaultData = {
     },
   ],
   gallery: [
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop"
-    ]
+    "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop",
+    "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=300&fit=crop",
+    "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=300&fit=crop",
+    "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop"
+  ]
 };
 
 function loadData() {
@@ -112,7 +117,6 @@ const router = createBrowserRouter([
 
 
 
-
   {
     element: <MainLayout />,
     children: [{
@@ -120,16 +124,20 @@ const router = createBrowserRouter([
       element: <Dashboard />,
     },
     {
-      path: "Profile/ProfileView",
+      path: "/Profile/ProfileView",
       element: <ProfileView />
     },
     {
-      path: "/profile/edit/:instituteId",
+      path: "/profile/ProfileEdit/:instituteId",
       element: <ProfileEdit />
     },
     {
       path: "/Profile/ProfileCreate",
       element: <ProfileCreate />
+    },
+    {
+      path: "/Profile/ProfileForm",
+      element: < ProfileForm />
     },
     {
       path: "/Courses/CoursesList",
@@ -162,11 +170,24 @@ const router = createBrowserRouter([
       element: <FacilityForm />
     },
     {
-      path: "Facilities/FacilitiesEdit",
+      path: "/Facilities/FacilitiesList",
       element: <FacilitiesList />
-    },
+    }
+
     ]
 
+  },
+  {
+    element: <AdminLayout />,
+    children: [{
+      path: "/Admin",
+      element: <Admin />
+    },
+    {
+      path:"/Requests",
+      element:<Requests />
+    }
+    ]
   }
 
 ]);
@@ -179,4 +200,3 @@ export default function App() {
 }
 
 
-//http://localhost:7007/profile-submit --->post 

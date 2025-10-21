@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import { registerUser } from "../../services/authService";
+import { userRegister } from "../../services/userService";
 import { useNavigate } from "react-router-dom"
 
 const RegisterForm = () => {
@@ -8,7 +8,6 @@ const RegisterForm = () => {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [role, setRole] = useState("");
-
 
     const [errors, setErrors] = useState({});
     const [success, setSuccess] = useState("");
@@ -22,7 +21,7 @@ const RegisterForm = () => {
         if (!phone) newErrors.phone = "Phone number required";
         else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Email is invalid";
         if (!password) newErrors.password = "Password is required";
-        else if(!role) newErrors.role = "role is require";
+        else if (!role) newErrors.role = "role is require";
         else if (password.length < 6) newErrors.password = "Password must be at least 6 characters";
         return newErrors;
     };
@@ -34,11 +33,18 @@ const RegisterForm = () => {
             setErrors(validationErrors);
             setSuccess("");
         } else {
-            //await registerUser(name, email, password);
-            // Handle registration logic (API call or console.log)
-            console.log("Registered:", { name, email,phone, password, role });
+            const userRegisterResponse = await userRegister(name, email, phone, password, role);
+            localStorage.setItem('user_id', userRegisterResponse.data.id)
+            //const userId = localStorage.getItem('Id')
+            console.log("Registered:", { name, email, phone, password, role });
             setSuccess("Registration successful!");
-            navigate("/")
+            console.log(role)
+            if (role == "admin") {
+                navigate("/")
+            }
+            if (role == "institute") {
+                navigate("/Profile/ProfileCreate")
+            }
             setErrors({});
             setName("");
             setEmail("");
@@ -85,7 +91,7 @@ const RegisterForm = () => {
                         <label style={styles.label}>Role</label>
                         <div style={{ display: "flex", gap: "1rem" }}>
                             <label>
-                                <input type="radio"  name="role" value="user" checked={role === "user"}onChange={(e) => setRole(e.target.value)} />{" "} Use</label>
+                                <input type="radio" name="role" value="user" checked={role === "user"} onChange={(e) => setRole(e.target.value)} />{" "} Use</label>
 
                             <label>
                                 <input type="radio" name="role" value="institute" checked={role === "institute"} onChange={(e) => setRole(e.target.value)} />{" "} Institute</label>

@@ -1,0 +1,12 @@
+/* .card-containerAdmin {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+} */
+
+.card-containerAdmin {
+    color:red;
+    flex-direction: row;
+}

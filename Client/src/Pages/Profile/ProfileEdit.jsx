@@ -1,17 +1,27 @@
-//import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import ProfileForm from "./ProfileForm";
-
+import  ProfileForm from "./ProfileForm";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { EditCourse } from "../../services/profileService";
 
 export default function ProfileEdit({ }) {
-    const storedProfile = JSON.parse(localStorage.getItem("institute_data_v1")) || null;
-    const profile = storedProfile.profile;
-    const navigate = useNavigate();
+    const location = useLocation();
+    const data = location.state
 
-    function handleSave(updated) {
-        const next = { ...data, profile: { ...updated } };
-        updateData(next);
-        navigate("/profile/view");
+    //const profile = storedProfile.profile;
+    const { id } =useParams();
+    const navigate = useNavigate();
+    const profile = (data.profile || []).find((p) => Object(p.id) === Object(id)) || null;
+
+    const index = data.profile.findIndex(item => Object(item.id) === Object(id) );
+
+    if(!profile) return <div>profile not found</div>
+
+    async function handleSave(updated) {
+        data.profile[index]= updated;
+        const obj = {
+            profile : data.profile
+        }
+        await EditCourse(obj);
+        navigate("/profile/ProfileView");
     }
 
     return (

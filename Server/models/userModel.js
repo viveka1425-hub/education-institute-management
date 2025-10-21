@@ -29,7 +29,15 @@ const user = new profile(
             required: true,
             default: "user"
         },
+        status:{
+            type: String,
+            default: "active"
+        },
+        waitingList: {
+            type:Boolean,
+            default:false
+        },
     }, { timestamps: true }
 );
 
-export default mongoose.model("institutes_users", user)
+export default mongoose.model("users", user)
