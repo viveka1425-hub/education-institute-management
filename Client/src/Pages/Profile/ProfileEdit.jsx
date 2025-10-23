@@ -9,9 +9,9 @@ export default function ProfileEdit({ }) {
     //const profile = storedProfile.profile;
     const { id } =useParams();
     const navigate = useNavigate();
-    const profile = (data.profile || []).find((p) => Object(p.id) === Object(id)) || null;
+    const profile = (data.data || []).find((p) => Object(p.id) === Object(id)) || null;
 
-    const index = data.profile.findIndex(item => Object(item.id) === Object(id) );
+    const index = data.data.findIndex(item => Object(item.id) === Object(id) );
 
     if(!profile) return <div>profile not found</div>
 

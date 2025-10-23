@@ -1,7 +1,9 @@
 import axios from "axios";
+import { API_URL } from "../config/config";
+
 
 export async function getUsersData() {
-    const result = await axios.get("http://localhost:7007/pending")
+    const result = await axios.get(API_URL + "/pending")
     return result;
 }
 

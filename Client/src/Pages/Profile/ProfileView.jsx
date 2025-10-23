@@ -1,4 +1,3 @@
-
 import {
     BrowserRouter as Router,
     Routes,
@@ -13,6 +12,7 @@ import { useEffect, useState } from "react";
 
 export default function ProfileView({ }) {
     const [profile, setProfile] = useState(null);
+    
     const navigate = useNavigate();
     const instituteId = localStorage.getItem('institute_id');
     console.log(instituteId)
@@ -33,11 +33,11 @@ export default function ProfileView({ }) {
     }
 
     function handleEditProfile(id) {
-        navigate("/Profile/ProfileEdit/:id" + id, { state: [newProfile] })
+        navigate("/Profile/ProfileEdit/" + id, { state: profile })
     }
 
-
-
+    if (profile)
+        console.log(profile.logo)
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-6">
             <div className="max-w-7xl mx-auto">
@@ -87,7 +87,8 @@ export default function ProfileView({ }) {
                                     <div className="h-44 w-44 bg-white rounded-2xl shadow-2xl flex items-center justify-center p-3 border-4 border-white">
                                         {profile.logo ? (
                                             <img
-                                                src={profile.logo}
+                                                src={
+                                                    'http://localhost:7007/uploads/' + profile.logo}
                                                 alt="logo"
                                                 className="h-full w-full object-contain rounded-xl"
                                             />

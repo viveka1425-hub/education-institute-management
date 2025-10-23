@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import Footer from "./Footer";
-
+import { LogOut } from "lucide-react";
 const AdminLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -12,6 +12,11 @@ const AdminLayout = () => {
     const closeSidebar = () => {
         setSidebarOpen(false);
     };
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/')
+    }
+
 
     return (
         <div className="body">
@@ -29,10 +34,18 @@ const AdminLayout = () => {
 
             <div className="main-body">
                 {/* Sidebar */}
-                <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"}`}>
-                    <a href="/Admin">Dashboard</a>
-                    <a href="/Requests">Requests</a>
+                <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"} flex justify-between flex-col`}>
+                    <div>
+                        <a href="/Admin">Dashboard</a>
+                        <a href="/Requests">Requests</a>
+                    </div>
                 </div>
+                <a onClick={handleLogout} className="cursor-pointer">
+                    <div className="flex flex-row">
+                        <LogOut onClick={handleLogout} className="cursor-pointer" />
+                        <div className="ml-1">Logout</div>
+                    </div>
+                </a>
 
                 {/* Overlay */}
                 {sidebarOpen && <div className="overlay show" onClick={closeSidebar}></div>}

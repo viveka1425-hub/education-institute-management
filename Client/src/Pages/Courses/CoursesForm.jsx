@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
+import { uploadImage } from "../../services/imageService";
 
 function CourseForm({ initial, onSave }) {
   const [form, setForm] = useState(initial);
+  const [image, setImage] = useState(null);
+
   useEffect(() => setForm(initial), [initial]);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((s) => ({ ...s, [name]: value }));
+  }
+  const handleImageChange = async (e, imageKey) => {
+    const file = e.target.files[0];
+    const imageResponse = await uploadImage(file);
+
+    const imageFile = imageResponse.data.file;
+    setForm((s) => ({ ...s, [imageKey]: imageFile }));
+    setImage(file);
   }
 
   function handleSubmit(e) {
@@ -61,6 +72,10 @@ function CourseForm({ initial, onSave }) {
         <div>
           <label className="block text-sm">Intake Capacity</label>
           <input name="intake" type="number" value={form.intake} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
+        </div>
+        <div>
+          <label className="block text-sm">Course Image</label>
+          <input type="file" accept="image/*" onChange={(e) => handleImageChange(e, "image")} className="mt-1 w-full p-2 border rounded bg-white" />
         </div>
 
         <div className="md:col-span-2 flex justify-end mt-4">

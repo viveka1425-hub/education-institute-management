@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-
+import { uploadImage } from "../../services/imageService";
 
 function ProfileForm({ initial, onSave }) {
     const [form, setForm] = useState(initial);
+    const [image, setImage] = useState(null);
+
+    //const [count, setCount] = useState(0);
 
     useEffect(() => setForm(initial), [initial]);
 
@@ -18,14 +21,14 @@ function ProfileForm({ initial, onSave }) {
     }
 
     // quick file->dataurl helper for demo purposes
-    function handleImage(e, field) {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = () => {
-            setForm((s) => ({ ...s, [field]: reader.result }));
-        };
-        reader.readAsDataURL(file);
+    const handleImage = async (e, imageKey) => {
+        const file = e.target.files[0];
+        const imageResponse = await uploadImage(file);
+
+        const imageFile = imageResponse.data.file;
+        console.log('imageFile', imageFile);
+        setForm((s) => ({ ...s, [imageKey]: imageFile }));
+        setImage(file);
     }
 
     function handleGalleryAdd(e) {
@@ -38,9 +41,12 @@ function ProfileForm({ initial, onSave }) {
         reader.readAsDataURL(file);
     }
 
+    console.log(form);
+
     return (
         <form onSubmit={handleSubmit} className="bg-white rounded shadow p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                 <div>
                     <label className="block text-sm">Institute Name ⭐</label>
                     <input name="name" value={form.name} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
@@ -67,27 +73,27 @@ function ProfileForm({ initial, onSave }) {
                 </div>
                 <div className="md:col-span-2">
                     <label className="block text-sm">Address ⭐</label>
-                     <textarea name="address" value={form.address} onChange={handleChange} className="mt-1 w-full p-2 border rounded"  rows ={2} />
+                    <textarea name="address" value={form.address} onChange={handleChange} className="mt-1 w-full p-2 border rounded" rows={2} />
                 </div>
 
                 <div>
                     <label className="block text-sm">City ⭐</label>
-                     <input name="city" value={form.city} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
+                    <input name="city" value={form.city} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
                 </div>
 
                 <div>
                     <label className="block text-sm">State ⭐</label>
-                     <input name="state" value={form.state} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
+                    <input name="state" value={form.state} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
                 </div>
 
                 <div>
                     <label className="block text-sm">Country ⭐</label>
-                     <input name="country" value={form.country} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
+                    <input name="country" value={form.country} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
                 </div>
 
                 <div>
                     <label className="block text-sm">Pincode ⭐</label>
-                     <input name="pincode" value={form.pincode} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
+                    <input name="pincode" value={form.pincode} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
                 </div>
 
                 <div>
@@ -109,7 +115,7 @@ function ProfileForm({ initial, onSave }) {
                 </div>
 
                 <div>
-                    <label className="block text-sm">Logo (image)</label>
+                    <label className="block text-sm">Logo </label>
                     <input type="file" accept="image/*" onChange={(e) => handleImage(e, "logo")} className="mt-1" />
                 </div>
                 <div>

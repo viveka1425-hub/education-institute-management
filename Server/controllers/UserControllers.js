@@ -2,7 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import User from "../models/userModel.js";
 import ProfileSchema from '../models/profileModel.js';
-import Institutes from '../models/profileModel.js'
+
 import { generateToken } from "../utills/index.js";
 const router = express.Router()
 
@@ -56,7 +56,7 @@ const loginuser = async (req, res) => {
         }
         const token = generateToken(users);
 
-        const userInstitute = await Institutes.findOne({ userId: users._id })
+        const userInstitute = await ProfileSchema.findOne({ userId: users._id })
 
         res.json({
             token: token,
@@ -76,17 +76,15 @@ router.post('/login', loginuser)
 
 const getPendingUsers = async (req, res) => {
     try {
-        const institutes = await ProfileSchema.find().populate({
-            path: "userId",       // Join User collection
+        let institutes = await ProfileSchema.find().populate({
+            path: "userId",        // Join User collection
             match: { status: "pending" }, // Filter joined data
             select: "name email phone status role"
         });
-        console.log(Institutes);
 
+        institutes = institutes.filter(info => !!info.userId)
+        console.log(institutes);
 
-        if (institutes.length === 0) {
-            return res.status(404).json({ message: " No pending users found" });
-        }
         res.status(200).json({
             message: "Pending users fetched successfully",
             data: institutes
@@ -98,6 +96,35 @@ const getPendingUsers = async (req, res) => {
 };
 router.get('/pending', getPendingUsers)
 
+const updateUserStatus = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { action } = req.body;
+        console.log(action)
+        if (!["accept", "reject"].includes(action)) {
+            return res.status(400).json({ message: "Invalid action type" });
+        }
+
+        const newStatus = action === "accept" ? "approved" : "rejected"; //ternary condition
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { status: newStatus },
+            { new: true }// return updated document
+        );
+        if (!updatedUser) {
+            return res.status(404).json({ message: "user not found" });
+        }
+        res.status(200).json({
+            message: `user ${action}ed successfully`, // string litrals
+            data: updatedUser,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+};
+router.put("/status/:userId", updateUserStatus);
 
 export {
     router as userrouter

@@ -1,12 +1,25 @@
 import { useEffect, useState } from "react";
+import { uploadImage } from "../../services/imageService";
 
 export default function FacilityForm({ initial, onSave }) {
   const [form, setForm] = useState(initial);
+  const [photo, setPhoto] = useState(null);
+
   useEffect(() => setForm(initial), [initial]);
+
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
     setForm((s) => ({ ...s, [name]: type === "checkbox" ? checked : value }));
   }
+  const handlePhotoChange = async (e, photoKey) => {
+    const file = e.target.files[0];
+    const photoResponse = await uploadImage(file);
+
+    const photoFile = photoResponse.data.file;
+    setForm((s) => ({ ...s, [photoKey]: photoFile }));
+    setPhoto(file);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     onSave(form);
@@ -47,6 +60,10 @@ export default function FacilityForm({ initial, onSave }) {
         <div>
           <label className="block text-sm">Location</label>
           <input name="location" value={form.location} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
+        </div>
+        <div>
+          <label className="block text-sm">Facility Photo</label>
+          <input type="file" accept="photo/*" onChange={(e) => handlePhotoChange(e, "photo")} className="mt-1 w-full p-2 border rounded bg-white" />
         </div>
 
         <div className="md:col-span-2 flex justify-end mt-4">

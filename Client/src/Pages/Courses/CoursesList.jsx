@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 //import { Link } from "react-router-dom";
 import { courseList, EditFacilities } from "../../services/profileService";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from '../../config/config';
 
-function CoursesList({  }) {
+function CoursesList({ }) {
 
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function CoursesList({  }) {
   }
 
   function handleEditCourses(id) {
-    navigate("/Courses/CoursesEdit/" + id, {  state:{courses:courses}})
+    navigate("/Courses/CoursesEdit/" + id, { state: { courses: courses } })
   }
 
 
@@ -80,10 +81,10 @@ function CoursesList({  }) {
               onClick={handleAddCourse}
               className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#614b97] to-[#7256b8] text-white font-medium shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
-              Create Course
+              <div className="text-white">Create Course</div>
             </a>
           </div>
         </div>
@@ -152,7 +153,15 @@ function CoursesList({  }) {
                     <div className="text-xl font-bold text-gray-900">₹{c.fees.toLocaleString()}</div>
                   </div>
                 </div>
-
+                <div>
+                  {c.image ? (
+                    <img src={API_URL + "/uploads/" + c.image}
+                      alt="image"
+                    />
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4 border-t border-gray-100">
                   <a
@@ -163,7 +172,7 @@ function CoursesList({  }) {
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
-                      Edit
+                      <div className="cursor-pointer">Edit</div>
                     </span>
                   </a>
                   <button
@@ -174,7 +183,7 @@ function CoursesList({  }) {
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                       </svg>
-                      Delete
+                      <div className=" text-white">Delete</div>
                     </span>
                   </button>
                 </div>
