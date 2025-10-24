@@ -32,6 +32,29 @@ const registeruser = async (req, res) => {
     }
 };
 
+const getUsername = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        console.log(userId)
+        const users = await User.findById(userId)
+        console.log(users)
+        if (!users) {
+            return res.status(404).json({ message: "name not exists" })
+        }
+
+        else {
+            return res.status(200).json({
+                message: "users fetched successfully",
+                data: users
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "server error" })
+    }
+}
+router.get('/getUserName/:userId', getUsername)
+
 router.post('/register', registeruser)
 
 const loginuser = async (req, res) => {
@@ -43,6 +66,7 @@ const loginuser = async (req, res) => {
         }
 
         const users = await User.findOne({ email: email })
+        console.log(users)
         if (!users) {
             return res.status(400).json({ message: "email not exists" })
         }
@@ -57,6 +81,12 @@ const loginuser = async (req, res) => {
         const token = generateToken(users);
 
         const userInstitute = await ProfileSchema.findOne({ userId: users._id })
+
+        if(users.status !== "approved"){
+            return res.status(403).json({message: "Institute not approved"})
+        }
+        
+      
 
         res.json({
             token: token,
@@ -95,6 +125,28 @@ const getPendingUsers = async (req, res) => {
     }
 };
 router.get('/pending', getPendingUsers)
+
+const getApprovedUser = async(req, res) =>{
+    try {
+        let institutes = await ProfileSchema.find().populate({
+            path:"userId",
+            match:{status: "approved"},
+            select: "name email phone status role"
+        });
+
+        institutes = institutes.filter(info => !!info.userId)
+
+        res.status(200).json({
+            message:"approve users fetched successfully",
+            data:institutes
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Server error"})
+    }
+}
+
+router.get('/approving', getApprovedUser)
 
 const updateUserStatus = async (req, res) => {
     try {

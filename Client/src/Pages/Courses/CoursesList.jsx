@@ -11,7 +11,7 @@ function CoursesList({ }) {
   async function fetchList() {
     let use = await courseList();
     console.log(use.data.data.courses)
-    setCourses(use.data.data.courses || [])
+    setCourses(use.data.data.courses)
   }
 
   useEffect(() => {
@@ -33,7 +33,6 @@ function CoursesList({ }) {
   function handleEditCourses(id) {
     navigate("/Courses/CoursesEdit/" + id, { state: { courses: courses } })
   }
-
 
   const getCategoryIcon = (category) => {
     const icons = {
@@ -66,7 +65,6 @@ function CoursesList({ }) {
     );
   };
 
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 p-6">
       <div className="max-w-7xl mx-auto">
@@ -84,7 +82,7 @@ function CoursesList({ }) {
               <svg className="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
-              <div className="text-white">Create Course</div>
+              <div className="text-white cursor-pointer">Create Course</div>
             </a>
           </div>
         </div>
@@ -164,17 +162,17 @@ function CoursesList({ }) {
                 </div>
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4 border-t border-gray-100">
-                  <a
+                  <button
                     onClick={() => handleEditCourses(c.id)}
-                    className="flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#7256b8] text-[#7256b8] font-medium hover:bg-[#7256b8] hover:text-white transition-all duration-200"
+                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-violet-500 to-violet-600 text-white font-medium hover:from-violet-600 hover:to-violet-700 shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
-                      <div className="cursor-pointer">Edit</div>
+                      <div className="cursor-pointer hover:text-white">Edit</div>
                     </span>
-                  </a>
+                  </button>
                   <button
                     onClick={() => handleDelete(c.id)}
                     className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-medium hover:from-red-600 hover:to-red-700 shadow-md hover:shadow-lg transition-all duration-200"

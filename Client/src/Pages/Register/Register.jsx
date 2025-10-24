@@ -39,11 +39,14 @@ const RegisterForm = () => {
             console.log("Registered:", { name, email, phone, password, role });
             setSuccess("Registration successful!");
             console.log(role)
-            if (role == "admin") {
-                navigate("/")
-            }
+            // if (role == "admin") {
+            //     navigate("/")
+            // }
             if (role == "institute") {
                 navigate("/Profile/ProfileCreate")
+            }
+            if (role == "user"){
+                navigate("/")
             }
             setErrors({});
             setName("");
@@ -91,12 +94,12 @@ const RegisterForm = () => {
                         <label style={styles.label}>Role</label>
                         <div style={{ display: "flex", gap: "1rem" }}>
                             <label>
-                                <input type="radio" name="role" value="user" checked={role === "user"} onChange={(e) => setRole(e.target.value)} />{" "} Use</label>
+                                <input type="radio" name="role" value="user" checked={role === "user"} onChange={(e) => setRole(e.target.value)} />{" "} User</label>
 
                             <label>
                                 <input type="radio" name="role" value="institute" checked={role === "institute"} onChange={(e) => setRole(e.target.value)} />{" "} Institute</label>
 
-                            <label>
+                            {/* <label>
                                 <input
                                     type="radio"
                                     name="role"
@@ -105,7 +108,7 @@ const RegisterForm = () => {
                                     onChange={(e) => setRole(e.target.value)}
                                 />{" "}
                                 Admin
-                            </label>
+                            </label> */}
                         </div>
                         {errors.role && <span style={styles.error}>{errors.role}</span>}
                     </div>

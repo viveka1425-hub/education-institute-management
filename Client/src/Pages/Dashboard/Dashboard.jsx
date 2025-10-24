@@ -1,10 +1,23 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { userName } from "../../services/userService";
 import './Dashboard.css';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+//import { userName } from "../../services/adminService";
+
 const ImageSlider = () => {
-
-
+    const [name, setName] = useState("");
+    async function showName() {
+        let use = await userName();
+        console.log(use.data.data.name)
+        setName(use.data.data.name)
+    }
+    useEffect(() => {
+        showName()
+    }, []);
     const images = [
         "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=60",
         "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1200&q=60",
@@ -13,7 +26,7 @@ const ImageSlider = () => {
 
     return (
         <div style={{}}>
-
+            <div><h1>Welcome! {name}</h1></div>
             <div className="card-container">
                 <div className="dashboard-card">
                     <div className="card-title"> <strong>Total Review</strong> <span className="icon">⭐</span> </div>
@@ -24,7 +37,7 @@ const ImageSlider = () => {
                     <div className="card-title">200</div>
                 </div>
                 <div className="dashboard-card">
-                    <div  className="card-title"><strong>Total Enquiries</strong> <span className="icon">👩‍💻</span> </div>
+                    <div className="card-title"><strong>Total Enquiries</strong> <span className="icon">👩‍💻</span> </div>
                     <div className="card-title"> 20 </div>
                 </div>
 

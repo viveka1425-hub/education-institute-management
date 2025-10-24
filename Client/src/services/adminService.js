@@ -15,3 +15,7 @@ export async function updateUserStatus(userId, action) {
     return result;
 }
 
+export async function getApproveData(){
+    const result =await axios.get(API_URL +"/approving")
+    return result;
+}

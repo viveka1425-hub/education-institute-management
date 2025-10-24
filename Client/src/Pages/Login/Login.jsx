@@ -6,6 +6,7 @@ const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
     //const [success, setSuccess] = useState("");
@@ -18,6 +19,8 @@ const LoginPage = () => {
 
         if (!password) newErrors.password = "Password is required";
         else if (password.length < 6) newErrors.password = "Password must be at least 6 characters";
+    
+
 
         return newErrors;
     };
@@ -47,10 +50,11 @@ const LoginPage = () => {
                     navigate("/Admin")
                 }
                 else if (userRole == "institute") {
-                    navigate("/Profile/ProfileView")
+                    navigate("/Dashboard")
                 }
             } catch (error) {
-                setErrors({ password: error.message });
+                console.log(error)
+                setErrors({ password: error.response.data.message });
             }
 
 
@@ -88,7 +92,7 @@ const LoginPage = () => {
                             placeholder="Enter your password"
                         />
                         {errors.password && (
-                            <span style={styles.error}>{errors.password}</span>
+                            <span className="text-white" style={styles.error}>{errors.password}</span>
                         )}
                     </div>
 
@@ -174,7 +178,7 @@ const styles = {
         backgroundColor: "#8e24aa",
     },
     error: {
-        color: "#643acdff",
+        color: "#f2c9e1",
         fontSize: "0.85rem",
         marginTop: "4px",
     },

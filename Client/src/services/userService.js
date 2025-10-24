@@ -24,3 +24,9 @@ export async function userLogin(email, password) {
     })
     return res;
 }
+
+export async function userName(){
+    const userId = localStorage.getItem('user_id')
+    const res = await axios.get(API_URL +"/getUserName/" + userId)
+    return res;
+}

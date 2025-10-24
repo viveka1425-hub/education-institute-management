@@ -4,6 +4,8 @@ import { RouterProvider } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Login from "./Pages/Login/Login";
 import MainLayout from "./layouts/MainLayout";
+import UserLayout from "./layouts/userLayout";
+import User from "./Pages/User/User";
 import AdminLayout from "./layouts/AdminLayout";
 import Admin from "./Pages/Admin/Admin";
 import RegisterForm from "./Pages/Register/Register";
@@ -107,7 +109,7 @@ function saveData(data) {
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <Login />
   },
   {
@@ -128,7 +130,7 @@ const router = createBrowserRouter([
       element: <ProfileView />
     },
     {
-      path: "/profile/ProfileEdit/:instituteId",
+      path: "/Profile/ProfileEdit/:id",
       element: <ProfileEdit />
     },
     {
@@ -184,8 +186,16 @@ const router = createBrowserRouter([
       element: <Admin />
     },
     {
-      path:"/Requests",
-      element:<Requests />
+      path: "/Requests",
+      element: <Requests />
+    }
+    ]
+  },
+  {
+    element: <UserLayout />,
+    children: [{
+      path: "/",
+      element: <User />
     }
     ]
   },

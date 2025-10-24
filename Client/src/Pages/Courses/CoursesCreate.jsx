@@ -29,7 +29,7 @@ export default function CoursesCreate({ }) {
 
     existingCourses.push(newCourse)
     const obj = {
-      courses: [newCourse]
+      courses: existingCourses
     }
     console.log(obj);
     await updatecourses(obj);

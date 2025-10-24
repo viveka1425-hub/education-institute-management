@@ -80,7 +80,7 @@ const ProfileSchema = new Schema(
                 type: Number,
                 require: true
             },
-            courseName: {
+            name: {
                 type: String
             },
             ShortCode: {

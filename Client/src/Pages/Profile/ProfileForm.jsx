@@ -31,15 +31,15 @@ function ProfileForm({ initial, onSave }) {
         setImage(file);
     }
 
-    function handleGalleryAdd(e) {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = () => {
-            setForm((s) => ({ ...s, gallery: [...(s.gallery || []), reader.result] }));
-        };
-        reader.readAsDataURL(file);
-    }
+    // function handleGalleryAdd(e) {
+    //     const file = e.target.files?.[0];
+    //     if (!file) return;
+    //     const reader = new FileReader();
+    //     reader.onload = () => {
+    //         setForm((s) => ({ ...s, gallery: [...(s.gallery || []), reader.result] }));
+    //     };
+    //     reader.readAsDataURL(file);
+    // }
 
     console.log(form);
 
@@ -52,7 +52,7 @@ function ProfileForm({ initial, onSave }) {
                     <input name="name" value={form.name} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
                 </div>
                 <div>
-                    <label className="block text-sm">Tagline</label>
+                    <label className="block text-sm">Category</label>
                     <input name="tagline" value={form.tagline} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
                 </div>
                 <div className="md:col-span-2">
@@ -123,10 +123,10 @@ function ProfileForm({ initial, onSave }) {
                     <input type="file" accept="image/*" onChange={(e) => handleImage(e, "banner")} className="mt-1" />
                 </div>
 
-                <div>
+                {/* <div>
                     <label className="block text-sm">Add Gallery Image</label>
                     <input type="file" accept="image/*" onChange={handleGalleryAdd} className="mt-1" />
-                </div>
+                </div> */}
 
                 <div className="md:col-span-2 flex items-center justify-end space-x-2 mt-4">
                     <button type="submit" className="px-4 py-2 rounded bg-[#614b97] text-white">Save</button>

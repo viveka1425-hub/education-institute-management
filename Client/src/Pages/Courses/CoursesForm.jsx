@@ -8,8 +8,8 @@ function CourseForm({ initial, onSave }) {
   useEffect(() => setForm(initial), [initial]);
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setForm((s) => ({ ...s, [name]: value }));
+    const { name, value,type, checked } = e.target;
+    setForm((s) => ({ ...s, [name]: type === "checkbox" ? checked :value }));
   }
   const handleImageChange = async (e, imageKey) => {
     const file = e.target.files[0];

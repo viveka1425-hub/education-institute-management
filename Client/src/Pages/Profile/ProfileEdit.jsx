@@ -1,29 +1,28 @@
-import  ProfileForm from "./ProfileForm";
+import ProfileForm from "./ProfileForm";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { EditCourse } from "../../services/profileService";
 
-export default function ProfileEdit({ }) {
-    const location = useLocation();
-    const data = location.state
+export default function ProfileEdit() {
 
     //const profile = storedProfile.profile;
-    const { id } =useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
-    const profile = (data.data || []).find((p) => Object(p.id) === Object(id)) || null;
 
-    const index = data.data.findIndex(item => Object(item.id) === Object(id) );
+    const profile = JSON.parse(localStorage.getItem('profile_edit'))
 
-    if(!profile) return <div>profile not found</div>
+
+
+    if (!profile) return <div>profile not found</div>
 
     async function handleSave(updated) {
-        data.profile[index]= updated;
         const obj = {
-            profile : data.profile
+            ...profile,
+            ...updated
         }
         await EditCourse(obj);
         navigate("/profile/ProfileView");
     }
-
+    console.log(profile)
     return (
         <div>
             <div className="flex items-center justify-between mb-6">

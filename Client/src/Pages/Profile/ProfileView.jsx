@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 export default function ProfileView({ }) {
     const [profile, setProfile] = useState(null);
-    
+
     const navigate = useNavigate();
     const instituteId = localStorage.getItem('institute_id');
     console.log(instituteId)
@@ -33,7 +33,8 @@ export default function ProfileView({ }) {
     }
 
     function handleEditProfile(id) {
-        navigate("/Profile/ProfileEdit/" + id, { state: profile })
+        localStorage.setItem('profile_edit', JSON.stringify(profile));
+        navigate("/Profile/ProfileEdit/" + id)
     }
 
     if (profile)
@@ -49,7 +50,7 @@ export default function ProfileView({ }) {
                     </div>
                     <div className="flex gap-3">
                         <Link
-                            onClick={handleEditProfile}
+                            onClick={() => handleEditProfile(profile._id)}
                             //to={`/profile/edit/${profile.id}`}
                             className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-[#614b97] to-[#7256b8] text-white font-medium shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
                         >

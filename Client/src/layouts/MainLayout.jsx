@@ -1,14 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../layouts/Header.css";
 import Footer from "./Footer";
-import { Link, useNavigate } from "react-router";
-import { LogOut  } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 const MainLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [coursesOpen, setCoursesOpen] = useState(false);
     const navigate = useNavigate();
+    
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
@@ -50,9 +50,9 @@ const MainLayout = () => {
 
                             {coursesOpen && (
                                 <div className="dropdown-content">
-                                    <Link to="Profile/ProfileView">profile details</Link>
+                                    <Link to="Profile/ProfileView">Profile details</Link>
                                     <Link to="Courses/CoursesList">Courses</Link>
-                                    <Link to="Facilities/FacilitiesList">facilities</Link>
+                                    <Link to="Facilities/FacilitiesList">Facilities</Link>
                                 </div>
                             )}
                         </div>
