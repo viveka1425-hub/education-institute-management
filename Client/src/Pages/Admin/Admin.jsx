@@ -2,10 +2,11 @@ import './Admin.css';
 import { getApproveData } from "../../services/adminService";
 import { API_URL } from "../../../src/config/config";
 import { useEffect, useState } from 'react';
-import { courseList } from "../../services/profileService";
+import { useNavigate } from 'react-router-dom';
 
 export default function InstituteList() {
     const [list, setList] = useState([]);
+    const navigate = useNavigate();
 
     async function acceptList() {
         let use = await getApproveData();
@@ -13,9 +14,8 @@ export default function InstituteList() {
         setList(use.data.data)
     }
 
-    async function handleMoreDetails() {
-        const use = await courseList()
-        console.log(use.data.data)
+    async function handleMoreDetails(id) {
+        navigate("/InstituteDetails/" + id)
     }
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export default function InstituteList() {
                                 <p><span className="font-medium">Pin Code:</span> {info.pincode}</p>
                             </div>
 
-                            <button onClick={handleMoreDetails} className="mt-6 bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition">
+                            <button onClick={() => handleMoreDetails(info._id)} className="mt-6 bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition">
                                 Show More Details
                             </button>
                         </div>

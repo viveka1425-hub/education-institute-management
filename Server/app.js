@@ -7,6 +7,7 @@ import { ProfileRouter } from './controllers/ProfileControllers.js'
 import { dbConnect } from './config/db.js';
 import { userrouter } from './controllers/UserControllers.js';
 import { imageRouter } from './controllers/imageController.js';
+import { reviewRouter} from './controllers/reviewController.js';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/uploads', express.static('uploads'));
 app.use(ProfileRouter)
 app.use(userrouter)
 app.use(imageRouter)
+app.use(reviewRouter)
 
 app.listen(process.env.PORT, async () => {
     console.log(process.env.PORT)

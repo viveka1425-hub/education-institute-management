@@ -82,11 +82,11 @@ const loginuser = async (req, res) => {
 
         const userInstitute = await ProfileSchema.findOne({ userId: users._id })
 
-        if(users.status !== "approved"){
-            return res.status(403).json({message: "Institute not approved"})
+        if (users.status !== "approved") {
+            return res.status(403).json({ message: "Institute not approved" })
         }
-        
-      
+
+
 
         res.json({
             token: token,
@@ -126,23 +126,23 @@ const getPendingUsers = async (req, res) => {
 };
 router.get('/pending', getPendingUsers)
 
-const getApprovedUser = async(req, res) =>{
+const getApprovedUser = async (req, res) => {
     try {
         let institutes = await ProfileSchema.find().populate({
-            path:"userId",
-            match:{status: "approved"},
+            path: "userId",
+            match: { status: "approved" },
             select: "name email phone status role"
         });
 
         institutes = institutes.filter(info => !!info.userId)
 
         res.status(200).json({
-            message:"approve users fetched successfully",
-            data:institutes
+            message: "approve users fetched successfully",
+            data: institutes
         })
     } catch (error) {
         console.log(error);
-        res.status(500).json({message: "Server error"})
+        res.status(500).json({ message: "Server error" })
     }
 }
 

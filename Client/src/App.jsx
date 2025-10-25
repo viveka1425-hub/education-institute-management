@@ -28,6 +28,8 @@ import FacilitiesList from "./Pages/Facilities/FacilitiesList";
 
 import Requests from "./Pages/Requests/Requests"
 
+import InstituteDetails from "./Pages/User/InstituteDetails";
+
 
 const STORAGE_KEY = "institute_data_v1";
 const defaultData = {
@@ -196,6 +198,10 @@ const router = createBrowserRouter([
     children: [{
       path: "/",
       element: <User />
+    },
+    {
+      path:"/InstituteDetails/:id",
+      element:<InstituteDetails />
     }
     ]
   },

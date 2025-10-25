@@ -11,10 +11,7 @@ async function addProfile(profileData) {
     return result;
 }
 
-async function updateprofile() {
-    const res = await axios.get(API_URL + "/profile-update")
-    return res;
-}
+
 
 async function updatecourses(profileData) {
     const instituteId = localStorage.getItem('institute_id');
@@ -52,14 +49,20 @@ async function EditFacilities(profileData) {
     return result;
 }
 
+async function Details(id){
+    console.log(id)
+    const res = await axios.get(API_URL + `/profile-List/${id}`)
+    return res;
+}
+
 export {
     registerprofile,
-    updateprofile,
     updatecourses,
     courseList,
     EditCourse,
     updateFacilities,
     facilitiesList,
     EditFacilities,
-    addProfile
+    addProfile,
+    Details
 }

@@ -1,6 +1,4 @@
-//import { getApproveData } from "../../services/adminService";
-//import { API_URL } from "../../../src/config/config";
-//import { useEffect, useState } from 'react';
+
 import InstituteList from '../Admin/Admin';
 
 export default function example() {
