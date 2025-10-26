@@ -26,7 +26,8 @@ import FacilitiesEdit from "./Pages/Facilities/FacilitiesEdit";
 import FacilityForm from "./Pages/Facilities/FacilitiesForm";
 import FacilitiesList from "./Pages/Facilities/FacilitiesList";
 
-import Requests from "./Pages/Requests/Requests"
+import Requests from "./Pages/Requests/Requests";
+import Review from "./Pages/Admin/Review";
 
 import InstituteDetails from "./Pages/User/InstituteDetails";
 
@@ -190,6 +191,10 @@ const router = createBrowserRouter([
     {
       path: "/Requests",
       element: <Requests />
+    },
+    {
+      path: "/review",
+      element: < Review />
     }
     ]
   },
@@ -200,9 +205,9 @@ const router = createBrowserRouter([
       element: <User />
     },
     {
-      path:"/InstituteDetails/:id",
-      element:<InstituteDetails />
-    }
+      path: "/InstituteDetails/:id",
+      element: <InstituteDetails />
+    },
     ]
   },
 
@@ -214,5 +219,3 @@ export default function App() {
   }, [])
   return <RouterProvider router={router} />;
 }
-
-

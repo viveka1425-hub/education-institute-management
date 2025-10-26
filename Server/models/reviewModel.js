@@ -12,6 +12,11 @@ const reviewSchema = new Schema({
         ref: "institutes_profile",
         required: true,
     },
+    reviewId:{
+        type:mongoose.Types.ObjectId,
+        ref:"_id",
+        require:true,
+    },
     rating: {
         type: Number,
         min: 1,

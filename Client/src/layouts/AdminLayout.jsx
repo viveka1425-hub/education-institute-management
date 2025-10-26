@@ -39,6 +39,7 @@ const AdminLayout = () => {
                     <div>
                         <a href="/Admin">Dashboard</a>
                         <a href="/Requests">Requests</a>
+                        <a href="/review">Reviews</a>
                     </div>
                     <a onClick={handleLogout} className="cursor-pointer">
                         <div className="flex flex-row">
@@ -47,7 +48,6 @@ const AdminLayout = () => {
                         </div>
                     </a>
                 </div>
-
 
                 {/* Overlay */}
                 {sidebarOpen && <div className="overlay show" onClick={closeSidebar}></div>}

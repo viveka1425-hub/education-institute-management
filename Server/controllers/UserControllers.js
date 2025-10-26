@@ -128,6 +128,10 @@ router.get('/pending', getPendingUsers)
 
 const getApprovedUser = async (req, res) => {
     try {
+        console.log(' req.query', req.query)
+        const name = req.query;
+
+
         let institutes = await ProfileSchema.find().populate({
             path: "userId",
             match: { status: "approved" },

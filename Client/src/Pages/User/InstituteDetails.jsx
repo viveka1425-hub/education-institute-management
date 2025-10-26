@@ -21,7 +21,7 @@ export default function InstituteDetails() {
             rating,
             reviewText,
         });
-        const date = new Date();
+        //const date = new Date();
         console.log(date);
         await instituteReview(userId, id, rating, reviewText, "approved", date)
         setRating(0);
@@ -45,8 +45,8 @@ export default function InstituteDetails() {
         console.log(use)
     }
 
-    async function reviewListCollection(id) {
-        const use = await listReview(id)
+    async function reviewListCollection(id, name) {
+        const use = await listReview(id, name)
         console.log(use.data.collection)
         setReviews(use.data.collection)
     }
@@ -54,7 +54,7 @@ export default function InstituteDetails() {
     useEffect(() => {
         console.log('Id is on UseEffect ', id)
         details(id);
-        reviewListCollection(id)
+        reviewListCollection(id, name)
     }, []);
 
     return (
@@ -215,7 +215,7 @@ export default function InstituteDetails() {
                         onClick={handleSubmit}
                         disabled={!rating || !reviewText.trim()}
                         className={`mt-4 w-full py-2 rounded-xl font-medium transition-all duration-300 ${rating && reviewText.trim()
-                            ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                            ? "text-white hover:bg-indigo-700"
                             : "bg-gray-300 text-gray-500 cursor-not-allowed"
                             }`}
                     >
@@ -236,12 +236,15 @@ export default function InstituteDetails() {
                             {reviews.map((rev) => (
                                 <div
                                     key={rev.id}
-                
+
+
                                     className="p-4 border rounded-xl bg-gray-50 shadow-sm"
                                 >
-                                    <p>{userId.name}</p>
+
+                                    <div>{rev.userId?.name || "Unknown User"}</div>
                                     {/* Stars */}
                                     <div className="flex items-center mb-1">
+                                        <div></div>
                                         {[...Array(5)].map((_, i) => (
                                             <Star
                                                 key={i}
@@ -254,7 +257,16 @@ export default function InstituteDetails() {
                                     </div>
                                     {/* Review Text */}
                                     <p className="text-gray-700">{rev.reviewText}</p>
-                                    <p className="text-sm text-gray-400 mt-1">{rev.date}</p>
+                                    <p className="text-sm text-gray-400 mt-1">
+                                        {new Date(rev.date).toLocaleString("en-US", {
+                                            weekday: "short",   // e.g. "Sun"
+                                            month: "short",     // e.g. "Oct"
+                                            day: "numeric",     // e.g. "26"
+                                            hour: "2-digit",    // e.g. "08"
+                                            minute: "2-digit",  // e.g. "45"
+                                            hour12: true,       // shows AM/PM
+                                        })}
+                                    </p>
                                 </div>
                             ))}
                         </div>

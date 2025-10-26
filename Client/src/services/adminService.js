@@ -31,7 +31,20 @@ export async function submitReview(userId,id,review,reviewText,status,date){
     return res;
 }
 
-export async function listReview(id){
-    const result = await axios.get(API_URL + `/reviewCollection/${id}`)
+export async function listReview(id,name){
+    const fname = {
+        name:name
+    }
+    const result = await axios.get(API_URL + `/reviewCollection/${id}`,fname)
+    return result;
+}
+
+export async function reviewListAdmin(){
+    const result = await axios.get(API_URL + "/userReviewDetails")
+    return result;
+}
+
+export async function rejectedReview(_id){
+    const result = await axios.put(API_URL + `/statusUpdate/${_id}`)
     return result;
 }
