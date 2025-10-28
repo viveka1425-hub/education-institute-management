@@ -18,7 +18,7 @@
     align-items: center;
     padding: 0 2rem;
     height: 6rem;
-    background: #7256b8;
+    background: #b7589f;
     color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -61,8 +61,8 @@
 /* Sidebar */
 .sidebar {
     width: 15rem;
-    background-color: #614b97;
-    color: purple;
+    background-color: #824572;
+    color: pink;
     padding: 1rem 0.5rem;
     position: sticky;
     top: 6rem;
@@ -88,7 +88,7 @@
 
 .sidebar a:hover {
     background-color: #fff;
-    color: #6a0dad;
+    color: #3e0530;
 }
 
 

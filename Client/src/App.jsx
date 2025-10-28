@@ -26,10 +26,15 @@ import FacilitiesEdit from "./Pages/Facilities/FacilitiesEdit";
 import FacilityForm from "./Pages/Facilities/FacilitiesForm";
 import FacilitiesList from "./Pages/Facilities/FacilitiesList";
 
+import InstituteReview from "./Pages/reviews/instituteReview";
+import Enquiry from "./Pages/Enquiry/enquiry";
+
 import Requests from "./Pages/Requests/Requests";
 import Review from "./Pages/Admin/Review";
+import EnquiryForm from "./Pages/reviews/EnquiryForm";
 
 import InstituteDetails from "./Pages/User/InstituteDetails";
+
 
 
 const STORAGE_KEY = "institute_data_v1";
@@ -177,6 +182,14 @@ const router = createBrowserRouter([
     {
       path: "/Facilities/FacilitiesList",
       element: <FacilitiesList />
+    },
+    {
+      path: "/reviews/InstituteReview",
+      element: < InstituteReview />
+    },
+    {
+      path:"/Enquiry/enquiry",
+      element:<Enquiry />
     }
 
     ]
@@ -208,6 +221,10 @@ const router = createBrowserRouter([
       path: "/InstituteDetails/:id",
       element: <InstituteDetails />
     },
+    {
+      path: "/EnquiryForm/:id",
+      element: < EnquiryForm />
+    }
     ]
   },
 

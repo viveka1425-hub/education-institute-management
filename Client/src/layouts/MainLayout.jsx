@@ -56,8 +56,8 @@ const MainLayout = () => {
                                 </div>
                             )}
                         </div>
-                        <a href="/reviews"> Reviews</a>
-                        <a href="/enquiry">Enquiry</a>
+                        <a href="/reviews/InstituteReview"> Reviews</a>
+                        <a href="/Enquiry/enquiry">Enquiry</a>
                     </div>
                     <a onClick={handleLogout} className="cursor-pointer">
                         <div className="flex flex-row">

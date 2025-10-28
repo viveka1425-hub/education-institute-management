@@ -1,7 +1,7 @@
 /* Footer base */
 .footer {
-  background: linear-gradient(90deg, #b3e5fc, #81d4fa);
-  color: #03396c;
+  background: linear-gradient(90deg, #ffd1f4, #ffd1f4);
+  color: #ff00c1;
   padding: 3rem 1rem 1rem;
   font-family: "Segoe UI", sans-serif;
 }
@@ -23,12 +23,12 @@
 
 .footer-section h3,
 .footer-section h4 {
-  color: #01579b;
+  color: #ff00c1;
   margin-bottom: 1rem;
 }
 
 .footer-section p {
-  color: #044d84;
+  color: #ff11c1;
   line-height: 1.6;
 }
 
@@ -43,12 +43,12 @@
 
 .footer-section a {
   text-decoration: none;
-  color: #01579b;
+  color: #ff00c1;
   transition: color 0.3s ease;
 }
 
 .footer-section a:hover {
-  color: #0288d1;
+  color: #ff00c1;
 }
 
 /* Social icons */
@@ -59,7 +59,7 @@
 }
 
 .social-icons a {
-  color: #01579b;
+  color: #ff00c1;
   background-color: #e1f5fe;
   padding: 0.6rem;
   border-radius: 50%;
@@ -71,7 +71,7 @@
 }
 
 .social-icons a:hover {
-  background-color: #0288d1;
+  background-color: #ff00c1;
   color: #fff;
   transform: scale(1.1);
 }
@@ -82,7 +82,7 @@
   margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   padding-top: 1rem;
-  color: #01579b;
+  color: #ff00c1;
   font-size: 0.9rem;
 }
 

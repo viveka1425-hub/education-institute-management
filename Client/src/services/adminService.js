@@ -15,36 +15,62 @@ export async function updateUserStatus(userId, action) {
     return result;
 }
 
-export async function getApproveData(){
-    const result =await axios.get(API_URL +"/approving")
+export async function getApproveData(searchText, state) {
+    const result = await axios.get(API_URL + `/approving?searchText=${searchText}&state=${state}`)
     return result;
 }
 
-export async function submitReview(userId,id,review,reviewText,status,date){
+export async function submitReview(userId, id, review, reviewText, status, date) {
     const ReviewDetails = {
-        rating:review,
-        reviewText:reviewText,
-        status:status,
-        date:date
+        rating: review,
+        reviewText: reviewText,
+        status: status,
+        date: date
     }
-    const res = await axios.post(API_URL +`/review/${userId}/${id}`,ReviewDetails)
+    const res = await axios.post(API_URL + `/review/${userId}/${id}`, ReviewDetails)
     return res;
 }
 
-export async function listReview(id,name){
+export async function listReview(id, name) {
     const fname = {
-        name:name
+        name: name
     }
-    const result = await axios.get(API_URL + `/reviewCollection/${id}`,fname)
+    const result = await axios.get(API_URL + `/reviewCollection/${id}`, fname)
     return result;
 }
 
-export async function reviewListAdmin(){
+export async function reviewListAdmin() {
     const result = await axios.get(API_URL + "/userReviewDetails")
     return result;
 }
 
-export async function rejectedReview(_id){
+export async function reviewListInstitute(instituteId) {
+    const endpoint = instituteId && instituteId !== 'null' ? `/userReviewDetails?instituteId=${instituteId}` : `/userReviewDetails`
+    const result = await axios.get(API_URL + `${endpoint}`)
+    return result;
+}
+
+export async function rejectedReview(_id) {
     const result = await axios.put(API_URL + `/statusUpdate/${_id}`)
     return result;
 }
+
+export async function enquiryList(userId,id,name, email, phone, subject, message, status, date) {
+    const enquiry = {
+        name: name,
+        email: email,
+        phone: phone,
+        subject: subject,
+        message: message,
+        status: status,
+        date: date
+    }
+    const res = await axios.post(API_URL + `/enquiry/${userId}/${id}`, enquiry)
+    return res;
+}
+
+export async function getEnquiryList(instituteId) {
+    const res = await axios.get(API_URL + `/getEnquiry?instituteId=${instituteId}`)
+    return res;
+}
+

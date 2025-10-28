@@ -62,9 +62,21 @@ router.get("/reviewCollection/:instituteId", getReview)
 
 const getReviewAdmin = async (req, res) => {
     try {
-        const userReviewDetails = await reviewSchema.find({ status: "approved" })
+        const { instituteId } = req.query;
+        let conditionQuery;
+        if (instituteId) {
+            conditionQuery = {
+                status: "approved",
+                instituteId: instituteId,
+            }
+        } else {
+            conditionQuery = {
+                status: "approved"
+            }
+        }
+        const userReviewDetails = await reviewSchema.find(conditionQuery)
             .populate("userId", "name")
-            .populate("instituteId","name")
+            .populate("instituteId", "name")
         res.send({
             message: "get review",
             userReviewDetails: userReviewDetails
@@ -75,6 +87,7 @@ const getReviewAdmin = async (req, res) => {
     }
 }
 router.get("/userReviewDetails", getReviewAdmin)
+
 
 const rejectedReview = async (req, res) => {
     try {

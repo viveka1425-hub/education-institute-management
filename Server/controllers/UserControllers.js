@@ -128,11 +128,23 @@ router.get('/pending', getPendingUsers)
 
 const getApprovedUser = async (req, res) => {
     try {
-        console.log(' req.query', req.query)
-        const name = req.query;
+        const { searchText, state, fees } = req.query;
+        console.log({ searchText, state, fees });
+        const filters = {};
 
-
-        let institutes = await ProfileSchema.find().populate({
+        if (searchText) {
+            console.log('Is Executing Inside the SearchText....');
+            filters['$or'] = [
+                { name: { $regex: searchText, $options: "i" } },
+                { address: { $regex: searchText, $options: "i" } },
+                { description: { $regex: searchText, $options: "i" } }
+            ]
+        }
+        if (state) {
+            filters.state = state
+        }
+        console.log('Final Filters', JSON.stringify(filters))
+        let institutes = await ProfileSchema.find(filters).populate({
             path: "userId",
             match: { status: "approved" },
             select: "name email phone status role"

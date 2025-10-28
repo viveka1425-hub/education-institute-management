@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import { reviewListAdmin } from "../../services/adminService";
+import { reviewListInstitute } from "../../services/adminService";
 import { rejectedReview } from "../../services/adminService";
-import { useParams } from "react-router-dom";
 
 export default function Review() {
     const [reviews, setReviews] = useState([]);
+    const instituteId = localStorage.getItem('institute_id')
     console.log(reviews)
 
     async function adminConclusion() {
-        const use = await reviewListAdmin()
+        const use = await reviewListInstitute(instituteId)
         console.log(use.data)
         setReviews(use.data.userReviewDetails)
 
     }
     async function handleReject(_id) {
         await rejectedReview(_id);
+        alert("rejected successfully")
         await adminConclusion()
     }
     useEffect(() => {

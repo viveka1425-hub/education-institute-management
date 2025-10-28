@@ -20,7 +20,7 @@ const LoginPage = () => {
 
         if (!password) newErrors.password = "Password is required";
         else if (password.length < 6) newErrors.password = "Password must be at least 6 characters";
-    
+
 
 
         return newErrors;
@@ -40,7 +40,7 @@ const LoginPage = () => {
                 localStorage.setItem('user_id', data.data.id);
                 localStorage.setItem('institute_id', data.data.instituteId);
                 localStorage.setItem('role', data.data.role)
-                localStorage.setItem('userId',data.data._id)
+                localStorage.setItem('userId', data.data._id)
                 const userRole = localStorage.getItem("role");
                 console.log(userRole)
                 //setSuccess("Login successful!");
@@ -53,7 +53,7 @@ const LoginPage = () => {
                 else if (userRole == "institute") {
                     navigate("/Dashboard")
                 }
-                else if(userRole == "user"){
+                else if (userRole == "user") {
                     navigate("/")
                 }
             } catch (error) {
@@ -115,7 +115,7 @@ const LoginPage = () => {
 
 const styles = {
     page: {
-        background: "linear-gradient(to right, #42306eff, #765cb7ff)",
+        background: "linear-gradient(to right, #b7589f, #825978ff)",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -127,10 +127,10 @@ const styles = {
         width: "400px",
         maxWidth: "90%",
         padding: "30px",
-        background: "#715ba9ff",
+        background: "#ffffff",
         borderRadius: "16px",
         boxShadow: "0 6px 20px rgba(106, 27, 154, 0.4)",
-        color: "#fff",
+        color: "#570b40ff",
         textAlign: "center",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
     },
@@ -152,14 +152,14 @@ const styles = {
     },
     label: {
         marginBottom: "6px",
-        color: "#d1c4e9",
+        color: "#570b40ff",
         fontWeight: "500",
         fontSize: "0.95rem",
     },
     input: {
         padding: "12px 14px",
         borderRadius: "8px",
-        border: "1px solid #7b1fa2",
+        border: "1px solid #21031aff",
         backgroundColor: "#f8f8f8",
         color: "#333",
         fontSize: "1rem",
@@ -168,8 +168,8 @@ const styles = {
     },
     button: {
         padding: "12px",
-        backgroundColor: "#614b97",
-        color: "#fff",
+        backgroundColor: "#b7589f",
+        color: "#4a103dff",
         border: "none",
         borderRadius: "8px",
         cursor: "pointer",
@@ -182,13 +182,13 @@ const styles = {
         backgroundColor: "#8e24aa",
     },
     error: {
-        color: "#f2c9e1",
+        color: "#e42d2aff",
         fontSize: "0.85rem",
         marginTop: "4px",
     },
     registerLink: {
         marginTop: "10px",
-        color: "#ffffffff",
+        color: "#570b40ff",
         textDecoration: "none",
         fontWeight: "500",
         cursor: "pointer",
