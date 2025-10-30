@@ -20,9 +20,9 @@ export default function FacilitiesList({  }) {
   //const navigate = useNavigate();
 
   async function handleDelete(id) {
-    const filtered = items.filter((f) => f.id !== id);
-    console.log('filtered', filtered);
-    const obj = { facility: filtered };
+    const filtegreen = items.filter((f) => f.id !== id);
+    console.log('filtegreen', filtegreen);
+    const obj = { facility: filtegreen };
     await EditFacilities(obj);
     await fetchList()
   }
@@ -66,16 +66,16 @@ export default function FacilitiesList({  }) {
 
   const getCategoryColor = (category) => {
     const colors = {
-      'Academic': 'from-pink-500 to-pink-600',
+      'Academic': 'from-green-500 to-green-600',
       'Recreation': 'from-green-500 to-green-600',
-      'Event Space': 'from-pink-500 to-pink-600',
+      'Event Space': 'from-green-500 to-green-600',
       'Amenities': 'from-orange-500 to-orange-600'
     };
-    return colors[category] || 'from-[#b7589f] to-[#b7589f]';
+    return colors[category] || 'from-[#61b844] to-[#61b844]';
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-indigo-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-indigo-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex items-center justify-between mb-8">
@@ -86,7 +86,7 @@ export default function FacilitiesList({  }) {
           <div>
             <a
               onClick={handleAddFacility}
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#b7589f] to-[#b7589f] text-white font-medium shadow-lg shadow-pink-500/30 hover:shadow-xl hover:shadow-pink-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
+              className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] text-white font-medium shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
             >
               <svg className="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -115,16 +115,16 @@ export default function FacilitiesList({  }) {
                     </div>
 
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-[#b7589f] transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-[#61b844] transition-colors">
                         {f.name}
                       </h3>
                       <div className="flex items-center gap-2 text-sm mb-2">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-pink-100 text-[#b7589f] font-medium text-xs">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-green-100 text-[#61b844] font-medium text-xs">
                           {f.category}
                         </span>
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${f.available
                           ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
+                          : 'bg-green-100 text-green-700'
                           }`}>
                           {f.available ? (
                             <>
@@ -155,7 +155,7 @@ export default function FacilitiesList({  }) {
                 {/* Location and Capacity */}
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center text-sm text-gray-700">
-                    <svg className="w-4 h-4 mr-2 text-[#b7589f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 mr-2 text-[#61b844]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -163,7 +163,7 @@ export default function FacilitiesList({  }) {
                   </div>
 
                   <div className="flex items-center text-sm text-gray-700">
-                    <svg className="w-4 h-4 mr-2 text-[#b7589f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 mr-2 text-[#61b844]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     <span>Capacity: <strong>{f.capacity}</strong> persons</span>
@@ -184,7 +184,7 @@ export default function FacilitiesList({  }) {
                   <a
                     onClick={() => handleEditFacilities(f.id)}
                     //href={`/Facilities/FacilitiesEdit/${f.id}`}
-                    className="flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#b7589f] text-[#b7589f] font-medium hover:bg-[#b7589f] hover:text-white transition-all duration-200"
+                    className="flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#61b844] text-[#61b844] font-medium hover:bg-[#61b844] hover:text-white transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +195,7 @@ export default function FacilitiesList({  }) {
                   </a>
                   <button
                     onClick={() => handleDelete(f.id)}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-medium hover:from-red-600 hover:to-red-700 shadow-md hover:shadow-lg transition-all duration-200"
+                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-medium hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +213,7 @@ export default function FacilitiesList({  }) {
         {/* Empty State */}
         {items.length === 0 && (
           <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#b7589f] to-[#b7589f] rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-24 h-24 bg-gradient-to-br from-[#61b844] to-[#61b844] rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
@@ -222,7 +222,7 @@ export default function FacilitiesList({  }) {
             <p className="text-gray-600 mb-6">Get started by adding your first facility</p>
             <a
               onClick={handleAddFacility}
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#b7589f] to-[#b7589f] text-white font-medium shadow-lg hover:shadow-xl transition-all"
+              className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] text-white font-medium shadow-lg hover:shadow-xl transition-all"
             >
               Add Your First Facility
             </a>

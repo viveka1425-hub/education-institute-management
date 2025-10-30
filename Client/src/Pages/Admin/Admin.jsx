@@ -139,14 +139,14 @@ export default function InstituteList() {
                             <h3 className="text-lg font-semibold text-gray-800">{info.name}</h3>
                             <p className="text-gray-500 text-sm">{info.state}</p>
 
-                            <div className="mt-4 text-sm text-gray-600 space-y-1">
+                            {/* <div className="mt-4 text-sm text-gray-600 space-y-1">
                                 <p><span className="font-medium">Email:</span> {info.email}</p>
                                 <p><span className="font-medium">Phone:</span> {info.phone}</p>
                                 <p><span className="font-medium">Website:</span> {info.website}</p>
                                 <p><span className="font-medium">Address:</span> {info.address}</p>
                                 <p><span className="font-medium">Country:</span> {info.country}</p>
                                 <p><span className="font-medium">Pin Code:</span> {info.pincode}</p>
-                            </div>
+                            </div> */}
 
                             <button onClick={() => handleMoreDetails(info._id)} className="mt-6 bg-green-40 text-white px-6 py-2 rounded-full hover:bg-pink-500 transition">
                                 Show More Details

@@ -18,11 +18,11 @@ const ImageSlider = () => {
     useEffect(() => {
         showName()
     }, []);
-    const images = [
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=60",
-        "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1200&q=60",
-        "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1200&q=60",
-    ];
+    // const images = [
+    //     "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=60",
+    //     "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1200&q=60",
+    //     "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1200&q=60",
+    // ];
 
     return (
         <div style={{}}>
@@ -43,7 +43,7 @@ const ImageSlider = () => {
 
             </div>
 
-            <Carousel
+            {/* <Carousel
                 autoPlay
                 infiniteLoop
                 showThumbs={false}
@@ -55,7 +55,7 @@ const ImageSlider = () => {
                 </div>)}
 
 
-            </Carousel>
+            </Carousel> */}
         </div>
     );
 };

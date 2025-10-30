@@ -88,7 +88,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: #d4d4d4;
 }
 
 button:focus,
@@ -110,7 +110,7 @@ button:focus-visible {
   }
 
   button {
-    background-color: #b7589f;
+    background-color: #61b844;
     color: white;
   }
 }

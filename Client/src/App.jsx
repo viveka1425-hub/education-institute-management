@@ -28,12 +28,14 @@ import FacilitiesList from "./Pages/Facilities/FacilitiesList";
 
 import InstituteReview from "./Pages/reviews/instituteReview";
 import Enquiry from "./Pages/Enquiry/enquiry";
+import EnquiryChat from "./Pages/Enquiry/EnquiryChat";
 
 import Requests from "./Pages/Requests/Requests";
 import Review from "./Pages/Admin/Review";
 import EnquiryForm from "./Pages/reviews/EnquiryForm";
 
 import InstituteDetails from "./Pages/User/InstituteDetails";
+import ReplayEnquiry from "./Pages/Enquiry/replayEnquiry";
 
 
 
@@ -188,8 +190,16 @@ const router = createBrowserRouter([
       element: < InstituteReview />
     },
     {
-      path:"/Enquiry/enquiry",
-      element:<Enquiry />
+      path: "/Enquiry/enquiry",
+      element: <Enquiry />
+    },
+    {
+      path: "/EnquiryChat",
+      element: <EnquiryChat />
+    },
+    {
+      path: "/replayEnquiry/:id",
+      element: < ReplayEnquiry />
     }
 
     ]

@@ -115,7 +115,7 @@ const LoginPage = () => {
 
 const styles = {
     page: {
-        background: "linear-gradient(to right, #b7589f, #825978ff)",
+        background: "linear-gradient(to right, #b9eeaaff, #c5e0bfff)",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -127,10 +127,10 @@ const styles = {
         width: "400px",
         maxWidth: "90%",
         padding: "30px",
-        background: "#ffffff",
+        background: "#c0e4b4ff",
         borderRadius: "16px",
-        boxShadow: "0 6px 20px rgba(106, 27, 154, 0.4)",
-        color: "#570b40ff",
+        boxShadow: "0 6px 20px #151515",
+        color: "#151515",
         textAlign: "center",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
     },
@@ -152,7 +152,7 @@ const styles = {
     },
     label: {
         marginBottom: "6px",
-        color: "#570b40ff",
+        color: "#151515",
         fontWeight: "500",
         fontSize: "0.95rem",
     },
@@ -160,16 +160,16 @@ const styles = {
         padding: "12px 14px",
         borderRadius: "8px",
         border: "1px solid #21031aff",
-        backgroundColor: "#f8f8f8",
-        color: "#333",
+        backgroundColor: "#f5f5f5",
+        color: "#151515",
         fontSize: "1rem",
         outline: "none",
         transition: "all 0.3s ease",
     },
     button: {
         padding: "12px",
-        backgroundColor: "#b7589f",
-        color: "#4a103dff",
+        backgroundColor: "#77a468ff",
+        color: "#151515",
         border: "none",
         borderRadius: "8px",
         cursor: "pointer",
@@ -179,7 +179,7 @@ const styles = {
         transition: "all 0.3s ease",
     },
     buttonHover: {
-        backgroundColor: "#8e24aa",
+        backgroundColor: "#ececec",
     },
     error: {
         color: "#e42d2aff",
@@ -188,7 +188,7 @@ const styles = {
     },
     registerLink: {
         marginTop: "10px",
-        color: "#570b40ff",
+        color: "#151515",
         textDecoration: "none",
         fontWeight: "500",
         cursor: "pointer",

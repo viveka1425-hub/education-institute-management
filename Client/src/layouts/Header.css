@@ -18,7 +18,7 @@
     align-items: center;
     padding: 0 2rem;
     height: 6rem;
-    background: #b7589f;
+    background: #61b844;
     color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -61,7 +61,7 @@
 /* Sidebar */
 .sidebar {
     width: 15rem;
-    background-color: #824572;
+    background-color: #8dcc78;
     color: pink;
     padding: 1rem 0.5rem;
     position: sticky;

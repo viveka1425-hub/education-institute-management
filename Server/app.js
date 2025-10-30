@@ -8,7 +8,8 @@ import { dbConnect } from './config/db.js';
 import { userrouter } from './controllers/UserControllers.js';
 import { imageRouter } from './controllers/imageController.js';
 import { reviewRouter} from './controllers/reviewController.js';
-import { enquiryRouter } from './controllers/enquiryController.js'
+import { enquiryRouter } from './controllers/enquiryController.js';
+import { enquiryReplayRouter } from './controllers/enquiryReplayController.js';
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(userrouter)
 app.use(imageRouter)
 app.use(reviewRouter)
 app.use(enquiryRouter)
+app.use(enquiryReplayRouter)
 
 app.listen(process.env.PORT, async () => {
     console.log(process.env.PORT)

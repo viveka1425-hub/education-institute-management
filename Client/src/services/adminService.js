@@ -74,3 +74,15 @@ export async function getEnquiryList(instituteId) {
     return res;
 }
 
+export async function enquiryReplay(_id,response){
+    const replay = {
+        response:response
+    }
+    const result = await axios.put(API_URL +`/instituteEnquiryReplay/${_id}`,replay)
+    return result;
+}
+
+export async function getEnquiryReplay(id){
+    const res = axios.get(API_URL + `/institutionReplaySendForUser/${id}`)
+    return res;
+}

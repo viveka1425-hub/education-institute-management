@@ -12,10 +12,6 @@ const enquirySchema = new mongoose.Schema(
             ref: "institutes_profile",
             required: true,
         },
-        enquiryId: {
-            type: mongoose.Types.ObjectId,
-            require: true,
-        },
         name: {
             type: String,
             required: true,
@@ -37,14 +33,14 @@ const enquirySchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
-        messages: [{
-            sender_type: {
-                type: String,
-                enum: ["user", "institute"], 
-                required: true,
-            },
-            
-        }],
+        message:{
+            type:String,
+            trim:true
+        },
+        response:{
+            type:String,
+            trim:true
+        },
         status: {
             type: String,
             enum: ["approved", "pending"],

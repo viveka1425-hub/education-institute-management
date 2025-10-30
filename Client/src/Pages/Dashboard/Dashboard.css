@@ -8,14 +8,14 @@
 
 
 .dashboard-card {
-    background-color: #a56194;
+    background-color: #61b844;
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 8rem;
     flex: 1;
     border: 1px solid;
-    border-color: blueviolet;
+    border-color: #8dcc78;
     transition: transform 0.2s ease;
 }
 
