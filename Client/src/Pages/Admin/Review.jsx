@@ -31,7 +31,7 @@ export default function Review() {
                     {reviews.map((userReviewDetails, index) => (
                         <div
                             key={index}
-                            className="bg-white shadow-md rounded-lg p-4 border border-gray-50"
+                            className="bg-[#f0fcf4] shadow-md rounded-lg p-4 border border-gray-50"
                         >
                             <h3 className="text-lg font-semibold text-gray-800">
                                 Name:{userReviewDetails.userId?.name || "Anonymous"}
@@ -63,7 +63,11 @@ export default function Review() {
 
                 </div>
 
-            ) : null}
+            ) : (
+                <div className="text-center text-green-500 mt-10 mb-70 text-lg">
+                    No reviews found ⭐
+                </div>
+            )}
         </div>
     )
 }

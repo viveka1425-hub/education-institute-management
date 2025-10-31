@@ -64,7 +64,7 @@ h1 {
 ========================================= */
 a {
   font-weight: 500;
-  color: #971b78;
+  color: #305921;
   text-decoration: inherit;
 }
 
@@ -110,7 +110,7 @@ button:focus-visible {
   }
 
   button {
-    background-color: #61b844;
+    background-color: #305921;
     color: white;
   }
 }

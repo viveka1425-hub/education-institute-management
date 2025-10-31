@@ -23,6 +23,10 @@ export default function InstituteDetails() {
   const [reviewText, setReviewText] = useState("");
   const [reviews, setReviews] = useState([]);
 
+  const { id } = useParams()
+  const userId = localStorage.getItem('user_id')
+  console.log('userId ' + userId)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!rating || !reviewText.trim()) return;
@@ -31,7 +35,6 @@ export default function InstituteDetails() {
       reviewText,
     });
     const date = new Date();
-    //console.log(date);
     await instituteReview(userId, id, rating, reviewText, "approved", date)
     setRating(0);
     setReviewText("");
@@ -40,17 +43,12 @@ export default function InstituteDetails() {
   };
 
   const Enquiry = () => {
-    navigate("/EnquiryForm/" + id);
+    navigate(`/EnquiryForm/${id}/${userId}`);
   };
 
   const handleClick = (value) => {
     setContent(value);
   };
-
-  const { id } = useParams()
-  const userId = localStorage.getItem('user_id')
-  console.log('userId ' + userId)
-
 
   async function details(id) {
     let use = await Details(id)
@@ -130,14 +128,14 @@ return (
     </div>
 
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-200 py-10 px-4 sm:px-8">
-      <nav className="bg-green-200 shadow-xl">
+      <nav className="bg-green-100 shadow-xl text-green-800" style={{borderRadius:30, marginBottom:4}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
 
             {/* Desktop Menu Links */}
             <div className="pl-70 hidden lg:flex items-center space-x-1">
 
-              <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" >Home</a>
+              <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-white">Home</a>
               <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">About Us</a>
               <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
               <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>

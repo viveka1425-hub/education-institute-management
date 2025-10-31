@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { getEnquiryList } from "../../services/adminService";
-import { useNavigate } from "react-router-dom";
+import {getEnquiryList } from "../../services/adminService";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Enquiry() {
-    const instituteId = localStorage.getItem('institute_id')
     const [details, setDetails] = useState();
      const Navigate = useNavigate();
 
+     const { id } = useParams();
+     console.log(id)
+     
     async function enquiryList() {
-        const use = await getEnquiryList(instituteId)
+        const use = await getEnquiryList(id)
+        console.log(id)
         console.log(use.data.data)
         setDetails(use.data.data)
     }

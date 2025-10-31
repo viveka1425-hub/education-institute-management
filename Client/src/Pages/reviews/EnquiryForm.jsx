@@ -12,14 +12,19 @@ export default function EnquiryForm() {
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
     const [form, setForm] = useState({});
-    const [replay, setReplay] = useState();
 
+    const [replay, setReplay] = useState([]);
+
+    const userId = localStorage.getItem('user_id')
     const { id } = useParams();
+    console.log(userId)
+    const date = new Date();
+
 
     async function enquiryReplay() {
-        const use = await getEnquiryReplay()
-        console.log(use.data)
-        setReplay(use.data)
+        const use = await getEnquiryReplay(id, userId)
+        console.log(use.data.data)
+        setReplay(use.data.data)
     }
 
     async function details() {
@@ -29,11 +34,6 @@ export default function EnquiryForm() {
         setEmail(use.data.data.email)
         setPhone(use.data.data.phone)
     }
-
-    const userId = localStorage.getItem('user_id')
-    console.log(userId)
-    const date = new Date();
-
 
     const handleEnquiry = async (e) => {
         e.preventDefault()
@@ -46,126 +46,120 @@ export default function EnquiryForm() {
         setPhone("");
         setSubject("");
         setMessage("");
-        //alert("Enquiry send successfully")
+        alert("Enquiry send successfully")
     }
 
-    const notify = () => toast("");
     useEffect(() => {
         details()
         enquiryReplay()
     }, []);
 
     return (
-        <div className="py-10 px-4 sm:px-8 bg-gray-50 min-h-screen">
-            <div className="w-full lg:w-1/2 items-start pt-8 lg:pt-20">
-                <div className="max-w-md mx-auto mt-6">
-                    <div className="bg-gradient-to-r from-green-200 to-green-200 text-green rounded-2xl p-4 shadow-lg">
-                        <h3 className="font-semibold text-lg mb-2">Institute Reply</h3>
-                        <p className="text-sm leading-relaxed">{replay}</p>
-                        <span className="text-xs text-green-20 mt-2 block text-right">— Institution Team</span>
+
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 py-8 px-4 sm:px-6 lg:px-10">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* 💬 Left Side - Chat Section */}
+                <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 border border-gray-100">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Enquiry Conversation</h2>
+
+                    <div className="space-y-5 overflow-y-auto max-h-[500px] px-2">
+                        {replay.map((info, index) => (
+                            <div key={index} className="flex flex-col space-y-4">
+                                {/* User Message (Left - Green) */}
+                                <div className="flex items-start">
+                                    <div className="w-9 h-9 bg-gray-300 rounded-full mr-3 shadow-inner"></div>
+                                    <div className="bg-green-200 text-gray-900 p-4 rounded-2xl rounded-tl-none max-w-[75%] shadow-md">
+                                        <p className="font-semibold text-sm sm:text-base">{info.name}</p>
+                                        <p className="text-xs sm:text-sm mt-1">{info.message}</p>
+                                    </div>
+                                </div>
+
+                                {/* Institute Reply (Right - Blue) */}
+                                <div className="flex items-start justify-end">
+                                    <div className="bg-blue-200 text-gray-900 p-4 rounded-2xl rounded-tr-none max-w-[75%] shadow-md">
+                                        <h3 className="font-semibold text-sm sm:text-base mb-1">Institute</h3>
+                                        <p className="text-xs sm:text-sm">{info.response}</p>
+                                    </div>
+                                    <div className="w-9 h-9 bg-gray-300 rounded-full ml-3 shadow-inner"></div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </div>
-            <div className="mt-0 ml-150">
-                <div className="bg-green-50/70 p-5 sm:p-6 rounded-2xl border border-green-100 shadow-inner transition-all duration-300 hover:shadow-md max-w-xl mx-auto">
-                    <h3 className="text-2xl font-bold text-green-800 text-center mb-6">
-                        Customer Enquiry Form
+
+                {/* 📝 Right Side - Enquiry Form */}
+                <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 border border-gray-100">
+                    <h3 className="text-xl sm:text-2xl font-bold text-green-700 text-center mb-6">
+                        Enquiry Form Details
                     </h3>
 
-                    <form onSubmit={(e) => handleEnquiry(e, form)}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Full Name */}
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-medium text-green-700 mb-1">
-                                    Full Name
-                                </label>
-                                <input
-                                    name="name" // Added name attribute for handleChange
-                                    value={name}
-                                    onChange={(event) => setName(event.target.value)}
-                                    className="w-full p-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-400 focus:outline-none text-gray-700 placeholder-gray-400 shadow-sm"
-                                    placeholder="Enter your full name"
-                                    required
-                                />
-                            </div>
-
-                            {/* Email */}
-                            <div>
-                                <label className="block text-sm font-medium text-green-700 mb-1">
-                                    Email
-                                </label>
-                                <input
-                                    name="email" // Added name attribute
-                                    type="email" // Added type for better validation
-                                    value={email}
-                                    onChange={(event) => setEmail(event.target.value)}
-                                    className="w-full p-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-400 focus:outline-none text-gray-700 placeholder-gray-400 shadow-sm"
-                                    placeholder="name@example.com"
-                                    required
-                                />
-                            </div>
-
-                            {/* Phone */}
-                            <div>
-                                <label className="block text-sm font-medium text-green-700 mb-1">
-                                    Phone Number
-                                </label>
-                                <input
-                                    name="phone" // Added name attribute
-                                    type="tel" // Added type for better mobile input
-                                    value={phone}
-                                    onChange={(event) => setPhone(event.target.value)}
-                                    className="w-full p-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-400 focus:outline-none text-gray-700 placeholder-gray-400 shadow-sm"
-                                    placeholder="+91 98765 43210"
-                                    required
-                                />
-                            </div>
-
-                            {/* Subject */}
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-medium text-green-700 mb-1">
-                                    Subject
-                                </label>
-                                <input
-                                    name="subject" // Added name attribute
-                                    value={subject}
-                                    onChange={(event) => setSubject(event.target.value)}
-                                    className="w-full p-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-400 focus:outline-none text-gray-700 placeholder-gray-400 shadow-sm"
-                                    placeholder="Course Enquiry / Service Request"
-                                    required
-                                />
-                            </div>
-
-                            {/* Message (Converted from textarea) */}
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-medium text-green-700 mb-1">
-                                    Message
-                                </label>
-                                <textarea
-                                    name="message"
-                                    value={message}
-                                    onChange={(event) => setMessage(event.target.value)}
-                                    // Used the styling from the original review textarea
-                                    className="w-full p-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-400 focus:outline-none text-gray-700 placeholder-gray-400 shadow-sm"
-                                    rows="4"
-                                    placeholder="Write your enquiry details here..."
-                                    required
-                                ></textarea>
-                            </div>
-
-                            {/* Submit Button (Styled like the original submit button) */}
-                            <div className="md:col-span-2 mt-1">
-                                <button onClick={notify}
-                                    type="submit"
-                                >
-                                    Submit Enquiry
-                                </button>
-                            </div>
+                    <form onSubmit={(e) => handleEnquiry(e, form)} className="space-y-4 sm:space-y-5">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Enter your name"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-2 sm:py-3 text-gray-800 focus:ring-2 focus:ring-green-400 focus:outline-none shadow-sm"
+                            />
                         </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="name@example.com"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-2 sm:py-3 text-gray-800 focus:ring-2 focus:ring-green-400 focus:outline-none shadow-sm"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input
+                                type="tel"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                placeholder="+91 98765 43210"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-2 sm:py-3 text-gray-800 focus:ring-2 focus:ring-green-400 focus:outline-none shadow-sm"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input
+                                type="text"
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
+                                placeholder="Course Enquiry / Service Request"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-2 sm:py-3 text-gray-800 focus:ring-2 focus:ring-green-400 focus:outline-none shadow-sm"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea
+                                rows="4"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                placeholder="Write your enquiry here..."
+                                className="w-full border border-gray-300 rounded-xl px-4 py-2 sm:py-3 text-gray-800 focus:ring-2 focus:ring-green-400 focus:outline-none shadow-sm resize-none"
+                            ></textarea>
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-2xl hover:from-green-600 hover:to-green-700 transition-all duration-200"
+                        >
+                            Submit Enquiry
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
+
 
     );
 }

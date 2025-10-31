@@ -5,19 +5,19 @@ const router = express.Router()
 const instituteReplay = async (req, res) => {
     try {
         const { response } = req.body
-        if(!response){
-            return res.status(400).json({message:"send message"})
+        if (!response) {
+            return res.status(400).json({ message: "send message" })
         }
         const { id } = req.params;
-        let status = await enquirySchema.updateOne({_id:id},{
-            $set:{
-                status:"approved",
-                response:response
+        let status = await enquirySchema.updateOne({ _id: id }, {
+            $set: {
+                status: "approved",
+                response: response
             }
-        })    
+        })
         res.send({
-            message:"successfully send the message",
-            status:status
+            message: "successfully send the message",
+            status: status
         })
     } catch (error) {
         console.log(error)
@@ -26,21 +26,23 @@ const instituteReplay = async (req, res) => {
 }
 router.put("/instituteEnquiryReplay/:id", instituteReplay)
 
-const institutionReplaySendForUser  = async (req,res) => {
+const institutionReplaySendForUser = async (req, res) => {
     try {
-        const { id } = req.params
-        let data = await enquirySchema.find({_id:id})
-        
+        const { userId, instituteId } = req.params
+        const data = await enquirySchema.find({
+            instituteId: instituteId,
+            userId: userId
+        });
         res.send({
-            message:"replay send successfully",
-            data:data
+            message: "replay fetch successfully",
+            data: data
         })
     } catch (error) {
         console.log(error)
-        res.send(500).json({message:"server error"})
+        res.send(500).json({ message: "server error" })
     }
 }
 
-router.get("/institutionReplaySendForUser/:id", institutionReplaySendForUser)
+router.get("/institutionReplaySendForUser/:instituteId/:userId", institutionReplaySendForUser)
 
 export { router as enquiryReplayRouter };

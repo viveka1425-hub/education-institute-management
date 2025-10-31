@@ -45,7 +45,7 @@ const enquiry = async (req, res) => {
     }
 }
 
-router.post("/enquiry/:userId/:id", enquiry)
+router.post("/enquiry/:id/:userId", enquiry)
 
 const getEnquiry = async (req, res) => {
     try {
@@ -56,9 +56,11 @@ const getEnquiry = async (req, res) => {
         let filters = {};
         if (userId) {
             filters.userId = userId
-        } else if (instituteId) {
+        }if (instituteId) {
             filters.instituteId = instituteId
-        } else {
+            filters.status = 'pending'
+        }
+        else {
             return res.status(400).json({ message: "Sender ID is required" });
         }
         console.log(filters)
@@ -67,7 +69,6 @@ const getEnquiry = async (req, res) => {
             message: "Enquiry List",
             data: institute_Enquiry
         })
-
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: "server error" })

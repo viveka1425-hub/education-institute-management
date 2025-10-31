@@ -126,7 +126,7 @@ const RegisterForm = () => {
 
 const styles = {
     page: {
-        background: "linear-gradient(to right, #b9eeaaff, #c5e0bfff)",
+        background: "#f6faf5",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -138,9 +138,9 @@ const styles = {
         width: "400px",
         maxWidth: "90%",
         padding: "30px",
-        background: "#c0e4b4ff",
+        background: "#ffffff",
         borderRadius: "16px",
-        boxShadow: "0 6px 20px #151515",
+        boxShadow: "0 6px 20px #cce8c1",
         color: "#151515",
         textAlign: "center",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -179,8 +179,8 @@ const styles = {
     },
     button: {
         padding: "12px",
-        backgroundColor: "#77a468ff",
-        color: "#151515",
+        backgroundColor: "#305921",
+        color: "#ffffff",
         border: "none",
         borderRadius: "8px",
         cursor: "pointer",
@@ -223,6 +223,8 @@ const styles = {
         },
     },
 };
+
+
 
 
 export default RegisterForm;

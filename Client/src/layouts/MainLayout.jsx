@@ -8,7 +8,8 @@ const MainLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [coursesOpen, setCoursesOpen] = useState(false);
     const navigate = useNavigate();
-    
+    const id = localStorage.getItem('institute_id')
+
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
@@ -18,7 +19,7 @@ const MainLayout = () => {
     };
     const handleLogout = () => {
         localStorage.clear();
-        navigate('/')
+        navigate('/login')
     }
 
     return (
@@ -57,7 +58,7 @@ const MainLayout = () => {
                             )}
                         </div>
                         <Link to="/reviews/InstituteReview"> Reviews</Link>
-                        <Link to="/Enquiry/enquiry">Enquiry</Link>
+                        <Link to ={`/Enquiry/enquiry/${id}`}>Enquiry</Link>
                     </div>
                     <a onClick={handleLogout} className="cursor-pointer">
                         <div className="flex flex-row">

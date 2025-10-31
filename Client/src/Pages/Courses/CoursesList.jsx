@@ -164,7 +164,7 @@ function CoursesList({ }) {
                 <div className="flex gap-3 pt-4 border-t border-gray-100">
                   <button
                     onClick={() => handleEditCourses(c.id)}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-medium hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all duration-200"
+                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-800 to-green-800 text-white font-medium hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,7 +175,7 @@ function CoursesList({ }) {
                   </button>
                   <button
                     onClick={() => handleDelete(c.id)}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-medium hover:from-red-600 hover:to-red-700 shadow-md hover:shadow-lg transition-all duration-200"
+                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-800 to-green-800 text-white font-medium hover:from-green-600 hover:to-green-600 shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

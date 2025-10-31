@@ -65,12 +65,12 @@ export async function enquiryList(userId,id,name, email, phone, subject, message
         status: status,
         date: date
     }
-    const res = await axios.post(API_URL + `/enquiry/${userId}/${id}`, enquiry)
+    const res = await axios.post(API_URL + `/enquiry/${id}/${userId}`, enquiry)
     return res;
 }
 
-export async function getEnquiryList(instituteId) {
-    const res = await axios.get(API_URL + `/getEnquiry?instituteId=${instituteId}`)
+export async function getEnquiryList(id) {
+    const res = await axios.get(API_URL + `/getEnquiry?instituteId=${id}`)
     return res;
 }
 
@@ -82,7 +82,7 @@ export async function enquiryReplay(_id,response){
     return result;
 }
 
-export async function getEnquiryReplay(id){
-    const res = axios.get(API_URL + `/institutionReplaySendForUser/${id}`)
+export async function getEnquiryReplay(id,userId){
+    const res = axios.get(API_URL + `/institutionReplaySendForUser/${id}/${userId}`)
     return res;
 }

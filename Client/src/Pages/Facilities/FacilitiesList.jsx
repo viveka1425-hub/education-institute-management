@@ -184,7 +184,7 @@ export default function FacilitiesList({  }) {
                   <a
                     onClick={() => handleEditFacilities(f.id)}
                     //href={`/Facilities/FacilitiesEdit/${f.id}`}
-                    className="flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#61b844] text-[#61b844] font-medium hover:bg-[#61b844] hover:text-white transition-all duration-200"
+                    className="text-white flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#61b844] text-[#ffffff] font-medium hover:bg-[#61b844] hover:text-white transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +195,7 @@ export default function FacilitiesList({  }) {
                   </a>
                   <button
                     onClick={() => handleDelete(f.id)}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-medium hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all duration-200"
+                    className="bg-[#305921] flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-medium hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

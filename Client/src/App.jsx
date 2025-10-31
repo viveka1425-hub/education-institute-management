@@ -190,7 +190,7 @@ const router = createBrowserRouter([
       element: < InstituteReview />
     },
     {
-      path: "/Enquiry/enquiry",
+      path: "/Enquiry/enquiry/:id",
       element: <Enquiry />
     },
     {
@@ -232,7 +232,7 @@ const router = createBrowserRouter([
       element: <InstituteDetails />
     },
     {
-      path: "/EnquiryForm/:id",
+      path: "/EnquiryForm/:id/:userId",
       element: < EnquiryForm />
     }
     ]

@@ -8,7 +8,7 @@
 
 
 .dashboard-card {
-    background-color: #61b844;
+    background-color: #d6e8cc;
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -25,5 +25,5 @@
 
 .card-title {
     text-align: center;
-    color: white;
+    color: #305921;
 }
