@@ -57,7 +57,7 @@ export default function Review() {
                                     hour12: true,
                                 })}
                             </p>
-                            <button onClick={() => handleReject(userReviewDetails._id)} className="bg-red-500 text-white text-sm px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-all duration-200" > Reject</button>
+                            <button onClick={() => handleReject(userReviewDetails._id)} className="bg-red-500 text-white text-sm px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-all duration-200" > flag </button>
                         </div>
                     ))}
 

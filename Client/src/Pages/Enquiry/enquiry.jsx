@@ -68,7 +68,7 @@ export default function Enquiry() {
 
                                 <div className="mt-4 text-right">
                                     <button onClick={() =>EnquiryChat(item._id)} className="bg-green-600 text-white text-sm px-4 py-2 rounded-full hover:bg-green-700 transition-all">
-                                        replay
+                                        respond 
                                     </button>
                                 </div>
                             </div>

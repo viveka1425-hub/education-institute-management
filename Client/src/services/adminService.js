@@ -86,3 +86,8 @@ export async function getEnquiryReplay(id,userId){
     const res = axios.get(API_URL + `/institutionReplaySendForUser/${id}/${userId}`)
     return res;
 }
+
+export async function getCount(id){
+    const result = axios.get(API_URL + `/reviewCount/${id}`)
+    return result;
+}

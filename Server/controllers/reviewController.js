@@ -1,5 +1,6 @@
 import express, { request } from "express";
 import reviewSchema from "../models/reviewModel.js";
+import enquirySchema from "../models/enquiryModel.js";
 const router = express.Router()
 
 const review = async (req, res) => {
@@ -108,5 +109,22 @@ const rejectedReview = async (req, res) => {
     }
 }
 router.put("/statusUpdate/:reviewId", rejectedReview)
+
+const reviewCount = async (req, res) => {
+    try {
+        const { instituteId } = req.params;
+        const result = await reviewSchema.countDocuments({instituteId:instituteId})
+        const enquiry = await enquirySchema.countDocuments({instituteId:instituteId})
+        res.send({
+            message: "get review count",
+            result: result,
+            enquiry:enquiry
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Server error" })
+    }
+}
+router.get("/reviewCount/:instituteId", reviewCount)
 
 export { router as reviewRouter };

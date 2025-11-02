@@ -88,7 +88,7 @@ const ProfileSchema = new Schema(
             },
             category: {
                 type: String,
-                enum: ["Undergraduate", "postgraduate", "diploma", "Certification"],
+                enum: ["Undergraduate", "Postgraduate", "Diploma", "Certification"],
                 required: true,
                 default: "user"
             },

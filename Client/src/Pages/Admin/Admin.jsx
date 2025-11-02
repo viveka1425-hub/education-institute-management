@@ -3,11 +3,19 @@ import { getApproveData } from "../../services/adminService";
 import { API_URL } from "../../../src/config/config";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userName } from '../../services/userService';
 
 export default function InstituteList() {
     const [list, setList] = useState([]);
     const [search, setSearch] = useState("");
     const [state, setState] = useState("");
+    const [name, setName] = useState([]);
+
+    async function showName(){
+        let use = await userName();
+        console.log(use.data.data.name)
+        setName(use.data.data.name)
+    }
 
     const navigate = useNavigate();
 
@@ -26,13 +34,16 @@ export default function InstituteList() {
     }
 
 
+
     useEffect(() => {
         acceptList()
+        showName()
     }, []);
 
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
+            <div><h1>Welcome! {name}</h1></div>
             <header className="shadow p-4">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     {/* <h3 className="header-title">Education Institute</h3> */}
