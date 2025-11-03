@@ -19,8 +19,8 @@ export async function updateUserStatus(userId, action) {
     return result;
 }
 
-export async function getApproveData(searchText, state, feeRange) {
-    const result = await axios.get(API_URL + `/approving?searchText=${searchText}&state=${state}&feeRange=${feeRange}`)
+export async function getApproveData(searchText, state, feeRange, facilityName, rating) {
+    const result = await axios.get(API_URL + `/approving?searchText=${searchText}&state=${state}&feeRange=${feeRange}&facilityName=${facilityName}&rating=${rating}`)
     return result;
 }
 

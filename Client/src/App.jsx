@@ -36,6 +36,7 @@ import EnquiryForm from "./Pages/reviews/EnquiryForm";
 
 import InstituteDetails from "./Pages/User/InstituteDetails";
 import ReplayEnquiry from "./Pages/Enquiry/replayEnquiry";
+import InstituteBanner from "./components/InstituteBanner";
 
 
 
@@ -234,6 +235,10 @@ const router = createBrowserRouter([
     {
       path: "/EnquiryForm/:id/:userId",
       element: < EnquiryForm />
+    },
+    {
+      path:"/InstituteBanner",
+      element: <InstituteBanner />
     }
     ]
   },

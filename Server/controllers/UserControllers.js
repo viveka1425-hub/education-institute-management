@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import User from "../models/userModel.js";
 import ProfileSchema from '../models/profileModel.js';
+import reviewSchema from "../models/reviewModel.js";
 
 import { generateToken } from "../utills/index.js";
 import { authorizeToken } from "../middleware/authorize.js";
@@ -130,8 +131,8 @@ router.get('/pending', authorizeToken, authorizeRole(['admin']), getPendingUsers
 
 const getApprovedUser = async (req, res) => {
     try {
-        const { searchText, state, fees, facilities } = req.query;
-        console.log({ searchText, state, fees });
+        const { searchText, state, fees, facilityName, rating, feeRange } = req.query;
+        console.log({ searchText, state, fees, facilityName, rating, feeRange });
         const filters = {};
 
         if (searchText) {
@@ -146,18 +147,45 @@ const getApprovedUser = async (req, res) => {
             filters.state = state
         }
         if (fees) {
-            if (feeRange === 'below-50000') filters.fees = { $lt: 50000 };
-            else if (feeRange === '50000-100000') filters.fees = { $gte: 50000, $lte: 100000 };
-            else if (feeRange === 'above-100000') filters.fees = { $gt: 100000 };
+            if (feeRange === 'low') {
+                filters["courses.fees"] = { $lt: 50000 };
+            } else if (feeRange === 'medium') {
+                filters["courses.fees"] = { $gte: 50000, $lte: 100000 };
+            } else if (feeRange === 'high') {
+                filters["courses.fees"] = { $gt: 100000 };
+            }
         }
-        if (facilities && facilities.length > 0) {
-            filters.facilities = { $all: facilities };
+
+        if (facilityName) {
+            filters["facility.name"] = facilityName;
+        }
+
+        let matchingInstituteIds = [];
+        if (rating) {
+            const avgRatings = await reviewSchema.aggregate([
+                {
+                    $group: {
+                        _id: "$instituteId",
+                        avgRating: { $avg: "$rating" },
+                    },
+                },
+                {
+                    $match: {
+                        avgRating: { $gte: Number(rating) },
+                    },
+                },
+            ]);
+            matchingInstituteIds = avgRatings.map(r => r._id);
+            console.log(matchingInstituteIds)
+            if (matchingInstituteIds.length > 0) {
+                filters._id = { $in: matchingInstituteIds };
+            }
         }
         console.log('Final Filters', JSON.stringify(filters))
         let institutes = await ProfileSchema.find(filters).populate({
             path: "userId",
             match: { status: "approved" },
-            feesRange:"fees",
+            feesRange: "fees",
             select: "name email phone status role"
         });
 
