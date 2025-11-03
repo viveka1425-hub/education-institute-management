@@ -31,13 +31,18 @@ export default function DataList() {
     console.log('list', list)
 
     return (
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-            {list.length == 0 ? <h3 className="text-xl font-semibold text-gray-900 mb-2">No pending list Yet</h3> :
+        <div className="min-h-screen py-10 px-6">
+            <h2 className="text-3xl font-bold text-green-700 text-center mb-10">
+                Institute List
+            </h2>
+            {list.length == 0 ? <div className="text-center text-green-500 mt-10 text-lg">
+                No pending list yet
+            </div> :
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6">
                     {list.map((info, index) => (
                         <div
                             key={index}
-                            className="bg-gradient-to-br from-[#614b97] to-[#7256b8] text-white rounded-2xl shadow-2xl p-6 transition-all hover:scale-[1.03] hover:shadow-[0_10px_30px_rgba(114,86,184,0.5)]"
+                            className="bg-gradient-to-br from-[#d6e8cc] to-[#d6e8cc] text-green-800 rounded-2xl shadow-2xl p-6 transition-all hover:scale-[1.03] hover:shadow-[#d6e8cc]"
                         >
                             <h2 className="text-2xl font-semibold text-center mb-5 border-b border-white/30 pb-2">
                                 Institute Information
@@ -46,40 +51,40 @@ export default function DataList() {
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <User size={18} className="text-white/80" />
-                                        <span className="text-sm text-white/80">Name</span>
+                                        <User size={18} className="text-green/80" />
+                                        <span className="text-sm text-green/80">Name</span>
                                     </div>
                                     <span className="text-lg font-semibold">{info.name}</span>
                                 </div>
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <Mail size={18} className="text-white/80" />
-                                        <span className="text-sm text-white/80">Email</span>
+                                        <Mail size={18} className="text-green/80" />
+                                        <span className="text-sm text-green/80">Email</span>
                                     </div>
                                     <span className="text-lg font-semibold break-all text-right">{info.email}</span>
                                 </div>
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <Phone size={18} className="text-white/80" />
-                                        <span className="text-sm text-white/80">Phone</span>
+                                        <Phone size={18} className="text-green/80" />
+                                        <span className="text-sm text-green/80">Phone</span>
                                     </div>
                                     <span className="text-lg font-semibold">{info.phone}</span>
                                 </div>
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <Globe size={18} className="text-white/80" />
-                                        <span className="text-sm text-white/80">Website</span>
+                                        <Globe size={18} className="text-green/80" />
+                                        <span className="text-sm text-green/80">Website</span>
                                     </div>
                                     <span className="text-lg font-semibold truncate max-w-[150px] text-right">{info.website}</span>
                                 </div>
 
                                 <div className="flex items-start justify-between">
                                     <div className="flex items-center gap-2">
-                                        <MapPin size={18} className="text-white/80" />
-                                        <span className="text-sm text-white/80">Address</span>
+                                        <MapPin size={18} className="text-green/80" />
+                                        <span className="text-sm text-green/80">Address</span>
                                     </div>
                                     <span className="text-lg font-semibold text-right max-w-[200px] leading-snug">
                                         {info.address}

@@ -4,6 +4,8 @@ import User from "../models/userModel.js";
 import ProfileSchema from '../models/profileModel.js';
 
 import { generateToken } from "../utills/index.js";
+import { authorizeToken } from "../middleware/authorize.js";
+import { authorizeRole } from "../middleware/authorize-role.js";
 const router = express.Router()
 
 const registeruser = async (req, res) => {
@@ -124,11 +126,11 @@ const getPendingUsers = async (req, res) => {
         res.status(500).json({ message: "Server Error" })
     }
 };
-router.get('/pending', getPendingUsers)
+router.get('/pending', authorizeToken, authorizeRole(['admin']), getPendingUsers)
 
 const getApprovedUser = async (req, res) => {
     try {
-        const { searchText, state, fees } = req.query;
+        const { searchText, state, fees, facilities } = req.query;
         console.log({ searchText, state, fees });
         const filters = {};
 
@@ -143,10 +145,19 @@ const getApprovedUser = async (req, res) => {
         if (state) {
             filters.state = state
         }
+        if (fees) {
+            if (feeRange === 'below-50000') filters.fees = { $lt: 50000 };
+            else if (feeRange === '50000-100000') filters.fees = { $gte: 50000, $lte: 100000 };
+            else if (feeRange === 'above-100000') filters.fees = { $gt: 100000 };
+        }
+        if (facilities && facilities.length > 0) {
+            filters.facilities = { $all: facilities };
+        }
         console.log('Final Filters', JSON.stringify(filters))
         let institutes = await ProfileSchema.find(filters).populate({
             path: "userId",
             match: { status: "approved" },
+            feesRange:"fees",
             select: "name email phone status role"
         });
 
@@ -161,7 +172,8 @@ const getApprovedUser = async (req, res) => {
         res.status(500).json({ message: "Server error" })
     }
 }
-
+//http://localhost:7007/approving?searchText=viveka&state=tamilnadu
+//axios.get(`/api/institutes?search=${searchText}&feeRange=${feeRange}`);
 router.get('/approving', getApprovedUser)
 
 const updateUserStatus = async (req, res) => {

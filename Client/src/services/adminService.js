@@ -1,9 +1,13 @@
 import axios from "axios";
 import { API_URL } from "../config/config";
 
-
+const authorizationToken = () => {
+    return {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+}
 export async function getUsersData() {
-    const result = await axios.get(API_URL + "/pending")
+    const result = await axios.get(API_URL + "/pending", { headers: authorizationToken() })
     return result;
 }
 
@@ -15,8 +19,8 @@ export async function updateUserStatus(userId, action) {
     return result;
 }
 
-export async function getApproveData(searchText, state) {
-    const result = await axios.get(API_URL + `/approving?searchText=${searchText}&state=${state}`)
+export async function getApproveData(searchText, state, feeRange) {
+    const result = await axios.get(API_URL + `/approving?searchText=${searchText}&state=${state}&feeRange=${feeRange}`)
     return result;
 }
 
@@ -55,7 +59,7 @@ export async function rejectedReview(_id) {
     return result;
 }
 
-export async function enquiryList(userId,id,name, email, phone, subject, message, status, date) {
+export async function enquiryList(userId, id, name, email, phone, subject, message, status, date) {
     const enquiry = {
         name: name,
         email: email,
@@ -74,20 +78,20 @@ export async function getEnquiryList(id) {
     return res;
 }
 
-export async function enquiryReplay(_id,response){
+export async function enquiryReplay(_id, response) {
     const replay = {
-        response:response
+        response: response
     }
-    const result = await axios.put(API_URL +`/instituteEnquiryReplay/${_id}`,replay)
+    const result = await axios.put(API_URL + `/instituteEnquiryReplay/${_id}`, replay)
     return result;
 }
 
-export async function getEnquiryReplay(id,userId){
+export async function getEnquiryReplay(id, userId) {
     const res = axios.get(API_URL + `/institutionReplaySendForUser/${id}/${userId}`)
     return res;
 }
 
-export async function getCount(id){
+export async function getCount(id) {
     const result = axios.get(API_URL + `/reviewCount/${id}`)
     return result;
 }

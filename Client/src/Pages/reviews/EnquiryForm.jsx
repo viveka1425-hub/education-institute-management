@@ -4,6 +4,7 @@ import { enquiryList } from "../../services/adminService";
 import { useParams } from "react-router-dom";
 import { userName } from "../../services/userService";
 import { getEnquiryReplay } from "../../services/adminService";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function EnquiryForm() {
     const [name, setName] = useState("");
@@ -46,8 +47,18 @@ export default function EnquiryForm() {
         setPhone("");
         setSubject("");
         setMessage("");
-        alert("Enquiry send successfully")
+        toast("Enquiry send successfully")
+        //alert("Enquiry send successfully")
     }
+
+    new Date().toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    });
+
 
     useEffect(() => {
         details()
@@ -67,20 +78,33 @@ export default function EnquiryForm() {
                             <div key={index} className="flex flex-col space-y-4">
                                 {/* User Message (Left - Green) */}
                                 <div className="flex items-start">
-                                    <div className="w-9 h-9 bg-gray-300 rounded-full mr-3 shadow-inner"></div>
+                                    {/* <div className="w-9 h-9 bg-gray-300 rounded-full mr-3 shadow-inner"></div> */}
                                     <div className="bg-green-200 text-gray-900 p-4 rounded-2xl rounded-tl-none max-w-[75%] shadow-md">
                                         <p className="font-semibold text-sm sm:text-base">{info.name}</p>
                                         <p className="text-xs sm:text-sm mt-1">{info.message}</p>
+                                        <span className="text-[10px] text-gray-500 mt-1 block text-right">
+                                            {new Date().toLocaleString()}
+                                        </span>
                                     </div>
                                 </div>
 
                                 {/* Institute Reply (Right - Blue) */}
                                 <div className="flex items-start justify-end">
-                                    <div className="bg-blue-200 text-gray-900 p-4 rounded-2xl rounded-tr-none max-w-[75%] shadow-md">
-                                        <h3 className="font-semibold text-sm sm:text-base mb-1">Institute</h3>
-                                        <p className="text-xs sm:text-sm">{info.response}</p>
-                                    </div>
-                                    <div className="w-9 h-9 bg-gray-300 rounded-full ml-3 shadow-inner"></div>
+                                    {/* <div className="w-9 h-9 bg-gray-300 rounded-full mr-3 shadow-inner"></div> */}
+                                    {info.response ? (
+                                        <div
+                                            className="inline-block bg-blue-200 text-gray-900 px-3 py-2 rounded-2xl rounded-tl-none max-w-[75%] shadow-md"
+                                        >
+                                            <h3 className="font-semibold text-sm sm:text-base">Institute</h3>
+                                            <p className="text-xs sm:text-sm mt-1">{info.response}</p>
+                                            <span className="text-[10px] text-gray-500 mt-1 block text-right">
+                                                {new Date().toLocaleString()}
+                                            </span>
+                                        </div>
+
+                                    ) : (
+                                        null
+                                    )}
                                 </div>
                             </div>
                         ))}
@@ -94,6 +118,7 @@ export default function EnquiryForm() {
                     </h3>
 
                     <form onSubmit={(e) => handleEnquiry(e, form)} className="space-y-4 sm:space-y-5">
+                        <ToastContainer />
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                             <input

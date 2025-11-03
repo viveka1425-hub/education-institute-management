@@ -9,9 +9,11 @@ export default function InstituteList() {
     const [list, setList] = useState([]);
     const [search, setSearch] = useState("");
     const [state, setState] = useState("");
+    
+    const [fees, setFees] = useState([]);
     const [name, setName] = useState([]);
 
-    async function showName(){
+    async function showName() {
         let use = await userName();
         console.log(use.data.data.name)
         setName(use.data.data.name)
@@ -20,7 +22,7 @@ export default function InstituteList() {
     const navigate = useNavigate();
 
     async function acceptList() {
-        let use = await getApproveData(search, state);
+        let use = await getApproveData(search, state, fees);
         console.log(use.data.data)
         setList(use.data.data)
     }
@@ -45,11 +47,11 @@ export default function InstituteList() {
         <div className="p-6 bg-gray-50 min-h-screen">
             <div><h1>Welcome! {name}</h1></div>
             <header className="shadow p-4">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="sm:text-right flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     {/* <h3 className="header-title">Education Institute</h3> */}
-                    <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                    <div className="ml-15 sm:text-right flex flex-col sm:flex-row items-left gap-3 w-full md:w-auto">
                         {/* Search Bar */}
-                        <div className="ml-135 relative w-full sm:w-68">
+                        <div className=" relative w-full sm:w-68">
                             <input
                                 type="text"
                                 placeholder="Search..."
@@ -74,7 +76,7 @@ export default function InstituteList() {
 
                         {/* Filter Section */}
                         <div className="flex flex-wrap justify-center md:justify-end gap-2">
-                            <select
+                            <select 
                                 name="location"
                                 onChange={(e) => setState(e.target.value)}
                                 className="border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-green-800"
@@ -85,42 +87,43 @@ export default function InstituteList() {
                                 <option value="Kolkatta">Kolkatta</option>
                             </select>
 
-                            {/* <select
+                            <select
                                 name="fees"
-                                onChange={handleFilterChange}
-                                className="border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-indigo-500"
+                                onChange={(e) => setFees(e.target.value)}
+                                className="border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-green-500"
                             >
                                 <option value="">Fees</option>
                                 <option value="low">Below ₹50,000</option>
                                 <option value="medium">₹50,000–₹1,00,000</option>
                                 <option value="high">Above ₹1,00,000</option>
-                            </select> */}
-                            <button className='ml-20 bg-green-200' onClick={handleSearch}>Search</button>
+                            </select>
 
-                            {/* <select
+                            <select
                                         name="facilities"
-                                        onChange={handleFilterChange}
+                                        //onChange={handleFilterChange}
                                         className="border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-indigo-500"
                                     >
-                                        <option value="">Facilities</option>
-                                        <option value="hostel">Hostel</option>
+                                        <option value="facilities">Facilities</option>
+                                        <option value="wifi">Wi-fi</option>
                                         <option value="library">Library</option>
                                         <option value="sports">Sports</option>
                                         <option value="lab">Laboratory</option>
-                                    </select> */}
+                                    </select>
 
                             {/* <select
-                                        name="rating"
-                                        onChange={handleFilterChange}
-                                        className="border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-indigo-500"
-                                    >
-                                        <option value="">Rating</option>
-                                        <option value="5">⭐⭐⭐⭐⭐</option>
-                                        <option value="4">⭐⭐⭐⭐</option>
-                                        <option value="3">⭐⭐⭐</option>
-                                        <option value="2">⭐⭐</option>
-                                        <option value="1">⭐</option>
-                                    </select> */}
+                                name="rating"
+                                // onChange={handleFilterChange}
+                                className="border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-indigo-500"
+                            >
+                                <option value="">Rating</option>
+                                <option value="5">5⭐</option>
+                                <option value="4">4⭐</option>
+                                <option value="3">3⭐</option>
+                                <option value="2">2⭐</option>
+                                <option value="1">1⭐</option>
+                            </select> */}
+                            <button className='ml-20 bg-green-200' onClick={handleSearch}>Search</button>
+
                         </div>
                     </div>
                 </div>

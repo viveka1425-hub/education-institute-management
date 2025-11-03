@@ -3,7 +3,12 @@ import "./Footer.css";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
+
+  const Role = localStorage.getItem("role");
   return (
+    <div>
+  {Role == "user" && (
+    <div>
     <footer className="footer">
       <div className="footer-container">
 
@@ -18,12 +23,13 @@ const Footer = () => {
 
         {/* Column 2: Quick Links */}
         <div className="footer-section">
-          <h4>Quick Links</h4>
+          <h4>Page List</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/about">photos</a></li>
-            <li><a href="/courses">Courses</a></li>
-            <li><a href="/contact">fecilities</a></li>
+            <li><a href="/about">courses</a></li>
+            <li><a href="/courses">facilities</a></li>
+            <li><a href="/contact">review</a></li>
+            <li><a href = "/enquiry">Enquiry</a></li>
           </ul>
         </div>
 
@@ -52,6 +58,9 @@ const Footer = () => {
         <p>© {new Date().getFullYear()} Education Institute | All Rights Reserved</p>
       </div>
     </footer>
+    </div>
+  )}
+  </div>
   );
 };
 

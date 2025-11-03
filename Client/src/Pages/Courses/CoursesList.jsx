@@ -170,7 +170,7 @@ function CoursesList({ }) {
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
-                      <div className="cursor-pointer hover:text-white">Edit</div>
+                      <div className="cursor-pointer text-green">Edit</div>
                     </span>
                   </button>
                   <button
@@ -193,7 +193,7 @@ function CoursesList({ }) {
         {/* Empty State */}
         {courses.length === 0 && (
           <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#614b97] to-[#7256b8] rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-24 h-24 bg-gradient-to-br from-[#61b844] to-[#61b844] rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
@@ -202,7 +202,7 @@ function CoursesList({ }) {
             <p className="text-gray-600 mb-6">Get started by creating your first course</p>
             <a
               onClick={handleAddCourse}
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#614b97] to-[#7256b8] text-white font-medium shadow-lg hover:shadow-xl transition-all"
+              className="text-white cursor-pointer inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] font-medium shadow-lg hover:shadow-xl transition-all"
             >
               Create Your First Course
             </a>

@@ -184,13 +184,13 @@ export default function FacilitiesList({  }) {
                   <a
                     onClick={() => handleEditFacilities(f.id)}
                     //href={`/Facilities/FacilitiesEdit/${f.id}`}
-                    className="text-white flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#61b844] text-[#ffffff] font-medium hover:bg-[#61b844] hover:text-white transition-all duration-200"
+                    className="text-green flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#61b844] text-[#61b844] font-medium hover:bg-[#61b844] hover:text-white transition-all duration-200"
                   >
                     <span className="flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
-                      <div className="cursor-pointer">Edit</div>
+                      <div style={{color:"green"}} className="cursor-pointer">Edit</div>
                     </span>
                   </a>
                   <button

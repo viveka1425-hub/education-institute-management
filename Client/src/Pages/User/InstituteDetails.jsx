@@ -6,12 +6,13 @@ import { listReview } from "../../services/adminService";
 import { API_URL } from '../../config/config';
 import { Star } from "lucide-react";
 import { Menu as MenuIcon } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function InstituteDetails() {
   const [list, setList] = useState({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
-  
+
   const [content, setContent] = useState();
   const courseRef = useRef(null);
   const facilityRef = useRef(null);
@@ -41,14 +42,12 @@ export default function InstituteDetails() {
     await instituteReview(userId, id, rating, reviewText, "approved", date)
     setRating(0);
     setReviewText("");
-    alert("review successful")
+    toast("Review send successfully")
+    //alert("review successful")
     reviewListCollection(id, name)
   };
 
-  const Enquiry = () => {
-    navigate(`/EnquiryForm/${id}/${userId}`);
-  };
-
+  
   const handleClick = (value) => {
     setContent(value);
   };
@@ -91,17 +90,30 @@ export default function InstituteDetails() {
       }
     }, 0);
   }
+const Role = localStorage.getItem("role");
 
   if (content === 'reviews') {
-    setTimeout(() => {
-      if (reviewsRef.current) {
-        reviewsRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
-    }, 0);
+    if (userId) {
+      setTimeout(() => {
+        if (reviewsRef.current) {
+          reviewsRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }, 0);
+    } else {
+      navigate('/login');
+    }
   }
+  const Enquiry = () => {
+    if (userId) {
+      navigate(`/EnquiryForm/${id}/${userId}`);
+    } else {
+      navigate("/login");
+    }
+  };
+
 
   useEffect(() => {
     details(id);
@@ -123,8 +135,8 @@ export default function InstituteDetails() {
           </div>
 
           {/* Name & Tagline Right */}
-          <div className=" sm:text-right">
-            <h2 className="mr-150 text-3xl font-bold text-green-800">{list.name}</h2>
+          <div className="sm:text-left">
+            <h2 className="text-3xl font-bold text-green-800">{list.name}</h2>
             <p className="mr-200 text-green-600">{list.tagline || "Educational Excellence"}</p>
           </div>
         </div>
@@ -138,12 +150,15 @@ export default function InstituteDetails() {
               {/* Desktop Menu Links */}
               <div className="pl-70 hidden lg:flex items-center space-x-1">
 
-                <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-white">Home</a>
-                <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">About Us</a>
+                <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</a>
                 <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
                 <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>
-                <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">review</a>
+                 {Role !== "admin" && (
+                  <div>
+                <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>
                 <a onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</a>
+                </div>
+                 )}
               </div>
 
               {/* Mobile Menu Button (Hamburger) */}
@@ -162,13 +177,12 @@ export default function InstituteDetails() {
           {/* Mobile Menu Dropdown (Simplified for demonstration) */}
           {isMobileMenuOpen && (
             <div className="lg:hidden" id="mobile-menu">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-green-700">
-                <a href="#" className="px-4 py-3 text-white font-medium hover:text-white transition duration-150">Home</a>
-                <a href="#" className="px-4 py-3 text-white font-medium hover:text-white transition duration-150">About Us</a>
-                <a href="#" className="px-4 py-3 text-white font-medium hover:text-white transition duration-150">courses</a>
-                <a href="#" className="px-4 py-3 text-white font-medium hover:text-white transition duration-150">facilities</a>
-                <a href="#" className="px-4 py-3 text-white font-medium hover:text-white transition duration-150">Review</a>
-                <a href="/Enquiry/enquiry" className="px-4 py-3 text-white font-medium hover:text-white transition duration-150">Enquiry</a>
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-green-200">
+                <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</a>
+                <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
+                <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>
+                <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>
+                <a onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</a>
               </div>
             </div>
           )}
@@ -275,7 +289,8 @@ export default function InstituteDetails() {
               </div>
             </div>)}
         </div>
-
+        
+        
         {content === "reviews" && (
           <div ref={reviewsRef}>
             <div className="max-w-2xl mx-auto bg-white shadow-2xl rounded-3xl p-6 sm:p-8 mt-10 border border-green-100">
@@ -290,15 +305,64 @@ export default function InstituteDetails() {
                   Recent Reviews
                 </h3>
 
+                <div>
+                  {userId && (
+                    <div className="bg-green-50/70 p-5 sm:p-6 rounded-2xl mb-8 border border-green-100 shadow-inner transition-all duration-300 hover:shadow-md">
+                      <h3 className="text-lg font-medium text-green-800 mb-3">
+                        Share Your Experience
+                      </h3>
+
+                      {/* Star Rating */}
+                      <div className="flex mb-4 justify-center sm:justify-start">
+                        {[...Array(5)].map((_, index) => {
+                          const starValue = index + 1;
+                          return (
+                            <button
+                              key={index}
+                              type="button"
+                              onClick={() => setRating(starValue)}
+                              onMouseEnter={() => setHover(starValue)}
+                              onMouseLeave={() => setHover(0)}
+                              className="focus:outline-none transform transition-transform hover:scale-110"
+                            >
+                              <Star
+                                className={`w-8 h-8 ${starValue <= (hover || rating)
+                                  ? "fill-yellow-400 text-yellow-400"
+                                  : "text-gray-300"
+                                  }`}
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {/* Review Textarea */}
+                      <textarea
+                        className="w-full p-3 border border-green-200 rounded-2xl focus:ring-2 focus:ring-green-400 focus:outline-none text-gray-700 placeholder-gray-400 shadow-sm"
+                        rows="4"
+                        placeholder="Write your honest thoughts about this institute..."
+                        value={reviewText}
+                        onChange={(e) => setReviewText(e.target.value)}
+                      />
+
+                      {/* Submit Button */}
+                      <button
+                        onClick={handleSubmit}
+                        disabled={!rating || !reviewText.trim()}
+                        className={`mt-5 w-full py-3 rounded-2xl text-lg font-medium transition-all duration-300 shadow-sm ${rating && reviewText.trim()
+                          ? "bg-gradient-to-r from-green-500 to-green-600 text-white hover:shadow-lg hover:scale-[1.02]"
+                          : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                          }`}
+                      >
+                        Submit Review
+                      </button>
+                      <ToastContainer />
+                    </div>
+                  )}
+                </div>
                 {reviews.length === 0 ? (
                   <p className="text-gray-500 text-center py-4">
                     No reviews yet. Be the first!
-                    <a
-                      href="/login"
-                      className="ml-2 px-4 py-3 text-white font-medium hover:text-white transition duration-150"
-                    >
-                      Login
-                    </a>
                   </p>
                 ) : (
                   <div className="space-y-5">
@@ -362,7 +426,7 @@ export default function InstituteDetails() {
                     )}
                   </div>
                 )}
-              </div>      
+              </div>
             </div>
           </div>
         )}

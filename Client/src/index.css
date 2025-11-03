@@ -64,12 +64,12 @@ h1 {
 ========================================= */
 a {
   font-weight: 500;
-  color: #305921;
+  color: green;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #0093e8;
 }
 
 /* =========================================
@@ -106,7 +106,7 @@ button:focus-visible {
   }
 
   a:hover {
-    color: #747bff;
+    color: #0093e8;
   }
 
   button {

@@ -12,14 +12,14 @@ import { getCount } from "../../services/adminService";
 const ImageSlider = () => {
     const [name, setName] = useState("");
     const [count, setCount] = useState([]);
-    const [enquiryCount,setEnquiryCount] = useState([]);
+    const [enquiryCount, setEnquiryCount] = useState([]);
     async function showName() {
         let use = await userName();
         console.log(use.data.data.name)
         setName(use.data.data.name)
     }
     const id = localStorage.getItem('institute_id')
-    async function reviewCount(){
+    async function reviewCount() {
         const use = await getCount(id)
         console.log(use.data)
         setCount(use.data.result)
@@ -36,8 +36,10 @@ const ImageSlider = () => {
     // ];
 
     return (
-        <div style={{}}>
-            <div><h1>Welcome! {name}</h1></div>
+        <div>
+            <div style={{marginBottom:20, marginTop:10, marginLeft:15}}>
+                <h1>Welcome! {name}</h1>
+            </div>
             <div className="card-container">
                 <div className="dashboard-card">
                     <div className="card-title"> <strong>Total Review</strong> <span className="icon">⭐</span> </div>

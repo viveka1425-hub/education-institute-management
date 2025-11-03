@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { enquiryReplay } from "../../services/adminService";
 import { useParams } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function ReplayEnquiry() {
 
@@ -13,7 +13,9 @@ export default function ReplayEnquiry() {
         const use = await enquiryReplay(id, response)
         console.log(use.data)
         setResponse(use.data)
-        alert("successfully")
+        toast("successfully")
+        //alert("successfully")
+
     }
 
 
@@ -34,6 +36,7 @@ export default function ReplayEnquiry() {
             >
                 Send
             </button>
+            <ToastContainer />
         </div>
     )
 }
