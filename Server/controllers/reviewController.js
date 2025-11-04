@@ -1,6 +1,7 @@
 import express, { request } from "express";
 import reviewSchema from "../models/reviewModel.js";
 import enquirySchema from "../models/enquiryModel.js";
+import mongoose from "mongoose";
 const router = express.Router()
 
 const review = async (req, res) => {
@@ -113,12 +114,12 @@ router.put("/statusUpdate/:reviewId", rejectedReview)
 const reviewCount = async (req, res) => {
     try {
         const { instituteId } = req.params;
-        const result = await reviewSchema.countDocuments({instituteId:instituteId})
-        const enquiry = await enquirySchema.countDocuments({instituteId:instituteId})
+        const result = await reviewSchema.countDocuments({ instituteId: instituteId })
+        const enquiry = await enquirySchema.countDocuments({ instituteId: instituteId })
         res.send({
             message: "get review count",
             result: result,
-            enquiry:enquiry
+            enquiry: enquiry
         })
     } catch (error) {
         console.log(error)
@@ -126,5 +127,111 @@ const reviewCount = async (req, res) => {
     }
 }
 router.get("/reviewCount/:instituteId", reviewCount)
+
+const reviewChart = async (req, res) => {
+    try {
+        const { instituteId } = req.query;
+        let conditionQuery = {};
+        if (instituteId) {
+            conditionQuery = {
+                instituteId: new mongoose.Types.ObjectId(instituteId)
+            }
+        }
+        const today = new Date();
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(today.getDate() - 6); // last 7 days including today
+        // Aggregate reviews grouped by day
+        const data = await reviewSchema.aggregate([
+            {
+                $match: {
+                    date: { $gte: sevenDaysAgo, $lte: today },
+                    ...conditionQuery
+                },
+            },
+            {
+                $group: {
+                    _id: {
+                        $dateToString: { format: "%Y-%m-%d", date: "$date" },
+                    },
+                    count: { $sum: 1 },
+                },
+            },
+            {
+                $sort: { _id: 1 }, // sort by day ascending
+            },
+        ]);
+        const last7Days = [];
+        for (let i = 6; i >= 0; i--) {
+            const date = new Date();
+            date.setDate(today.getDate() - i);
+            const dateStr = date.toISOString().split("T")[0];
+
+            const found = data.find((d) => d._id === dateStr);
+            last7Days.push({
+                day: date.toLocaleDateString("en-US", { weekday: "short" }),
+                reviews: found ? found.count : 0,
+            });
+        }
+
+        res.json(last7Days);
+    } catch (error) {
+        console.error("Error fetching weekly review stats:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+router.get("/weeklyReview", reviewChart)
+
+const enquiryChart = async (req, res) => {
+    try {
+        const { instituteId } = req.query;
+
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+
+        const data = await enquirySchema.aggregate([
+            {
+                $match: {
+                    instituteId: new mongoose.Types.ObjectId(instituteId),
+                    date: { $gte: sevenDaysAgo },
+                },
+            },
+            {
+                $group: {
+                    _id: {
+                        $dateToString: { format: "%Y-%m-%d", date: "$date" },
+                    },
+                    count: { $sum: 1 },
+                },
+            },
+            {
+                $sort: { _id: 1 },
+            },
+        ]);
+
+        const result = [];
+        for (let i = 0; i < 7; i++) {
+            const d = new Date();
+            d.setDate(d.getDate() - (6 - i));
+            const formatted = d.toISOString().split("T")[0];
+            const found = data.find((item) => item._id === formatted);
+            result.push({ date: formatted, count: found ? found.count : 0 });
+        }
+
+        res.json({
+            success: true,
+            message: "Enquiry count for the past 7 days fetched successfully",
+            data: result,
+        });
+    } catch (error) {
+        console.error("Error fetching enquiry stats:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error while fetching enquiry count",
+        });
+    }
+};
+
+router.get("/enquiryChart", enquiryChart)
 
 export { router as reviewRouter };

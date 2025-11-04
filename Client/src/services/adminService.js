@@ -95,3 +95,13 @@ export async function getCount(id) {
     const result = axios.get(API_URL + `/reviewCount/${id}`)
     return result;
 }
+
+export async function getReviewChart(id){
+    const res = axios.get(API_URL + `/weeklyReview?instituteId=${id}`)
+    return res;
+}
+
+export async function getEnquiryChart(id){
+    const res = axios.get(API_URL + `/enquiryChart?instituteId=${id}`)
+    return res;
+}

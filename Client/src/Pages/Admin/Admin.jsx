@@ -102,7 +102,7 @@ export default function InstituteList() {
                         <select
                             name="fees"
                             onChange={(e) => setFeesRange(e.target.value)}
-                            className="flex-1 sm:flex-none border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-green-500"
+                            className="flex-1 sm:flex-none border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-green-800"
                         >
                             <option value="">Fees</option>
                             <option value="low">Below ₹50,000</option>
@@ -113,7 +113,7 @@ export default function InstituteList() {
                         <select
                             name="facilities"
                             onChange={(e) => setFacilityName(e.target.value)}
-                            className="flex-1 sm:flex-none border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-indigo-500"
+                            className="flex-1 sm:flex-none border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-green-800"
                         >
                             <option value="facilities">Facilities</option>
                             <option value="wi-fi">Wi-Fi</option>
@@ -125,7 +125,7 @@ export default function InstituteList() {
                         <select
                             name="rating"
                             onChange={(e) => setRating(e.target.value)}
-                            className="flex-1 sm:flex-none border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-indigo-500"
+                            className="flex-1 sm:flex-none border border-gray-300 rounded-md text-sm px-2 py-1 focus:ring-2 focus:ring-green-800"
                         >
                             <option value="">Rating</option>
                             <option value="5">5⭐</option>
