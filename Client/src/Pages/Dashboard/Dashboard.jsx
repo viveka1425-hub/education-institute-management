@@ -73,7 +73,7 @@ const ImageSlider = () => {
     return (
         <div>
             <div style={{ marginBottom: 20, marginTop: 10, marginLeft: 15 }}>
-                <h1 classname="text-lg font-semibold text-green-700 mb-3">Welcome! {name}</h1>
+                <h4 classname=" font-semibold text-green-700 mb-3">Welcome! {name}</h4>
             </div>
             <div className="card-container">
                 <div className="dashboard-card">
@@ -91,7 +91,7 @@ const ImageSlider = () => {
 
             </div>
 
-            <div className="flex justify-between bg-white p-4 rounded-2xl shadow-md mt-6 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 flex justify-between bg-white p-4 rounded-2xl mt-6 gap-4">
                 <div className="w-full flex flex-col bg-white p-4 rounded-2xl shadow-md">
                     <h3 className="text-lg font-semibold text-green-700 mb-3">
                         Review Count ( Weekely )

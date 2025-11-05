@@ -157,7 +157,7 @@ const getApprovedUser = async (req, res) => {
         }
 
         if (facilityName) {
-            filters["facility.name"] = facilityName;
+            filters["facility.name"] = { $regex: new RegExp(facilityName, "i") };
         }
 
         let matchingInstituteIds = [];

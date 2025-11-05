@@ -31,7 +31,7 @@ const MainLayout = () => {
 
 
                 {/* Hamburger */}
-                <div className="hamburger" onClick={toggleSidebar}>
+                <div className="hamburger text-green-700" onClick={toggleSidebar}>
                     <div></div>
                     <div></div>
                     <div></div>

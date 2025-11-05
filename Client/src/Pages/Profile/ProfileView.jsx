@@ -83,7 +83,7 @@ export default function ProfileView({ }) {
 
                         <div className="p-8">
 
-                            <div className="flex flex-col md:flex-row gap-8 -mt-28 relative">
+                            <div className="flex flex-col md:flex-row md:gap-8 -mt-28 relative">
                                 <div className="flex-shrink-0">
                                     <div className="h-44 w-44 bg-white rounded-2xl shadow-2xl flex items-center justify-center p-3 border-4 border-white">
                                         {profile.logo ? (
@@ -104,17 +104,17 @@ export default function ProfileView({ }) {
                                     </div>
                                 </div>
 
-                                <div className="flex-1 pt-20 md:pt-0">
+                                <div className="flex-1 pt-8 md:pt-0 mt-0">
                                     <div className="flex items-start justify-between">
                                         <div>
-                                            <h3 className="text-3xl font-bold text-white mb-2">{profile.name}</h3>
+                                            <h3 className="text-3xl font-bold xsm:text-black-500  md:text-white  mb-2">{profile.name}</h3>
                                             <p className="text-lg text-white font-medium mb-3">{profile.tagline}</p>
                                             <p className="text-gray-600 leading-relaxed max-w-3xl">{profile.description}</p>
                                         </div>
                                     </div>
 
 
-                                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2">
 
                                         <div className="bg-gradient-to-br from-green-50 to-indigo-50 rounded-xl p-5 border border-green-100">
                                             <div className="flex items-center mb-3">

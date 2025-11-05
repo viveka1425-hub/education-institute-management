@@ -40,6 +40,7 @@
 /* Hamburger menu */
 .hamburger {
     display: none;
+    color:#305921;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
@@ -48,7 +49,7 @@
 .hamburger div {
     width: 25px;
     height: 3px;
-    background-color: #fff;
+    background-color: #305921;
     transition: all 0.3s ease;
 }
 

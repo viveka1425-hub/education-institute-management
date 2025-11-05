@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
 
         {/* Column 2: Quick Links */}
-        <div className="footer-section">
+        {/* <div className="footer-section">
           <h4>Page List</h4>
           <ul>
             <li><a href="/">Home</a></li>
@@ -31,10 +31,10 @@ const Footer = () => {
             <li><a href="/contact">review</a></li>
             <li><a href = "/enquiry">Enquiry</a></li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Column 3: Contact */}
-        <div className="footer-section">
+        <div className="footer-section ml-20">
           <h4>Contact Us</h4>
           <p>Email: info@eduinst.com</p>
           <p>Phone: +91 98765 43210</p>

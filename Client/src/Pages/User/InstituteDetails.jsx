@@ -47,7 +47,7 @@ export default function InstituteDetails() {
     reviewListCollection(id, name)
   };
 
-  
+
   const handleClick = (value) => {
     setContent(value);
   };
@@ -90,7 +90,7 @@ export default function InstituteDetails() {
       }
     }, 0);
   }
-const Role = localStorage.getItem("role");
+  const Role = localStorage.getItem("role");
 
   if (content === 'reviews') {
     if (userId) {
@@ -124,7 +124,7 @@ const Role = localStorage.getItem("role");
   return (
     <div>
       <div>
-        <div className="flex flex-col sm:flex-row items-center justify-between p-6 bg-transparent">
+        <div className="flex flex-col sm:flex-row md:items-center  p-6 bg-transparent">
           {/* Logo Left */}
           <div className="ml-15 flex-shrink-0">
             <img
@@ -135,9 +135,9 @@ const Role = localStorage.getItem("role");
           </div>
 
           {/* Name & Tagline Right */}
-          <div className="sm:text-left">
+          <div className="ml-4">
             <h2 className="text-3xl font-bold text-green-800">{list.name}</h2>
-            <p className="mr-200 text-green-600">{list.tagline || "Educational Excellence"}</p>
+            <p className="text-green-600">{list.tagline}</p>
           </div>
         </div>
       </div>
@@ -153,12 +153,12 @@ const Role = localStorage.getItem("role");
                 <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</a>
                 <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
                 <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>
-                 {Role !== "admin" && (
+                {Role !== "admin" && (
                   <div>
-                <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>
-                <a onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</a>
-                </div>
-                 )}
+                    <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>
+                    <a onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</a>
+                  </div>
+                )}
               </div>
 
               {/* Mobile Menu Button (Hamburger) */}
@@ -289,8 +289,8 @@ const Role = localStorage.getItem("role");
               </div>
             </div>)}
         </div>
-        
-        
+
+
         {content === "reviews" && (
           <div ref={reviewsRef}>
             <div className="max-w-2xl mx-auto bg-white shadow-2xl rounded-3xl p-6 sm:p-8 mt-10 border border-green-100">
@@ -313,20 +313,21 @@ const Role = localStorage.getItem("role");
                       </h3>
 
                       {/* Star Rating */}
-                      <div className="flex mb-4 justify-center sm:justify-start">
+                      <div className="flex mb-4 justify-center sm:justify-start gap-1">
                         {[...Array(5)].map((_, index) => {
                           const starValue = index + 1;
                           return (
                             <button
                               key={index}
+                              style={{ padding: 4 }}
                               type="button"
                               onClick={() => setRating(starValue)}
                               onMouseEnter={() => setHover(starValue)}
                               onMouseLeave={() => setHover(0)}
-                              className="focus:outline-none transform transition-transform hover:scale-110"
+                              className="focus:outline-none transform transition-transform hover:scale-110 bg-white"
                             >
                               <Star
-                                className={`w-8 h-8 ${starValue <= (hover || rating)
+                                className={`w-4 h-4 ${starValue <= (hover || rating)
                                   ? "fill-yellow-400 text-yellow-400"
                                   : "text-gray-300"
                                   }`}

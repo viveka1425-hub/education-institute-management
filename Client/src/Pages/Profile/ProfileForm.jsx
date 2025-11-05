@@ -83,8 +83,19 @@ function ProfileForm({ initial, onSave }) {
 
                 <div>
                     <label className="block text-sm">State ⭐</label>
-                    <input name="state" value={form.state} onChange={handleChange} className="mt-1 w-full p-2 border rounded" />
+                    <select
+                        name="state"
+                        value={form.state}
+                        onChange={handleChange}
+                        className="mt-1 w-full p-2 border rounded"
+                    >
+                        <option value="">-- Select State --</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kolkata">Kolkata</option>
+                    </select>
                 </div>
+
 
                 <div>
                     <label className="block text-sm">Country ⭐</label>
