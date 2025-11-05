@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getUsersData } from "../../services/adminService";
 import { updateUserStatus } from "../../services/adminService";
 import { Mail, Phone, Globe, MapPin, User } from "lucide-react";
+import { ToastContainer, toast } from 'react-toastify';
 export default function DataList() {
 
     const [list, setList] = useState([]);
@@ -17,10 +18,10 @@ export default function DataList() {
             console.log(userId, action);
             const result = await updateUserStatus(userId, action);
             await requestsList()
-            alert(`${action}ed successfully`); // or show a toast
+            toast(`${action}ed successfully`); // or show a toast
         } catch (error) {
             console.log(error)
-            alert("Failed to update user status");
+            toast("Failed to update user status");
         }
     };
 
@@ -94,7 +95,10 @@ export default function DataList() {
 
                             <div className="flex justify-center gap-4 mt-8">
                                 <button onClick={() => handleStatusChange(info.userId._id, "accept")} className="px-6 py-2 rounded-full font-semibold bg-white text-[#614b97] hover:bg-[#f3f3f3] shadow-md transition duration-300"> Accept </button>
-                                <button onClick={() => handleStatusChange(info.userId._id, "reject")} className="px-6 py-2 rounded-full font-semibold border border-white text-white hover:bg-white hover:text-[#614b97] shadow-md transition duration-300"> Reject </button>
+                                <ToastContainer />
+                                <button onClick={() => handleStatusChange(info.userId._id, "reject")} className="px-6 py-2 rounded-full font-semibold border border-white text-white hover:bg-white hover:text-[#614b97] shadow-md transition duration-300"> DeActivate </button>
+                                <ToastContainer />
+
                             </div>
                         </div>
                     ))}
