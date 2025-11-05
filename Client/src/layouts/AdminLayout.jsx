@@ -37,7 +37,8 @@ const AdminLayout = () => {
                 {/* Sidebar */}
                 <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"} flex justify-between flex-col`}>
                     <div>
-                        <a href="/Admin">Dashboard</a>
+                        <a href="/adminDashboard">Dashboard</a>
+                        <a href="/Admin">Institute</a>
                         <a href="/Requests">Requests</a>
                         <a href="/review">Reviews</a>
                     </div>

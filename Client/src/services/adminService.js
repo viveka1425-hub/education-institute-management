@@ -97,7 +97,8 @@ export async function getCount(id) {
 }
 
 export async function getReviewChart(id){
-    const res = axios.get(API_URL + `/weeklyReview?instituteId=${id}`)
+    const point = id && id !=='null' ? `/weeklyReview?instituteId=${id}` : `/weeklyReview`
+    const res = axios.get(API_URL + `${point}`)
     return res;
 }
 

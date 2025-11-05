@@ -48,7 +48,7 @@ const LoginPage = () => {
                 setEmail("");
                 setPassword("");
                 if (userRole == "admin") {
-                    navigate("/Admin")
+                    navigate("/adminDashboard")
                 }
                 else if (userRole == "institute") {
                     navigate("/Dashboard")

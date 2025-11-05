@@ -1,6 +1,7 @@
 import express, { request } from "express";
 import reviewSchema from "../models/reviewModel.js";
 import enquirySchema from "../models/enquiryModel.js";
+import ProfileSchema from "../models/profileModel.js";
 import mongoose from "mongoose";
 const router = express.Router()
 
@@ -113,13 +114,23 @@ router.put("/statusUpdate/:reviewId", rejectedReview)
 
 const reviewCount = async (req, res) => {
     try {
-        const { instituteId } = req.params;
-        const result = await reviewSchema.countDocuments({ instituteId: instituteId })
-        const enquiry = await enquirySchema.countDocuments({ instituteId: instituteId })
+        const { instituteId, id } = req.params;
+        console.log({
+            instituteId,
+            type:typeof instituteId
+        })
+        const conditionQuery = {};
+        if(instituteId && instituteId !== 'null'){
+            conditionQuery.instituteId = new mongoose.Types.ObjectId(instituteId);
+        }
+        const result = await reviewSchema.countDocuments(conditionQuery)
+        const enquiry = await enquirySchema.countDocuments(conditionQuery)
+        const institute = await ProfileSchema.countDocuments({id:id})
         res.send({
             message: "get review count",
             result: result,
-            enquiry: enquiry
+            enquiry: enquiry,
+            institute:institute
         })
     } catch (error) {
         console.log(error)
@@ -185,6 +196,14 @@ router.get("/weeklyReview", reviewChart)
 const enquiryChart = async (req, res) => {
     try {
         const { instituteId } = req.query;
+        console.log({
+            instituteId,
+            type: typeof instituteId
+        })
+        const conditionQuery = {};
+        if (instituteId && instituteId !== 'null') {
+            conditionQuery.instituteId = new mongoose.Types.ObjectId(instituteId);
+        }
 
         const sevenDaysAgo = new Date();
         sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
@@ -192,7 +211,7 @@ const enquiryChart = async (req, res) => {
         const data = await enquirySchema.aggregate([
             {
                 $match: {
-                    instituteId: new mongoose.Types.ObjectId(instituteId),
+                    ...conditionQuery,
                     date: { $gte: sevenDaysAgo },
                 },
             },

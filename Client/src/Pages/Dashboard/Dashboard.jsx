@@ -14,17 +14,19 @@ import { getReviewChart } from "../../services/adminService";
 import { getEnquiryChart } from "../../services/adminService";
 //import { userName } from "../../services/adminService";
 
-const ImageSlider = () => {
+const Dashboard = () => {
     const [name, setName] = useState("");
     const [count, setCount] = useState([]);
     const [enquiryCount, setEnquiryCount] = useState([]);
+    const [instituteCount, setInstituteCount] = useState([]);
     const [reviewList, setReviewList] = useState([]);
     const [enquiryList, setEnquiryList] = useState([]);
     const [reviewChartList, setReviewChartList] = useState([]);
     const [enquiryChartList, setEnquiryChartList] = useState([]);
 
-    //const instituteId = localStorage.getItem('institute_id')
     const id = localStorage.getItem('institute_id')
+    const Role = localStorage.getItem("role");
+
 
     async function enquiryChart() {
         let use = await getEnquiryChart(id);
@@ -45,9 +47,15 @@ const ImageSlider = () => {
 
     async function reviewCount() {
         const use = await getCount(id)
-        console.log(use.data)
+        console.log(use)
         setCount(use.data.result)
         setEnquiryCount(use.data.enquiry)
+        setInstituteCount(use.data.institute)
+    }
+
+    async function getReviewCountForAdmin() {
+        const use = await getCount()
+        console.log(use)
     }
     async function resendReviews() {
         const use = await reviewListInstitute(id)
@@ -56,7 +64,7 @@ const ImageSlider = () => {
     }
     async function resendEnquiry() {
         const use = await getEnquiryList(id)
-        console.log(use.data.data)
+        console.log(use)
         setEnquiryList(use.data.data)
     }
 
@@ -64,6 +72,7 @@ const ImageSlider = () => {
         showName()
         reviewCount()
         resendReviews()
+        getReviewCountForAdmin()
         resendEnquiry()
         reviewChart()
         enquiryChart()
@@ -72,7 +81,7 @@ const ImageSlider = () => {
 
     return (
         <div>
-            <div style={{ marginBottom: 20, marginTop: 10, marginLeft: 15 }}>
+            <div>
                 <h4 classname=" font-semibold text-green-700 mb-3">Welcome! {name}</h4>
             </div>
             <div className="card-container">
@@ -80,14 +89,19 @@ const ImageSlider = () => {
                     <div className="card-title"> <strong>Total Review</strong> <span className="icon">⭐</span> </div>
                     <div className="card-title"> {count} </div>
                 </div>
-                {/* <div className="dashboard-card">
-                    <div className="card-title"><strong>Total Student </strong><span className="icon">👩‍🎓</span> </div>
-                    <div className="card-title">200</div>
-                </div> */}
-                <div className="dashboard-card bg-[#f7faf0]">
-                    <div className="card-title"><strong>Total Enquiries</strong> <span className="icon">👩‍💻</span> </div>
-                    <div className="card-title"> {enquiryCount} </div>
-                </div>
+                {Role === 'admin' && (
+                    <div className="dashboard-card">
+                        <div className="card-title"><strong>Total Institutes </strong><span className="icon">🏬</span> </div>
+                        <div className="card-title">{instituteCount}</div>
+                    </div>)}
+
+                {Role !== 'admin' && (
+                    <div className="dashboard-card bg-[#f7faf0]">
+                        <div className="card-title"><strong>Total Enquiries</strong> <span className="icon">👩‍💻</span> </div>
+                        <div className="card-title"> {enquiryCount} </div>
+                    </div>
+                )}
+
 
             </div>
 
@@ -109,24 +123,26 @@ const ImageSlider = () => {
                         </ResponsiveContainer>
                     </div>
                 </div>
-                <div className="w-full bg-white p-4 rounded-2xl shadow-md">
-                    <h3 className="text-lg font-semibold text-green-700 mb-3">
-                        Enquiry Count
-                    </h3>
-
-                    <div className="w-full h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={enquiryChartList} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="date" />
-                                <YAxis allowDecimals={false} />
-                                <Tooltip />
-                                <Legend />
-                                <Bar dataKey="count" fill="#16a34a" radius={[10, 10, 0, 0]} />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
+                {Role !== 'admin' && (
+                    <div>
+                        <div className="w-full bg-white p-4 rounded-2xl shadow-md">
+                            <h3 className="text-lg font-semibold text-green-700 mb-3">
+                                Enquiry Count
+                            </h3>
+                            <div className="w-full h-64">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={enquiryChartList} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="date" />
+                                        <YAxis allowDecimals={false} />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="count" fill="#16a34a" radius={[10, 10, 0, 0]} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>)}
             </div>
             <div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -135,7 +151,7 @@ const ImageSlider = () => {
                             key={index}
                             className="bg-[#f7faf0] hover:from-green-100 hover:to-green-50 shadow-lg rounded-2xl p-5 border border-green-100 transition-transform transform hover:scale-105 duration-300"
                         >
-                            <h2 className="text-lg font-semibold text-green-700 mb-3 mb-5 mt-5">Resend review</h2>
+                            <h2 className="text-lg font-semibold text-green-700 mb-3 mb-5 mt-5">Recent review</h2>
                             {/* Header (Name + Rating) */}
                             <div className="flex justify-between items-center mb-3">
                                 <h3 className="text-lg font-semibold text-green-900">
@@ -178,7 +194,7 @@ const ImageSlider = () => {
                  rounded-2xl shadow-lg hover:shadow-2xl border border-green-100 
                  transition-transform duration-300 transform hover:-translate-y-1 p-6"
                         >
-                            <h2 className="text-lg font-semibold text-green-700 mb-3 mb-5 mt-5">Resend enquiry</h2>
+                            <h2 className="text-lg font-semibold text-green-700 mb-3 mb-5 mt-5">Recent enquiry</h2>
                             {/* Header: Name and Contact */}
                             <div className="flex justify-between items-center mb-4">
                                 <h3 className="text-xl font-semibold text-green-800">
@@ -249,4 +265,4 @@ const ImageSlider = () => {
         </div>
     );
 };
-export default ImageSlider;
+export default Dashboard;

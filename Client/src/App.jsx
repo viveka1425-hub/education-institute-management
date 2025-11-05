@@ -7,6 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import UserLayout from "./layouts/userLayout";
 import User from "./Pages/User/User";
 import AdminLayout from "./layouts/AdminLayout";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import Admin from "./Pages/Admin/Admin";
 import RegisterForm from "./Pages/Register/Register";
 
@@ -208,7 +209,12 @@ const router = createBrowserRouter([
   },
   {
     element: <AdminLayout />,
-    children: [{
+    children: [
+      {
+        path: "/adminDashboard",
+        element:<AdminDashboard />
+      },
+      {
       path: "/Admin",
       element: <Admin />
     },
