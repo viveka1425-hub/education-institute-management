@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { courseList } from "../../services/profileService";
 import { useEffect, useState } from "react";
+import { API_URL } from "../../config/config";
 
 
 export default function ProfileView({ }) {
@@ -88,8 +89,7 @@ export default function ProfileView({ }) {
                                     <div className="h-44 w-44 bg-white rounded-2xl shadow-2xl flex items-center justify-center p-3 border-4 border-white">
                                         {profile.logo ? (
                                             <img
-                                                src={
-                                                    'http://localhost:7007/uploads/' + profile.logo}
+                                                src={API_URL +`/uploads/'${profile.logo}`}
                                                 alt="logo"
                                                 className="h-full w-full object-contain rounded-xl"
                                             />
