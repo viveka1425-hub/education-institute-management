@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Footer from "./Footer";
 import { LogOut } from "lucide-react";
@@ -37,10 +37,10 @@ const AdminLayout = () => {
                 {/* Sidebar */}
                 <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"} flex justify-between flex-col`}>
                     <div>
-                        <a href="/adminDashboard">Dashboard</a>
-                        <a href="/Admin">Institute</a>
-                        <a href="/Requests">Requests</a>
-                        <a href="/review">Reviews</a>
+                        <Link to="/adminDashboard">Dashboard</Link>
+                        <Link to="/Admin">Institute</Link>
+                        <Link to="/Requests">Requests</Link>
+                        <Link to="/review">Reviews</Link>
                     </div>
                     <a onClick={handleLogout} className="cursor-pointer">
                         <div className="flex flex-row">
