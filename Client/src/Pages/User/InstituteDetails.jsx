@@ -153,7 +153,7 @@ export default function InstituteDetails() {
                 <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</a>
                 <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
                 <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>
-                <a className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Deactivate</a>
+                {/* <a className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Deactivate</a> */}
                 {Role !== "admin" && (
                   <div>
                     <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>
@@ -182,7 +182,7 @@ export default function InstituteDetails() {
                 <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</a>
                 <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
                 <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>
-                <a className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Deactivate</a>
+                {/* <a className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Deactivate</a> */}
                 {Role !== "admin" && (
                   <div>
                     <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>

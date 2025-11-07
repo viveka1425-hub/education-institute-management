@@ -131,8 +131,8 @@ router.get('/pending', authorizeToken, authorizeRole(['admin']), getPendingUsers
 
 const getApprovedUser = async (req, res) => {
     try {
-        const { searchText, state, fees, facilityName, rating, feeRange } = req.query;
-        console.log({ searchText, state, fees, facilityName, rating, feeRange });
+        const { _id, searchText, state, fees, facilityName, rating, feeRange } = req.query;
+        console.log({ searchText, state, fees, facilityName, rating, feeRange, _id, type:typeof _id });
         const filters = {};
 
         if (searchText) {
@@ -165,7 +165,7 @@ const getApprovedUser = async (req, res) => {
             const avgRatings = await reviewSchema.aggregate([
                 {
                     $group: {
-                        _id: "$instituteId",
+                        ...conditionQuery,
                         avgRating: { $avg: "$rating" },
                     },
                 },
@@ -175,8 +175,16 @@ const getApprovedUser = async (req, res) => {
                     },
                 },
             ]);
+            const conditionQuery = {};
+            if(_id && _id !== 'null'){
+                conditionQuery._id = new mongoose.Types.ObjectId(_id);
+            }
             matchingInstituteIds = avgRatings.map(r => r._id);
-            console.log(matchingInstituteIds)
+            console.log({
+                _id,
+                type:typeof _id,
+                matchingInstituteIds
+            })
             if (matchingInstituteIds.length > 0) {
                 filters._id = { $in: matchingInstituteIds };
             }

@@ -15,7 +15,7 @@ export async function updateUserStatus(userId, action) {
     const body = {
         action: action
     }
-    const result = await axios.put(`http://localhost:7007/status/${userId}`, body);
+    const result = await axios.put(API_URL + `/status/${userId}`, body);
     return result;
 }
 
@@ -96,13 +96,13 @@ export async function getCount(id) {
     return result;
 }
 
-export async function getReviewChart(id){
-    const point = id && id !=='null' ? `/weeklyReview?instituteId=${id}` : `/weeklyReview`
+export async function getReviewChart(id) {
+    const point = id && id !== 'null' ? `/weeklyReview?instituteId=${id}` : `/weeklyReview`
     const res = axios.get(API_URL + `${point}`)
     return res;
 }
 
-export async function getEnquiryChart(id){
+export async function getEnquiryChart(id) {
     const res = axios.get(API_URL + `/enquiryChart?instituteId=${id}`)
     return res;
 }
