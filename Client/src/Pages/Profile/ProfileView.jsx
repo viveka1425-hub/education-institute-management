@@ -89,7 +89,7 @@ export default function ProfileView({ }) {
                                     <div className="h-44 w-44 bg-white rounded-2xl shadow-2xl flex items-center justify-center p-3 border-4 border-white">
                                         {profile.logo ? (
                                             <img
-                                                src={API_URL +`/uploads/${profile.logo}`}
+                                                src={profile.logo}
                                                 alt="logo"
                                                 className="h-full w-full object-contain rounded-xl"
                                             />
