@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import FacilityForm from "./FacilitiesForm";
-import { EditFacilities } from "../..//services/profileService";
+import { EditFacilities } from "../../services/profileService";
 
 export default function FacilitiesEdit({ }) {
   const location = useLocation();
