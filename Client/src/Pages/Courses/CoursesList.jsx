@@ -27,7 +27,8 @@ function CoursesList({ }) {
     await fetchList();
   }
   function handleAddCourse() {
-    navigate("/Courses/CoursesCreate", { state: { courses: courses } })
+    localStorage.setItem("courses",JSON.stringify( { courses: courses }))
+    navigate("/Courses/CoursesCreate", { state: JSON.stringify( { courses: courses }) })
   }
 
   function handleEditCourses(id) {

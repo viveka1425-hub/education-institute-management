@@ -29,9 +29,11 @@ export default function FacilitiesList({  }) {
   }
 //
   function handleAddFacility() {
+    localStorage.setItem("Facilities", JSON.stringify({Facilities: items}))
     navigate("/Facilities/FacilitiesCreate" , { state: { Facilities: items } })
   }
   function handleEditFacilities(id) {
+    localStorage.setItem("Facilities", JSON.stringify({facilities: items}))
     navigate("/Facilities/FacilitiesEdit/" + id, { state: { facilities: items } })
   }
   const getCategoryIcon = (category) => {

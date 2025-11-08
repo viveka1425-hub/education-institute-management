@@ -6,7 +6,7 @@ export default function FacilitiesCreate({ }) {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
-  const existingFacilities = data.Facilities;
+  const existingFacilities = JSON.parse(localStorage.getItem("Facilities")).Facilities;
 
   console.log('data', existingFacilities)
   const empty = {

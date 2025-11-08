@@ -3,10 +3,10 @@ import CourseForm from "./CoursesForm";
 import { updatecourses } from "../../services/profileService"
 
 export default function CoursesCreate({ }) {
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const data = location.state;
-  const existingCourses = data.courses;
+  const existingCourses = JSON.parse( localStorage.getItem("courses")).courses
 
   console.log('data', existingCourses);
   const empty = {

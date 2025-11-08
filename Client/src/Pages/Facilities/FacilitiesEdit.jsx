@@ -4,7 +4,7 @@ import { EditFacilities } from "../../services/profileService";
 
 export default function FacilitiesEdit({ }) {
   const location = useLocation();
-  const data = location.state
+  const data = JSON.parse(localStorage.getItem("Facilities"))
   console.log(data)
   const { id } = useParams();
   const navigate = useNavigate();
