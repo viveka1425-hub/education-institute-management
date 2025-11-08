@@ -45,9 +45,9 @@ const MainLayout = () => {
                         <Link to="/Dashboard">Dashboard</Link>
 
                         <div className="">
-                            <Link className="dropdown-btn" onClick={() => setCoursesOpen(!coursesOpen)}>
+                            <a className="dropdown-btn" onClick={() => setCoursesOpen(!coursesOpen)}>
                                 Profile Management
-                                <span className="arrow">{coursesOpen ? "▲" : "▼"}</span> </Link>
+                                <span className="arrow">{coursesOpen ? "▲" : "▼"}</span> </a>
 
                             {coursesOpen && (
                                 <div className="dropdown-content">
