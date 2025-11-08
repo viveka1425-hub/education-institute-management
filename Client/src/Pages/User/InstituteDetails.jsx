@@ -7,6 +7,8 @@ import { API_URL } from '../../config/config';
 import { Star } from "lucide-react";
 import { Menu as MenuIcon } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from "react-router-dom";
+
 
 export default function InstituteDetails() {
   const [list, setList] = useState({});
@@ -128,7 +130,7 @@ export default function InstituteDetails() {
           {/* Logo Left */}
           <div className="ml-15 flex-shrink-0">
             <img
-              src={API_URL + `/uploads/${list.logo}`}
+              src={list.logo}
               alt="Institute Logo"
               className="w-40 h-40 rounded-full border-green-300 shadow-md object-cover"
             />
@@ -150,14 +152,13 @@ export default function InstituteDetails() {
               {/* Desktop Menu Links */}
               <div className="pl-70 hidden lg:flex items-center space-x-1">
 
-                <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</a>
-                <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
-                <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>
-                {/* <a className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Deactivate</a> */}
+                <Link onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</Link>
+                <Link onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</Link>
+                <Link onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</Link>
                 {Role !== "admin" && (
                   <div>
-                    <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>
-                    <a onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</a>
+                    <Link onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</Link>
+                    <Link onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</Link>
                   </div>
                 )}
               </div>
@@ -179,14 +180,13 @@ export default function InstituteDetails() {
           {isMobileMenuOpen && (
             <div className="lg:hidden" id="mobile-menu">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-green-200">
-                <a onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</a>
-                <a onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</a>
-                <a onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</a>
-                {/* <a className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Deactivate</a> */}
+                <Link onClick={() => handleClick()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Home</Link>
+                <Link onClick={() => handleClick('courses')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Courses</Link>
+                <Link onClick={() => handleClick('facilities')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Facilities</Link>
                 {Role !== "admin" && (
                   <div>
-                    <a onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</a>
-                    <a onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</a>
+                    <Link onClick={() => handleClick('reviews')} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150">Reviews</Link>
+                    <Link onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</Link>
                   </div>
                 )}
               </div>
@@ -198,7 +198,7 @@ export default function InstituteDetails() {
           {list.banner && (
             <div className="w-full">
               <img
-                src={API_URL + `/uploads/${list.banner}`}
+                src={list.banner}
                 alt="Institute Banner"
                 className="w-full h-86 sm:h-82 object-cover"
               />
@@ -242,7 +242,7 @@ export default function InstituteDetails() {
                           className="bg-white p-4 rounded-2xl shadow-md hover:shadow-lg transition-all border border-green-100"
                         >
                           <img
-                            src={API_URL + `/uploads/${course.image}`}
+                            src={course.image}
                             alt={course.name}
                             className="h-32 w-full object-cover rounded-xl mb-3"
                           />
@@ -277,7 +277,7 @@ export default function InstituteDetails() {
                           className="bg-white p-4 rounded-2xl shadow-md hover:shadow-lg transition-all border border-green-200"
                         >
                           <img
-                            src={API_URL + `/uploads/${facility.photo}`}
+                            src={facility.photo}
                             alt={facility.name}
                             className="h-32 w-full object-cover rounded-xl mb-3"
                           />

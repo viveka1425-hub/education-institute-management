@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EditFacilities, facilitiesList } from "../../services/profileService"
+import { Link } from "react-router-dom";
 import { API_URL } from '../../config/config';
 
 
@@ -84,7 +85,7 @@ export default function FacilitiesList({  }) {
             <p className="text-gray-500">Manage your institution's facilities and amenities</p>
           </div>
           <div>
-            <a
+            <Link
               onClick={handleAddFacility}
               className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] text-white font-medium shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
             >
@@ -92,7 +93,7 @@ export default function FacilitiesList({  }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
               <div className="text-white cursor-pointer">Add Facility</div>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -171,7 +172,7 @@ export default function FacilitiesList({  }) {
                 </div>
                 <div>
                   {f.photo ? (
-                    <img src={API_URL + "/uploads/" + f.photo}
+                    <img src={f.photo}
                       alt="photo"
                     />
                   ) : (
@@ -181,7 +182,7 @@ export default function FacilitiesList({  }) {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4 border-t border-gray-100">
-                  <a
+                  <Link
                     onClick={() => handleEditFacilities(f.id)}
                     //href={`/Facilities/FacilitiesEdit/${f.id}`}
                     className="text-green flex-1 text-center px-4 py-2.5 rounded-lg border-2 border-[#61b844] text-[#61b844] font-medium hover:bg-[#61b844] hover:text-white transition-all duration-200"
@@ -192,7 +193,7 @@ export default function FacilitiesList({  }) {
                       </svg>
                       <div style={{color:"green"}} className="cursor-pointer">Edit</div>
                     </span>
-                  </a>
+                  </Link>
                   <button
                     onClick={() => handleDelete(f.id)}
                     className="bg-[#305921] flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-medium hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all duration-200"
@@ -220,12 +221,12 @@ export default function FacilitiesList({  }) {
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No Facilities Yet</h3>
             <p className="text-gray-600 mb-6">Get started by adding your first facility</p>
-            <a
+            <Link
               onClick={handleAddFacility}
               className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] text-white font-medium shadow-lg hover:shadow-xl transition-all"
             >
               Add Your First Facility
-            </a>
+            </Link>
           </div>
         )}
       </div>

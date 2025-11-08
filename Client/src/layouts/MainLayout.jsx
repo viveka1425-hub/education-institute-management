@@ -42,12 +42,12 @@ const MainLayout = () => {
                 {/* Sidebar */}
                 <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"} flex justify-between flex-col`}>
                     <div>
-                        <a href="/Dashboard">Dashboard</a>
+                        <Link to="/Dashboard">Dashboard</Link>
 
                         <div className="">
-                            <a className="dropdown-btn" onClick={() => setCoursesOpen(!coursesOpen)}>
+                            <Link className="dropdown-btn" onClick={() => setCoursesOpen(!coursesOpen)}>
                                 Profile Management
-                                <span className="arrow">{coursesOpen ? "▲" : "▼"}</span> </a>
+                                <span className="arrow">{coursesOpen ? "▲" : "▼"}</span> </Link>
 
                             {coursesOpen && (
                                 <div className="dropdown-content">
@@ -60,12 +60,12 @@ const MainLayout = () => {
                         <Link to="/reviews/InstituteReview"> Reviews</Link>
                         <Link to ={`/Enquiry/enquiry/${id}`}>Enquiry</Link>
                     </div>
-                    <a onClick={handleLogout} className="cursor-pointer">
+                    <Link onClick={handleLogout} className="cursor-pointer">
                         <div className="flex flex-row">
                             <LogOut onClick={handleLogout} className="cursor-pointer" />
                             <div className="ml-1">Logout</div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Overlay */}

@@ -42,12 +42,12 @@ const AdminLayout = () => {
                         <Link to="/Requests">Requests</Link>
                         <Link to="/review">Reviews</Link>
                     </div>
-                    <a onClick={handleLogout} className="cursor-pointer">
+                    <Link onClick={handleLogout} className="cursor-pointer">
                         <div className="flex flex-row">
                             <LogOut onClick={handleLogout} className="cursor-pointer" />
                             <div className="ml-1">Logout</div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Overlay */}

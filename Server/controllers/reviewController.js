@@ -114,7 +114,7 @@ router.put("/statusUpdate/:reviewId", rejectedReview)
 
 const reviewCount = async (req, res) => {
     try {
-        const { instituteId, id } = req.params;
+        const { instituteId } = req.params;
         console.log({
             instituteId,
             type:typeof instituteId
@@ -125,7 +125,7 @@ const reviewCount = async (req, res) => {
         }
         const result = await reviewSchema.countDocuments(conditionQuery)
         const enquiry = await enquirySchema.countDocuments(conditionQuery)
-        const institute = await ProfileSchema.countDocuments({id:id})
+        const institute = await ProfileSchema.countDocuments(conditionQuery)
         res.send({
             message: "get review count",
             result: result,

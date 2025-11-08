@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { courseList, EditFacilities } from "../../services/profileService";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from '../../config/config';
@@ -75,7 +75,7 @@ function CoursesList({ }) {
             <p className="text-gray-500">Manage your institution's courses and programs</p>
           </div>
           <div>
-            <a
+            <Link
               onClick={handleAddCourse}
               className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] text-white font-medium shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
             >
@@ -83,7 +83,7 @@ function CoursesList({ }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
               <div className="text-white cursor-pointer">Create Course</div>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -153,7 +153,7 @@ function CoursesList({ }) {
                 </div>
                 <div>
                   {c.image ? (
-                    <img src={API_URL + "/uploads/" + c.image}
+                    <img src={c.image}
                       alt="image"
                     />
                   ) : (
@@ -200,12 +200,12 @@ function CoursesList({ }) {
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No Courses Yet</h3>
             <p className="text-gray-600 mb-6">Get started by creating your first course</p>
-            <a
+            <Link
               onClick={handleAddCourse}
               className="text-white cursor-pointer inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] font-medium shadow-lg hover:shadow-xl transition-all"
             >
               Create Your First Course
-            </a>
+            </Link>
           </div>
         )}
       </div>

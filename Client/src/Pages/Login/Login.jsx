@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { userLogin } from "../../services/userService";
+import { Link } from "react-router-dom";
+
 
 
 const LoginPage = () => {
@@ -104,9 +106,9 @@ const LoginPage = () => {
                         Login
                     </button>
 
-                    <a onClick={navigateToRegisterPage} style={styles.registerLink}>
+                    <Link onClick={navigateToRegisterPage} style={styles.registerLink}>
                         Don't have an account? Register
-                    </a>
+                    </Link>
                 </form>
             </div>
         </div>

@@ -154,13 +154,13 @@ export default function InstituteList() {
                     >
                         <div className="relative">
                             <img
-                                src={API_URL + "/uploads/" + info.banner}
+                                src={info.banner}
                                 alt="Banner"
                                 className="w-full h-40 object-cover"
                             />
                             <div className="absolute -mt-20 left-1/2 transform -translate-x-1/2 translate-y-1/3">
                                 <img
-                                    src={API_URL + "/uploads/" + info.logo}
+                                    src={ info.logo}
                                     alt="Logo"
                                     className="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover"
                                 />
