@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 export default function InstituteBanner() {
     return (
@@ -21,6 +21,9 @@ export default function InstituteBanner() {
 
                     {/* Decorative line */}
                     <div className="mt-6 w-32 h-1 bg-white/60 mx-auto rounded-full"></div>
+                    <button style={{backgroundColor:"white", color:"#305921", marginTop:10}}>
+                        <Link to="/login">Login</Link>
+                    </button>
                 </div>
             </div>
         </div>

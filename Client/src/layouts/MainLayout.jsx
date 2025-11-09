@@ -6,7 +6,7 @@ import { LogOut } from "lucide-react";
 
 const MainLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [coursesOpen, setCoursesOpen] = useState(false);
+    //const [coursesOpen, setCoursesOpen] = useState(false);
     const navigate = useNavigate();
     const id = localStorage.getItem('institute_id')
 
@@ -26,7 +26,7 @@ const MainLayout = () => {
         <div className="body">
             {/* Header */}
             <div className="header">
-                <h3 className="header-title">Education Institute</h3>
+                <h3 className="header-title">EduList</h3>
 
 
 
@@ -45,17 +45,16 @@ const MainLayout = () => {
                         <Link to="/Dashboard">Dashboard</Link>
 
                         <div className="">
-                            <a className="dropdown-btn" onClick={() => setCoursesOpen(!coursesOpen)}>
+                            {/* <a className="dropdown-btn" onClick={() => setCoursesOpen(!coursesOpen)}> */}
                                 Profile Management
-                                <span className="arrow">{coursesOpen ? "▲" : "▼"}</span> </a>
+                                {/* <span className="arrow">{coursesOpen ? "▲" : "▼"}</span> </a> */}
 
-                            {coursesOpen && (
-                                <div className="dropdown-content">
+                            
+                                <div className="dropdown-content mt-3">
                                     <Link to="Profile/ProfileView">Profile details</Link>
                                     <Link to="Courses/CoursesList">Courses</Link>
                                     <Link to="Facilities/FacilitiesList">Facilities</Link>
                                 </div>
-                            )}
                         </div>
                         <Link to="/reviews/InstituteReview"> Reviews</Link>
                         <Link to ={`/Enquiry/enquiry/${id}`}>Enquiry</Link>

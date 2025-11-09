@@ -8,6 +8,7 @@ import { Star } from "lucide-react";
 import { Menu as MenuIcon } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
+import { updateUserStatus } from "../../services/adminService";
 
 
 export default function InstituteDetails() {
@@ -116,6 +117,10 @@ export default function InstituteDetails() {
     }
   };
 
+  const handleDeactivate = async (userId, action) => {
+    const use = await updateUserStatus(userId, action);
+    console.log(use)
+  }
 
   useEffect(() => {
     details(id);
@@ -161,6 +166,11 @@ export default function InstituteDetails() {
                     <Link onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</Link>
                   </div>
                 )}
+                <div>
+                  {Role === "admin" && (
+                    <Link onClick={() => handleDeactivate()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Deactivate</Link>
+                  )}
+                </div>
               </div>
 
               {/* Mobile Menu Button (Hamburger) */}
@@ -189,6 +199,11 @@ export default function InstituteDetails() {
                     <Link onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</Link>
                   </div>
                 )}
+                <div>
+                  {Role === "admin" && (
+                    <Link onClick={() => handleDeactivate()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Deactivate</Link>
+                  )}
+                </div>
               </div>
             </div>
           )}

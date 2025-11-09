@@ -23,7 +23,7 @@ const AdminLayout = () => {
         <div className="body">
             {/* Header */}
             <div className="header">
-                <h3 className="header-title">Education Institute</h3>
+                <h3 className="header-title">EduList</h3>
 
                 {/* Hamburger */}
                 <div className="hamburger" onClick={toggleSidebar}>

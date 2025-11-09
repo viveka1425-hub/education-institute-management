@@ -21,12 +21,27 @@ const AdminLayout = () => {
 
             <div className="header">
                 <div className="flex flex-row flex-1 justify-between">
-                    <h3 className="header-title">Education Institute</h3>
+                    <h3 className="header-title">EduList</h3>
                     <div>
-
-                        {userId ? <LogOut onClick={handleLogout} className="cursor-pointer" /> : <LogIn onClick={handleLogin} />}
-
+                        {userId ? (
+                            <button
+                                onClick={handleLogout}
+                                className="flex items-center gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition cursor-pointer"
+                            >
+                                <LogOut className="w-5 h-5" />
+                                Logout
+                            </button>
+                        ) : (
+                            <button
+                                onClick={handleLogin}
+                                className="flex items-center gap-2 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition cursor-pointer"
+                            >
+                                <LogIn className="w-5 h-5" />
+                                Login
+                            </button>
+                        )}
                     </div>
+
                 </div>
             </div >
             {/* Sidebar */}

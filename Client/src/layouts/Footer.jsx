@@ -16,7 +16,7 @@ const Footer = () => {
 
         {/* Column 1: About */}
         <div className="footer-section">
-          <h3>Education Institute</h3>
+          <h3>EduList</h3>
           <p>
             Empowering students with knowledge and skills for a brighter future.
             Join us to experience world-class education with modern learning techniques.
@@ -30,7 +30,7 @@ const Footer = () => {
         </div>
 
         {/* Column 4: Socials */}
-        <div className="footer-section">
+        {/* <div className="footer-section">
           <h4>Follow Us</h4>
           <div className="social-icons">
             <Link to="#"><FaFacebookF /></Link>
@@ -38,12 +38,12 @@ const Footer = () => {
             <Link to="#"><FaInstagram /></Link>
             <Link to="#"><FaLinkedinIn /></Link>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Education Institute | All Rights Reserved</p>
+        <p>© {new Date().getFullYear()} EduList | All Rights Reserved</p>
       </div>
     </footer>
     </div>
