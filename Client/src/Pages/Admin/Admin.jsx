@@ -56,7 +56,11 @@ export default function InstituteList() {
         <div className="p-6 bg-gray-50 min-h-screen">
             {Role !== "admin" && (
                 <div>
-                    <div><h1>Welcome! {name}</h1></div>
+                    <div>
+                        <h2 className="text-4xl sm:text-4xl font-extrabold text-green-700 tracking-tight mb-4">
+                            Welcome! {name}
+                        </h2>
+                    </div>
                     <header className="shadow p-4">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-3 bg-white shadow-sm rounded-md">
                             {/* Search Bar Section */}

@@ -166,11 +166,6 @@ export default function InstituteDetails() {
                     <Link onClick={Enquiry} className="cursor-pointer px-4 py-3 text-white font-medium hover:text-white transition duration-150" > Enquiry</Link>
                   </div>
                 )}
-                <div>
-                  {Role === "admin" && (
-                    <Link onClick={() => handleDeactivate()} className="cursor-pointer px-4 py-3 text-green-800 font-medium hover:text-blue">Deactivate</Link>
-                  )}
-                </div>
               </div>
 
               {/* Mobile Menu Button (Hamburger) */}

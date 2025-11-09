@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 export default function InstituteBanner() {
+    const [showAbout, setShowAbout] = useState(false);
     return (
         <div>
             <div className="relative bg-gradient-to-br from-[#55823d] via-[#6fae4b] to-[#8ed174] text-white py-6 px-6 text-center overflow-hidden rounded-3xl shadow-2xl">
@@ -21,8 +23,14 @@ export default function InstituteBanner() {
 
                     {/* Decorative line */}
                     <div className="mt-6 w-32 h-1 bg-white/60 mx-auto rounded-full"></div>
-                    <button style={{backgroundColor:"white", color:"#305921", marginTop:10}}>
+                    <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginRight: 10 }}>
+                        <Link to="#">Home</Link>
+                    </button>
+                    <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginRight: 10, marginLeft: 10 }}>
                         <Link to="/login">Login</Link>
+                    </button>
+                    <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10 }}>
+                        <Link to="/Register">Register</Link>
                     </button>
                 </div>
             </div>

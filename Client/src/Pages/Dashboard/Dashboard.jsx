@@ -82,7 +82,10 @@ const Dashboard = () => {
     return (
         <div>
             <div>
-                <h4 classname=" font-semibold text-green-700 mb-3">Welcome! {name}</h4>
+                <h2 className="text-4xl sm:text-4xl font-extrabold text-green-700 tracking-tight mb-4">
+                    Welcome! {name}
+                </h2>
+
             </div>
             <div className="card-container">
                 <div className="dashboard-card">
