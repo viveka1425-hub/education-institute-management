@@ -27,8 +27,8 @@ function CoursesList({ }) {
     await fetchList();
   }
   function handleAddCourse() {
-    localStorage.setItem("courses",JSON.stringify( { courses: courses }))
-    navigate("/Courses/CoursesCreate", { state: JSON.stringify( { courses: courses }) })
+    localStorage.setItem("courses", JSON.stringify({ courses: courses }))
+    navigate("/Courses/CoursesCreate", { state: JSON.stringify({ courses: courses }) })
   }
 
   function handleEditCourses(id) {
@@ -89,104 +89,127 @@ function CoursesList({ }) {
         </div>
 
         {/* Courses Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">
           {courses.map((c) => (
             <div
               key={c.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group"
+              className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              {/* Card Header with Gradient */}
-              <div className="h-2 bg-gradient-to-r from-[#61b844] to-[#61b844]"></div>
+              {/* Animated Gradient Border Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#61b844] via-[#7256b8] to-[#61b844] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10"></div>
 
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-start gap-4 flex-1">
-                    {/* Category Icon */}
-                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-[#61b844] to-[#61b844] flex items-center justify-center text-white flex-shrink-0 shadow-lg">
-                      {getCategoryIcon(c.category)}
-                    </div>
-
-                    {/* Course Info */}
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-[#61b844] transition-colors">
-                        {c.name}
-                      </h3>
-                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-green-100 text-[#61b844] font-medium">
-                          {c.category}
-                        </span>
-                        <span className="text-gray-400">•</span>
-                        <span className="flex items-center">
-                          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          {c.duration}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {c.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Course Details */}
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="bg-gradient-to-br from-green-50 to-indigo-50 rounded-lg p-3 border border-purple-100">
-                    <div className="flex items-center text-gray-600 text-xs mb-1">
-                      <svg className="w-4 h-4 mr-1 text-[#7256b8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                      Available Seats
-                    </div>
-                    <div className="text-xl font-bold text-gray-900">{c.intake}</div>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-3 border border-purple-100">
-                    <div className="flex items-center text-gray-600 text-xs mb-1">
-                      <svg className="w-4 h-4 mr-1 text-[#7256b8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      Annual Fees
-                    </div>
-                    <div className="text-xl font-bold text-gray-900">₹{c.fees.toLocaleString()}</div>
-                  </div>
-                </div>
-                <div>
+              {/* Card Content */}
+              <div className="relative bg-white rounded-3xl m-0.5 h-full flex flex-col">
+                {/* Large Image Section */}
+                <div className="relative h-56 w-full overflow-hidden">
                   {c.image ? (
-                    <img src={c.image}
-                      alt="image"
+                    <img
+                      src={c.image}
+                      alt={c.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div></div>
+                    <div className="w-full h-full bg-gradient-to-br from-[#61b844] to-[#4a8c32] flex items-center justify-center">
+                      <span className="text-white text-6xl">
+                        {getCategoryIcon(c.category)}
+                      </span>
+                    </div>
                   )}
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+
+                  {/* Category Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-sm text-black text-sm font-semibold border border-white/30">
+                      {getCategoryIcon(c.category)}
+                      <span className="ml-1.5">{c.category}</span>
+                    </span>
+                  </div>
+
+                  {/* Duration */}
+                  <div className="absolute top-4 right-4">
+                    <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-sm text-white text-sm font-medium">
+                      <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {c.duration}
+                    </span>
+                  </div>
+
+                  {/* Course Title Overlay */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-2xl font-bold text-white mb-2 line-clamp-2 leading-tight drop-shadow-lg">
+                      {c.name}
+                    </h3>
+                  </div>
                 </div>
-                {/* Action Buttons */}
-                <div className="flex gap-3 pt-4 border-t border-gray-100">
-                  <button
-                    onClick={() => handleEditCourses(c.id)}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-800 to-green-800 text-white font-medium hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all duration-200"
-                  >
-                    <span className="flex items-center justify-center">
-                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                {/* Main Content */}
+                <div className="flex-1 p-6">
+                  {/* Description */}
+                  <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3 text-sm">
+                    {c.description}
+                  </p>
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    {/* Available Seats */}
+                    <div className="relative p-4 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100 group-hover:border-green-200 transition-colors duration-300">
+                      <div className="flex items-center text-gray-600 text-xs font-medium mb-2">
+                        <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center mr-2 group-hover:bg-green-200 transition-colors">
+                          <svg className="w-4 h-4 text-[#61b844]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                        </div>
+                        Available Seats
+                      </div>
+                      <div className="text-2xl font-bold text-gray-900">{c.intake}</div>
+                    </div>
+
+                    {/* Annual Fees */}
+                    <div className="relative p-4 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 group-hover:border-purple-200 transition-colors duration-300">
+                      <div className="flex items-center text-gray-600 text-xs font-medium mb-2">
+                        <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center mr-2 group-hover:bg-purple-200 transition-colors">
+                          <svg className="w-4 h-4 text-[#7256b8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        Annual Fees
+                      </div>
+                      <div className="text-2xl font-bold text-gray-900">₹{c.fees.toLocaleString()}</div>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 pt-4 border-t border-gray-100">
+                    <button
+                      onClick={() => handleEditCourses(c.id)}
+                      className="flex-1 px-4 py-3 rounded-xl bg-gradient-to-r from-[#61b844] to-[#4a8c32] text-white font-semibold hover:from-[#4a8c32] hover:to-[#3a6d27] shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
-                      <div className="cursor-pointer text-green">Edit</div>
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => handleDelete(c.id)}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-800 to-green-800 text-white font-medium hover:from-green-600 hover:to-green-600 shadow-md hover:shadow-lg transition-all duration-200"
-                  >
-                    <span className="flex items-center justify-center">
-                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(c.id)}
+                      className="flex-1 px-4 py-3 rounded-xl bg-gradient-to-r from-[#dc2626] to-[#b91c1c] text-white font-semibold hover:from-[#b91c1c] hover:to-[#991b1b] shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                       </svg>
-                      <div className=" text-white">Delete</div>
-                    </span>
-                  </button>
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
+
+              {/* Hover Effect Corner Accents */}
+              <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#61b844] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-3xl"></div>
+              <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#7256b8] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#61b844] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-3xl"></div>
+              <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#7256b8] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-3xl"></div>
             </div>
           ))}
         </div>
