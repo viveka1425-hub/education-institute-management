@@ -46,7 +46,7 @@ export default function ProfileView({ }) {
                 {/* Header Section */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h2 className="text-3xl font-bold text-green-900 mb-1">Institute Profile</h2>
+                        <h2 className="text-3xl font-bold text-green-700 mb-1">Institute Profile</h2>
                         <p className="text-green-500">View and manage your institution details</p>
                     </div>
                     <div className="flex gap-3">
@@ -75,7 +75,7 @@ export default function ProfileView({ }) {
                 {profile ? (
                     <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
 
-                        <div className="h-40 bg-gradient-to-r from-[#61b844] via-[#61b844] to-[#61b844] relative overflow-hidden">
+                        <div className="h-40 bg-gradient-to-r from-[#9ade6d] via-[#9ade6d] to-[#9ade6d] relative overflow-hidden">
                             <div className="absolute inset-0 bg-black/10"></div>
                             <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full"></div>
                             <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full"></div>
@@ -118,7 +118,7 @@ export default function ProfileView({ }) {
 
                                         <div className="bg-gradient-to-br from-green-50 to-indigo-50 rounded-xl p-5 border border-green-100">
                                             <div className="flex items-center mb-3">
-                                                <div className="h-10 w-10 rounded-lg bg-gradient-to-r from-[#61b844] to-[#61b844] flex items-center justify-center mr-3">
+                                                <div className="h-10 w-10 rounded-lg bg-gradient-to-r from-[#9ade6d] to-[#9ade6d] flex items-center justify-center mr-3">
                                                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                                     </svg>
