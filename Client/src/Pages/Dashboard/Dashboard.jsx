@@ -158,7 +158,7 @@ const Dashboard = () => {
 
                 {/* Total Enquiries Card - Non-Admin */}
                 {Role !== 'admin' && (
-                    <div className=" group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-100">
+                    <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-100">
                         {/* Animated Gradient Border */}
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10"></div>
 
@@ -183,103 +183,96 @@ const Dashboard = () => {
                 )}
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
-                {/* Review Count Chart */}
-                <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-100">
-                    {/* Animated Gradient Border */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-green-400 via-emerald-500 to-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10"></div>
-
-                    <div className="relative bg-white rounded-3xl m-0.5 h-full">
-                        {/* Card Header */}
-                        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4">
+            <div className="w-full min-h-screen flex justify-center items-center -mt-20 -mb-10">
+                <div className="grid gap-6 
+                  grid-cols-1 
+                  md:grid-cols-1 
+                  lg:grid-cols-1 
+                  justify-items-center">
+                    {/* Review Count Chart */}
+                    <div className="w-100 mr-15 group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                        <div className="relative bg-gradient-to-r from-green-50 to-emerald-50 px-4 py-3 border-b border-green-100">
                             <div className="flex items-center justify-between">
-                                <div className="flex items-center">
-                                    <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mr-3">
-                                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                <div className="flex items-center space-x-2">
+                                    <div className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center shadow-sm">
+                                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-white">Review Analytics</h3>
-                                        <p className="text-white/80 text-sm">Weekly performance overview</p>
+                                        <h3 className="text-sm font-semibold text-gray-800">Review Analytics</h3>
+                                        <p className="text-xs text-gray-600">Weekly performance</p>
                                     </div>
                                 </div>
-                                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1">
-                                    <span className="text-white text-sm font-medium">This Week</span>
-                                </div>
+                                <span className="bg-white/80 text-xs font-medium text-gray-700 px-2 py-1 rounded-md border border-green-200">
+                                    This Week
+                                </span>
                             </div>
                         </div>
 
-                        {/* Chart Container */}
-                        <div className="p-6">
-                            <div className="w-full h-72 lg:h-80">
+                        <div className="p-4">
+                            <div className="w-full h-48">
                                 <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart
-                                        data={reviewChartList}
-                                        margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
-                                    >
+                                    <BarChart data={reviewChartList} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                                         <defs>
                                             <linearGradient id="reviewGradient" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="0%" stopColor="#16a34a" stopOpacity={0.8} />
-                                                <stop offset="100%" stopColor="#15803d" stopOpacity={0.9} />
+                                                <stop offset="0%" stopColor="#10b981" stopOpacity={0.9} />
+                                                <stop offset="100%" stopColor="#059669" stopOpacity={1} />
                                             </linearGradient>
                                         </defs>
-                                        <CartesianGrid
-                                            strokeDasharray="3 3"
-                                            stroke="#f0f0f0"
-                                            vertical={false}
-                                        />
+                                        <CartesianGrid strokeDasharray="2 2" stroke="#f3f4f6" vertical={false} />
                                         <XAxis
                                             dataKey="day"
                                             axisLine={false}
                                             tickLine={false}
-                                            tick={{ fill: '#6b7280', fontSize: 12 }}
+                                            tick={{ fill: '#6b7280', fontSize: 11 }}
                                         />
                                         <YAxis
                                             allowDecimals={false}
                                             axisLine={false}
                                             tickLine={false}
-                                            tick={{ fill: '#6b7280', fontSize: 12 }}
+                                            tick={{ fill: '#6b7280', fontSize: 11 }}
                                         />
                                         <Tooltip
                                             contentStyle={{
                                                 backgroundColor: 'white',
-                                                border: 'none',
-                                                borderRadius: '12px',
-                                                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                                padding: '12px'
+                                                border: '1px solid #e5e7eb',
+                                                borderRadius: '8px',
+                                                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                                                fontSize: '12px',
+                                                padding: '8px 12px'
                                             }}
-                                            cursor={{ fill: 'rgba(22, 163, 74, 0.1)' }}
+                                            cursor={{ fill: 'rgba(16, 185, 129, 0.05)' }}
                                         />
                                         <Bar
                                             dataKey="reviews"
                                             fill="url(#reviewGradient)"
-                                            radius={[12, 12, 0, 0]}
-                                            barSize={32}
+                                            radius={[6, 6, 0, 0]}
+                                            barSize={20}
                                         />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
 
-                            {/* Summary Stats */}
-                            <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+                            {/* Compact Summary Stats */}
+                            <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-100">
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-gray-900">
+                                    <div className="text-lg font-bold text-gray-900">
                                         {reviewChartList.reduce((sum, day) => sum + day.reviews, 0)}
                                     </div>
-                                    <div className="text-sm text-gray-500">Total Reviews</div>
+                                    <div className="text-xs text-gray-500 font-medium">Total</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-gray-900">
+                                    <div className="text-lg font-bold text-gray-900">
                                         {Math.max(...reviewChartList.map(day => day.reviews))}
                                     </div>
-                                    <div className="text-sm text-gray-500">Peak Day</div>
+                                    <div className="text-xs text-gray-500 font-medium">Peak</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-gray-900">
+                                    <div className="text-lg font-bold text-gray-900">
                                         {(reviewChartList.reduce((sum, day) => sum + day.reviews, 0) / reviewChartList.length).toFixed(1)}
                                     </div>
-                                    <div className="text-sm text-gray-500">Daily Avg</div>
+                                    <div className="text-xs text-gray-500 font-medium">Avg/Day</div>
                                 </div>
                             </div>
                         </div>
@@ -288,102 +281,89 @@ const Dashboard = () => {
 
                 {/* Enquiry Count Chart - Non-Admin */}
                 {Role !== 'admin' && (
-                    <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-100">
-                        {/* Animated Gradient Border */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10"></div>
-
-                        <div className="relative bg-white rounded-3xl m-0.5 h-full">
-                            {/* Card Header */}
-                            <div className="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
-                                        <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mr-3">
-                                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-bold text-white">Enquiry Analytics</h3>
-                                            <p className="text-white/80 text-sm">Recent inquiry trends</p>
-                                        </div>
+                    <div className="w-100 group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                        <div className="relative bg-gradient-to-r from-blue-50 to-cyan-50 px-4 py-3 border-b border-blue-100">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-2">
+                                    <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center shadow-sm">
+                                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                        </svg>
                                     </div>
-                                    <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1">
-                                        <span className="text-white text-sm font-medium">Latest</span>
+                                    <div>
+                                        <h3 className="text-sm font-semibold text-gray-800">Enquiry Analytics</h3>
+                                        <p className="text-xs text-gray-600">Recent trends</p>
                                     </div>
                                 </div>
+                                <span className="bg-white/80 text-xs font-medium text-gray-700 px-2 py-1 rounded-md border border-blue-200">
+                                    Latest
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="p-4">
+                            <div className="w-full h-48">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={enquiryChartList} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                                        <defs>
+                                            <linearGradient id="enquiryGradient" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.9} />
+                                                <stop offset="100%" stopColor="#1d4ed8" stopOpacity={1} />
+                                            </linearGradient>
+                                        </defs>
+                                        <CartesianGrid strokeDasharray="2 2" stroke="#f3f4f6" vertical={false} />
+                                        <XAxis
+                                            dataKey="date"
+                                            axisLine={false}
+                                            tickLine={false}
+                                            tick={{ fill: '#6b7280', fontSize: 11 }}
+                                        />
+                                        <YAxis
+                                            allowDecimals={false}
+                                            axisLine={false}
+                                            tickLine={false}
+                                            tick={{ fill: '#6b7280', fontSize: 11 }}
+                                        />
+                                        <Tooltip
+                                            contentStyle={{
+                                                backgroundColor: 'white',
+                                                border: '1px solid #e5e7eb',
+                                                borderRadius: '8px',
+                                                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                                                fontSize: '12px',
+                                                padding: '8px 12px'
+                                            }}
+                                            cursor={{ fill: 'rgba(59, 130, 246, 0.05)' }}
+                                        />
+                                        <Bar
+                                            dataKey="count"
+                                            fill="url(#enquiryGradient)"
+                                            radius={[6, 6, 0, 0]}
+                                            barSize={20}
+                                        />
+                                    </BarChart>
+                                </ResponsiveContainer>
                             </div>
 
-                            {/* Chart Container */}
-                            <div className="p-6">
-                                <div className="w-full h-72 lg:h-80">
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <BarChart
-                                            data={enquiryChartList}
-                                            margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
-                                        >
-                                            <defs>
-                                                <linearGradient id="enquiryGradient" x1="0" y1="0" x2="0" y2="1">
-                                                    <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.8} />
-                                                    <stop offset="100%" stopColor="#1d4ed8" stopOpacity={0.9} />
-                                                </linearGradient>
-                                            </defs>
-                                            <CartesianGrid
-                                                strokeDasharray="3 3"
-                                                stroke="#f0f0f0"
-                                                vertical={false}
-                                            />
-                                            <XAxis
-                                                dataKey="date"
-                                                axisLine={false}
-                                                tickLine={false}
-                                                tick={{ fill: '#6b7280', fontSize: 12 }}
-                                            />
-                                            <YAxis
-                                                allowDecimals={false}
-                                                axisLine={false}
-                                                tickLine={false}
-                                                tick={{ fill: '#6b7280', fontSize: 12 }}
-                                            />
-                                            <Tooltip
-                                                contentStyle={{
-                                                    backgroundColor: 'white',
-                                                    border: 'none',
-                                                    borderRadius: '12px',
-                                                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                                    padding: '12px'
-                                                }}
-                                                cursor={{ fill: 'rgba(59, 130, 246, 0.1)' }}
-                                            />
-                                            <Bar
-                                                dataKey="count"
-                                                fill="url(#enquiryGradient)"
-                                                radius={[12, 12, 0, 0]}
-                                                barSize={32}
-                                            />
-                                        </BarChart>
-                                    </ResponsiveContainer>
+                            {/* Compact Summary Stats */}
+                            <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-100">
+                                <div className="text-center">
+                                    <div className="text-lg font-bold text-gray-900">
+                                        {enquiryChartList.reduce((sum, item) => sum + item.count, 0)}
+                                    </div>
+                                    <div className="text-xs text-gray-500 font-medium">Total</div>
                                 </div>
-
-                                {/* Summary Stats */}
-                                <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
-                                    <div className="text-center">
-                                        <div className="text-2xl font-bold text-gray-900">
-                                            {enquiryChartList.reduce((sum, item) => sum + item.count, 0)}
-                                        </div>
-                                        <div className="text-sm text-gray-500">Total Enquiries</div>
+                                <div className="text-center">
+                                    <div className="text-lg font-bold text-gray-900">
+                                        {Math.max(...enquiryChartList.map(item => item.count))}
                                     </div>
-                                    <div className="text-center">
-                                        <div className="text-2xl font-bold text-gray-900">
-                                            {Math.max(...enquiryChartList.map(item => item.count))}
-                                        </div>
-                                        <div className="text-sm text-gray-500">Peak Day</div>
+                                    <div className="text-xs text-gray-500 font-medium">Peak</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-lg font-bold text-gray-900">
+                                        {(enquiryChartList.reduce((sum, item) => sum + item.count, 0) / enquiryChartList.length).toFixed(1)}
                                     </div>
-                                    <div className="text-center">
-                                        <div className="text-2xl font-bold text-gray-900">
-                                            {(enquiryChartList.reduce((sum, item) => sum + item.count, 0) / enquiryChartList.length).toFixed(1)}
-                                        </div>
-                                        <div className="text-sm text-gray-500">Daily Avg</div>
-                                    </div>
+                                    <div className="text-xs text-gray-500 font-medium">Avg/Day</div>
                                 </div>
                             </div>
                         </div>

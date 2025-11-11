@@ -46,7 +46,7 @@ const MainLayout = () => {
                         <div style={styles.heading}>
                             <div style={{ textAlign: "center", padding: "15px" }}>
                                 <FaUserCircle size={60} color="#ffffff" />
-                                <h3 style={{ fontWeight: "bold", color: "#ffffff",marginRight:30 }}>Institute Panel</h3>
+                                <h3 style={{ fontWeight: "bold", color: "#ffffff",marginRight:30 }}>Institute</h3>
                             </div>
                         </div>
                         <Link style={styles.Link} to="/Dashboard">Dashboard</Link>
