@@ -49,54 +49,73 @@ export default function DataList() {
                                 Institute Information
                             </h2>
 
-                            <div className="space-y-4">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <User size={18} className="text-green/80" />
-                                        <span className="text-sm text-green/80">Name</span>
+                            <div>
+                                <div className="space-y-5">
+                                    {/* Name */}
+                                    <div className="flex items-center justify-between border-b border-[#8ebe6f]/40 pb-3">
+                                        <div className="flex items-center gap-2 text-[#217d00]">
+                                            <User size={20} className="text-[#8ebe6f]" />
+                                            <span className="text-sm font-medium">Name</span>
+                                        </div>
+                                        <span className="text-lg font-semibold text-gray-800">{info.name}</span>
                                     </div>
-                                    <span className="text-lg font-semibold">{info.name}</span>
+
+                                    {/* Email */}
+                                    <div className="flex items-center justify-between border-b border-[#8ebe6f]/40 pb-3">
+                                        <div className="flex items-center gap-2 text-[#217d00]">
+                                            <Mail size={20} className="text-[#8ebe6f]" />
+                                            <span className="text-sm font-medium">Email</span>
+                                        </div>
+                                        <span className="text-lg font-semibold text-gray-800 break-all text-right">
+                                            {info.email}
+                                        </span>
+                                    </div>
+
+                                    {/* Phone */}
+                                    <div className="flex items-center justify-between border-b border-[#8ebe6f]/40 pb-3">
+                                        <div className="flex items-center gap-2 text-[#217d00]">
+                                            <Phone size={20} className="text-[#8ebe6f]" />
+                                            <span className="text-sm font-medium">Phone</span>
+                                        </div>
+                                        <span className="text-lg font-semibold text-gray-800">{info.phone}</span>
+                                    </div>
+
+                                    {/* Website */}
+                                    <div className="flex items-center justify-between border-b border-[#8ebe6f]/40 pb-3">
+                                        <div className="flex items-center gap-2 text-[#217d00]">
+                                            <Globe size={20} className="text-[#8ebe6f]" />
+                                            <span className="text-sm font-medium">Website</span>
+                                        </div>
+                                        <a
+                                            href={info.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-lg font-semibold text-[#217d00] hover:text-[#8ebe6f] truncate max-w-[160px] text-right"
+                                        >
+                                            {info.website}
+                                        </a>
+                                    </div>
+
+                                    {/* Address */}
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex items-center gap-2 text-[#217d00]">
+                                            <MapPin size={20} className="text-[#8ebe6f]" />
+                                            <span className="text-sm font-medium">Address</span>
+                                        </div>
+                                        <span className="text-lg font-semibold text-gray-800 text-right max-w-[220px] leading-snug">
+                                            {info.address}
+                                        </span>
+                                    </div>
                                 </div>
 
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <Mail size={18} className="text-green/80" />
-                                        <span className="text-sm text-green/80">Email</span>
-                                    </div>
-                                    <span className="text-lg font-semibold break-all text-right">{info.email}</span>
-                                </div>
-
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <Phone size={18} className="text-green/80" />
-                                        <span className="text-sm text-green/80">Phone</span>
-                                    </div>
-                                    <span className="text-lg font-semibold">{info.phone}</span>
-                                </div>
-
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <Globe size={18} className="text-green/80" />
-                                        <span className="text-sm text-green/80">Website</span>
-                                    </div>
-                                    <span className="text-lg font-semibold truncate max-w-[150px] text-right">{info.website}</span>
-                                </div>
-
-                                <div className="flex items-start justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <MapPin size={18} className="text-green/80" />
-                                        <span className="text-sm text-green/80">Address</span>
-                                    </div>
-                                    <span className="text-lg font-semibold text-right max-w-[200px] leading-snug">
-                                        {info.address}
-                                    </span>
-                                </div>
+                                {/* Footer Accent */}
+                                <div className="mt-6 w-full h-2 bg-gradient-to-r from-[#217d00] to-[#8ebe6f] rounded-full"></div>
                             </div>
 
                             <div className="flex justify-center gap-4 mt-8">
                                 <button onClick={() => handleStatusChange(info.userId._id, "accept")} className="px-6 py-2 rounded-full font-semibold bg-white text-[#614b97] hover:bg-[#f3f3f3] shadow-md transition duration-300"> Accept </button>
                                 <ToastContainer />
-                                <button onClick={() => handleStatusChange(info.userId._id, "reject")} className="px-6 py-2 rounded-full font-semibold border border-white text-white hover:bg-white hover:text-[#614b97] shadow-md transition duration-300"> DeActivate </button>
+                                <button onClick={() => handleStatusChange(info.userId._id, "reject")} className="px-6 py-2 rounded-full font-semibold border border-white text-white hover:bg-white hover:text-[#614b97] shadow-md transition duration-300"> Deactivate </button>
                                 <ToastContainer />
 
                             </div>

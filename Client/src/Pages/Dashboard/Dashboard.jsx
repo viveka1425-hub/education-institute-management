@@ -87,7 +87,7 @@ const Dashboard = () => {
                 </h2>
 
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
                 {/* Total Review Card */}
                 <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-100">
                     {/* Animated Gradient Border */}
@@ -158,7 +158,7 @@ const Dashboard = () => {
 
                 {/* Total Enquiries Card - Non-Admin */}
                 {Role !== 'admin' && (
-                    <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-100">
+                    <div className=" group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-100">
                         {/* Animated Gradient Border */}
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10"></div>
 

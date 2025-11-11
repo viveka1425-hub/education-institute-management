@@ -40,7 +40,7 @@
 /* Hamburger menu */
 .hamburger {
     display: none;
-    color:#305921;
+    color: #305921;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
@@ -61,8 +61,8 @@
 
 /* Sidebar */
 .sidebar {
+    background-color: #edfaf3;
     width: 15rem;
-    background-color: #d6e8cc;
     color: #305921;
     padding: 1rem 0.5rem;
     position: sticky;
@@ -88,8 +88,8 @@
 }
 
 .sidebar a:hover {
-    background-color: #fff;
-    color: #3e0530;
+    background-color: #d6e8cc;
+    color: #22361a;
 }
 
 

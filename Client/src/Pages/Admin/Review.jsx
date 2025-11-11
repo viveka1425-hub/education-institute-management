@@ -81,7 +81,7 @@ export default function Review() {
                                             </div>
 
                                             {/* Rating Badge */}
-                                            <div className="bg-gradient-to-r from-yellow-400 to-amber-500 rounded-2xl px-4 py-2 shadow-lg">
+                                            <div className="bg-[#00a365]  rounded-2xl px-4 py-2 shadow-lg">
                                                 <div className="flex items-center">
                                                     <span className="text-white font-bold text-lg mr-1">⭐</span>
                                                     <span className="text-white font-bold text-lg">{userReviewDetails.rating}</span>
@@ -92,11 +92,9 @@ export default function Review() {
 
                                         {/* Review Text */}
                                         <div className="relative mb-6">
-                                            <div className="absolute -left-2 top-0 text-4xl text-green-200 font-serif">"</div>
                                             <p className="text-gray-700 leading-relaxed text-lg pl-6 pr-2 italic">
                                                 {userReviewDetails.reviewText}
                                             </p>
-                                            <div className="absolute -right-2 bottom-0 text-4xl text-green-200 font-serif rotate-180">"</div>
                                         </div>
 
                                         {/* Footer */}
@@ -130,14 +128,9 @@ export default function Review() {
                                                 </button>
                                             </div>
                                         </div>
+                                        <ToastContainer />
                                     </div>
                                 </div>
-
-                                {/* Corner Accents */}
-                                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-3xl"></div>
-                                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-3xl"></div>
-                                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-3xl"></div>
-                                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-3xl"></div>
                             </div>
                         ))}
                     </div>

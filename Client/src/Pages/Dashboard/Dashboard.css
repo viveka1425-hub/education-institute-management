@@ -3,6 +3,8 @@
     gap: 1rem;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
     margin-bottom: 2rem;
 }
 

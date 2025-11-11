@@ -38,8 +38,8 @@ import EnquiryForm from "./Pages/reviews/EnquiryForm";
 import InstituteDetails from "./Pages/User/InstituteDetails";
 import ReplayEnquiry from "./Pages/Enquiry/replayEnquiry";
 import InstituteBanner from "./components/InstituteBanner";
-
-
+import About from "./Pages/User/About";
+import Contact from "./Pages/User/Contact";
 
 const STORAGE_KEY = "institute_data_v1";
 const defaultData = {
@@ -245,6 +245,14 @@ const router = createBrowserRouter([
     {
       path:"/InstituteBanner",
       element: <InstituteBanner />
+    },
+    {
+      path:"/About",
+      element: <About />
+    },
+    {
+      path:"/Contact",
+      element:< Contact />
     }
     ]
   },
