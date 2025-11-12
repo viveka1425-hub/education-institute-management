@@ -37,12 +37,12 @@ const AdminLayout = () => {
             <div className="main-body">
                 {/* Sidebar */}
                 <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"} flex justify-between flex-col`}>
-                    <div style={styles.heading}>
-                        <div style={{ textAlign: "center", padding: "15px" }}>
-                            <FaUserCircle size={60} color="#ffffff" />
-                            <h3 style={{ fontWeight: "bold", color: "#ffffff", marginRight: 30 }}>Admin</h3>
-                        </div>
+                    <div className="flex flex-col items-center justify-center text-white bg-[#8dc78b] h-40 rounded-2xl shadow-lg">
+                        <FaUserCircle size={60} color="#ffffff" />
+                        <h3 className="mt-2 text-white text-lg font-semibold">Admin</h3>
                     </div>
+
+
                     <div>
                         <Link style={styles.Link} to="/adminDashboard">Dashboard</Link>
                         <Link style={styles.Link} to="/Admin">Institute</Link>
@@ -73,18 +73,6 @@ const AdminLayout = () => {
 };
 
 const styles = {
-    heading: {
-        backgroundColor: "#70c850ff",
-        color: "white",
-        fontFamily: "'Georgia', serif",
-        fontSize: "18px",
-        fontWeight: "bold",
-        padding: "15px 18px",
-        borderRadius: "6px",
-        textAlign: "center",
-        letterSpacing: "0.5px",
-        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)"
-    },
     Link: {
         fontFamily: "'Georgia', serif",
         fontSize: "15px",
