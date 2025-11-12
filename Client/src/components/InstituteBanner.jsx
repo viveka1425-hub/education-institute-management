@@ -21,15 +21,6 @@ export default function InstituteBanner() {
 
                     {/* Decorative line */}
                     <div className="mt-6 w-32 h-1 bg-white/60 mx-auto rounded-full"></div>
-                    <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, }}>
-                        <Link to="/">Home</Link>
-                    </button>
-                    <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 13}}>
-                        <Link to="/About">About Us</Link>
-                    </button>
-                    <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 13 }}>
-                        <Link to="/Contact">Contact</Link>
-                    </button>
                     <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 10 }}>
                         <Link to="/login">Login</Link>
                     </button>

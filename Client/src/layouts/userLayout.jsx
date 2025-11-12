@@ -2,6 +2,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 //import { useState } from "react";
 import Footer from "./Footer";
 import { LogOut, LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const AdminLayout = () => {
     const navigate = useNavigate();
     const userId = localStorage.getItem('user_id');
@@ -22,6 +24,18 @@ const AdminLayout = () => {
             <div className="header">
                 <div className="flex flex-row flex-1 justify-between">
                     <h3 className="header-title">EduList</h3>
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10 }}>
+                            <Link to="/">Home</Link>
+                        </button>
+                        <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 13 }}>
+                            <Link to="/About">About Us</Link>
+                        </button>
+                        <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 13 }}>
+                            <Link to="/Contact">Contact</Link>
+                        </button>
+                    </div>
+
                     <div>
                         {userId ? (
                             <button
