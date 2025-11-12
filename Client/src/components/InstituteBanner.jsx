@@ -20,10 +20,10 @@ export default function InstituteBanner() {
                     </p>
 
                     {/* Decorative line */}
-                    <div className="mt-6 w-32 h-1 bg-white/60 mx-auto rounded-full"></div>
+                    {/* <div className="mt-6 w-32 h-1 bg-white/60 mx-auto rounded-full"></div>
                     <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 10 }}>
                         <Link to="/login">Login</Link>
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>

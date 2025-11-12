@@ -1,10 +1,12 @@
 import { Outlet, useNavigate } from "react-router-dom";
-//import { useState } from "react";
+import { useState } from "react";
 import Footer from "./Footer";
-import { LogOut, LogIn } from "lucide-react";
+import { LogOut, LogIn, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AdminLayout = () => {
+
+    const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     const userId = localStorage.getItem('user_id');
 
@@ -19,28 +21,31 @@ const AdminLayout = () => {
 
 
     return (
-        <div className="body">
+        <div className="min-h-screen flex flex-col bg-[#f5f9f4]">
+            {/* Header */}
+            <header className=" shadow-md py-3 px-4 sm:px-8">
+                <div className="flex justify-between items-center">
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-green-800 ">EduList</h3>
 
-            <div className="header">
-                <div className="flex flex-row flex-1 justify-between">
-                    <h3 className="header-title">EduList</h3>
-                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10 }}>
-                            <Link to="/">Home</Link>
-                        </button>
-                        <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 13 }}>
-                            <Link to="/About">About Us</Link>
-                        </button>
-                        <button style={{ backgroundColor: "white", color: "#305921", marginTop: 10, marginLeft: 13 }}>
-                            <Link to="/Contact">Contact</Link>
-                        </button>
-                    </div>
+                    {/* Hamburger icon (visible only on mobile) */}
+                    <button
+                        className="sm:hidden text-white focus:outline-none"
+                        onClick={() => setMenuOpen(!menuOpen)}
+                    >
+                        {menuOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
 
-                    <div>
+                    {/* Desktop Navigation */}
+                    <div className="hidden sm:flex items-center gap-4">
+                        <Link to="/">Home</Link>
+                        <Link style={{ marginLeft: 20, marginRight: 20 }} to="/About"> About Us </Link>
+                        <Link style={{marginRight:20}} to="/Contact"> Contact </Link>
+                        {/* Login / Logout */}
                         {userId ? (
                             <button
                                 onClick={handleLogout}
-                                className="flex items-center gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition cursor-pointer"
+                                className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
                             >
                                 <LogOut className="w-5 h-5" />
                                 Logout
@@ -48,23 +53,57 @@ const AdminLayout = () => {
                         ) : (
                             <button
                                 onClick={handleLogin}
-                                className="flex items-center gap-2 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition cursor-pointer"
+                                className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition"
                             >
                                 <LogIn className="w-5 h-5" />
                                 Login
                             </button>
                         )}
                     </div>
-
                 </div>
-            </div >
-            {/* Sidebar */}
 
-            < Outlet />
+                {/* Mobile Dropdown Menu */}
+                {menuOpen && (
+                    <div className="sm:hidden mt-4 flex flex-col items-center gap-3 bg-[#aad6a9] pb-4 animate-fadeIn">
+                        <Link to="/">Home</Link>
+                        <Link to="/About"> About Us </Link>
+                        <Link to="/Contact"> Contact </Link>
+
+                        {userId ? (
+                            <button
+                                onClick={() => {
+                                    handleLogout();
+                                    setMenuOpen(false);
+                                }}
+                                className="flex items-center justify-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg w-40 transition"
+                            >
+                                <LogOut className="w-5 h-5" />
+                                Logout
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => {
+                                    handleLogin();
+                                    setMenuOpen(false);
+                                }}
+                                className="flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg w-40 transition"
+                            >
+                                <LogIn className="w-5 h-5" />
+                                Login
+                            </button>
+                        )}
+                    </div>
+                )}
+            </header>
+
+            {/* Main Content */}
+            <main className="flex-1">
+                <Outlet />
+            </main>
+
+            {/* Footer */}
             <Footer />
-
-        </div >
-
+        </div>
 
     );
 };
