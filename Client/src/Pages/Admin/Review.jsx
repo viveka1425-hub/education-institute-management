@@ -33,7 +33,7 @@ export default function Review() {
                 </h2>
                 {(reviews ?? []).length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-                        {reviews.slice(-2).map((userReviewDetails, index) => (
+                        {reviews.map((userReviewDetails, index) => (
                             <div
                                 key={index}
                                 className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-100"
@@ -126,9 +126,9 @@ export default function Review() {
                                                     </svg>
                                                     Flag
                                                 </button>
+                                                <ToastContainer />
                                             </div>
                                         </div>
-                                        <ToastContainer />
                                     </div>
                                 </div>
                             </div>

@@ -183,14 +183,13 @@ const Dashboard = () => {
                 )}
             </div>
 
-            <div className="w-full min-h-screen flex justify-center items-center -mt-20 -mb-10">
-                <div className="grid gap-6 
-                  grid-cols-1 
-                  md:grid-cols-1 
-                  lg:grid-cols-1 
-                  justify-items-center">
+            <div className="w-full min-h-screen flex justify-center items-center md:-mt-10 -mb-5">
+                <div
+                    className={`grid gap-6 justify-items-center w-full max-w-6xl 
+      ${Role !== 'admin' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}
+                >
                     {/* Review Count Chart */}
-                    <div className="w-100 mr-15 group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div className="w-full md:w-[90%] lg:w-[95%] group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
                         <div className="relative bg-gradient-to-r from-green-50 to-emerald-50 px-4 py-3 border-b border-green-100">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-2">
@@ -221,18 +220,8 @@ const Dashboard = () => {
                                             </linearGradient>
                                         </defs>
                                         <CartesianGrid strokeDasharray="2 2" stroke="#f3f4f6" vertical={false} />
-                                        <XAxis
-                                            dataKey="day"
-                                            axisLine={false}
-                                            tickLine={false}
-                                            tick={{ fill: '#6b7280', fontSize: 11 }}
-                                        />
-                                        <YAxis
-                                            allowDecimals={false}
-                                            axisLine={false}
-                                            tickLine={false}
-                                            tick={{ fill: '#6b7280', fontSize: 11 }}
-                                        />
+                                        <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 11 }} />
+                                        <YAxis allowDecimals={false} axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 11 }} />
                                         <Tooltip
                                             contentStyle={{
                                                 backgroundColor: 'white',
@@ -244,17 +233,12 @@ const Dashboard = () => {
                                             }}
                                             cursor={{ fill: 'rgba(16, 185, 129, 0.05)' }}
                                         />
-                                        <Bar
-                                            dataKey="reviews"
-                                            fill="url(#reviewGradient)"
-                                            radius={[6, 6, 0, 0]}
-                                            barSize={20}
-                                        />
+                                        <Bar dataKey="reviews" fill="url(#reviewGradient)" radius={[6, 6, 0, 0]} barSize={20} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
 
-                            {/* Compact Summary Stats */}
+                            {/* Summary */}
                             <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-100">
                                 <div className="text-center">
                                     <div className="text-lg font-bold text-gray-900">
@@ -277,99 +261,85 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* Enquiry Chart — only for non-admins */}
+                    {Role !== 'admin' && (
+                        <div className="w-full md:w-[90%] lg:w-[95%] group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                            <div className="relative bg-gradient-to-r from-blue-50 to-cyan-50 px-4 py-3 border-b border-blue-100">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-2">
+                                        <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center shadow-sm">
+                                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-sm font-semibold text-gray-800">Enquiry Analytics</h3>
+                                            <p className="text-xs text-gray-600">Recent trends</p>
+                                        </div>
+                                    </div>
+                                    <span className="bg-white/80 text-xs font-medium text-gray-700 px-2 py-1 rounded-md border border-blue-200">
+                                        Latest
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="p-4">
+                                <div className="w-full h-48">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart data={enquiryChartList} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                                            <defs>
+                                                <linearGradient id="enquiryGradient" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.9} />
+                                                    <stop offset="100%" stopColor="#1d4ed8" stopOpacity={1} />
+                                                </linearGradient>
+                                            </defs>
+                                            <CartesianGrid strokeDasharray="2 2" stroke="#f3f4f6" vertical={false} />
+                                            <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 11 }} />
+                                            <YAxis allowDecimals={false} axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 11 }} />
+                                            <Tooltip
+                                                contentStyle={{
+                                                    backgroundColor: 'white',
+                                                    border: '1px solid #e5e7eb',
+                                                    borderRadius: '8px',
+                                                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                                                    fontSize: '12px',
+                                                    padding: '8px 12px'
+                                                }}
+                                                cursor={{ fill: 'rgba(59, 130, 246, 0.05)' }}
+                                            />
+                                            <Bar dataKey="count" fill="url(#enquiryGradient)" radius={[6, 6, 0, 0]} barSize={20} />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
+
+                                {/* Summary */}
+                                <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-100">
+                                    <div className="text-center">
+                                        <div className="text-lg font-bold text-gray-900">
+                                            {enquiryChartList.reduce((sum, item) => sum + item.count, 0)}
+                                        </div>
+                                        <div className="text-xs text-gray-500 font-medium">Total</div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="text-lg font-bold text-gray-900">
+                                            {Math.max(...enquiryChartList.map(item => item.count))}
+                                        </div>
+                                        <div className="text-xs text-gray-500 font-medium">Peak</div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="text-lg font-bold text-gray-900">
+                                            {(enquiryChartList.reduce((sum, item) => sum + item.count, 0) / enquiryChartList.length).toFixed(1)}
+                                        </div>
+                                        <div className="text-xs text-gray-500 font-medium">Avg/Day</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
-
-                {/* Enquiry Count Chart - Non-Admin */}
-                {Role !== 'admin' && (
-                    <div className="w-100 group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
-                        <div className="relative bg-gradient-to-r from-blue-50 to-cyan-50 px-4 py-3 border-b border-blue-100">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-2">
-                                    <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center shadow-sm">
-                                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-sm font-semibold text-gray-800">Enquiry Analytics</h3>
-                                        <p className="text-xs text-gray-600">Recent trends</p>
-                                    </div>
-                                </div>
-                                <span className="bg-white/80 text-xs font-medium text-gray-700 px-2 py-1 rounded-md border border-blue-200">
-                                    Latest
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className="p-4">
-                            <div className="w-full h-48">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart data={enquiryChartList} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                                        <defs>
-                                            <linearGradient id="enquiryGradient" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.9} />
-                                                <stop offset="100%" stopColor="#1d4ed8" stopOpacity={1} />
-                                            </linearGradient>
-                                        </defs>
-                                        <CartesianGrid strokeDasharray="2 2" stroke="#f3f4f6" vertical={false} />
-                                        <XAxis
-                                            dataKey="date"
-                                            axisLine={false}
-                                            tickLine={false}
-                                            tick={{ fill: '#6b7280', fontSize: 11 }}
-                                        />
-                                        <YAxis
-                                            allowDecimals={false}
-                                            axisLine={false}
-                                            tickLine={false}
-                                            tick={{ fill: '#6b7280', fontSize: 11 }}
-                                        />
-                                        <Tooltip
-                                            contentStyle={{
-                                                backgroundColor: 'white',
-                                                border: '1px solid #e5e7eb',
-                                                borderRadius: '8px',
-                                                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                                                fontSize: '12px',
-                                                padding: '8px 12px'
-                                            }}
-                                            cursor={{ fill: 'rgba(59, 130, 246, 0.05)' }}
-                                        />
-                                        <Bar
-                                            dataKey="count"
-                                            fill="url(#enquiryGradient)"
-                                            radius={[6, 6, 0, 0]}
-                                            barSize={20}
-                                        />
-                                    </BarChart>
-                                </ResponsiveContainer>
-                            </div>
-
-                            {/* Compact Summary Stats */}
-                            <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-100">
-                                <div className="text-center">
-                                    <div className="text-lg font-bold text-gray-900">
-                                        {enquiryChartList.reduce((sum, item) => sum + item.count, 0)}
-                                    </div>
-                                    <div className="text-xs text-gray-500 font-medium">Total</div>
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-lg font-bold text-gray-900">
-                                        {Math.max(...enquiryChartList.map(item => item.count))}
-                                    </div>
-                                    <div className="text-xs text-gray-500 font-medium">Peak</div>
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-lg font-bold text-gray-900">
-                                        {(enquiryChartList.reduce((sum, item) => sum + item.count, 0) / enquiryChartList.length).toFixed(1)}
-                                    </div>
-                                    <div className="text-xs text-gray-500 font-medium">Avg/Day</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
+
             <div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
                     {reviewList.slice(-2).map((userReviewDetails, index) => (

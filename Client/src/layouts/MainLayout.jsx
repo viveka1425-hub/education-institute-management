@@ -43,7 +43,7 @@ const MainLayout = () => {
                 {/* Sidebar */}
                 <div className={`sidebar ${sidebarOpen ? "open" : "mobile-hidden"} flex justify-between flex-col`}>
                     <div>
-                        <div className="flex flex-col items-center justify-center text-white bg-[#8dc78b] h-40 rounded-2xl shadow-lg">
+                        <div className="flex flex-col items-center justify-center text-white bg-[#8dc78b] h-40 rounded-2xl shadow-lg mb-5">
                             <FaUserCircle size={60} color="#ffffff" />
                             <h3 className="mt-2 text-white text-lg font-semibold">Institute</h3>
                         </div>

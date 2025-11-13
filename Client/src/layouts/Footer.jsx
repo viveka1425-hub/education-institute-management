@@ -9,7 +9,7 @@ const Footer = () => {
   const Role = localStorage.getItem("role");
   return (
     <div>
-  {Role == "user" && (
+  {/* {Role == "user" && ( */}
     <div>
     <footer className="footer">
       <div className="footer-container">
@@ -30,15 +30,15 @@ const Footer = () => {
         </div>
 
         {/* Column 4: Socials */}
-        {/* <div className="footer-section">
+        <div className="footer-section">
           <h4>Follow Us</h4>
           <div className="social-icons">
-            <Link to="#"><FaFacebookF /></Link>
-            <Link to="#"><FaTwitter /></Link>
-            <Link to="#"><FaInstagram /></Link>
-            <Link to="#"><FaLinkedinIn /></Link>
+            <Link to="https://www.facebook.com/"><FaFacebookF /></Link>
+            <Link to="https://x.com/"><FaTwitter /></Link>
+            <Link to="https://www.instagram.com/"><FaInstagram /></Link>
+            <Link to="https://www.linkedin.com/"><FaLinkedinIn /></Link>
           </div>
-        </div> */}
+        </div>
 
       </div>
 
@@ -47,7 +47,7 @@ const Footer = () => {
       </div>
     </footer>
     </div>
-  )}
+  {/* )} */}
   </div>
   );
 };

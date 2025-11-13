@@ -48,6 +48,7 @@ export default function EnquiryForm() {
         setSubject("");
         setMessage("");
         toast("Enquiry send successfully")
+        enquiryReplay()
         //alert("Enquiry send successfully")
     }
 

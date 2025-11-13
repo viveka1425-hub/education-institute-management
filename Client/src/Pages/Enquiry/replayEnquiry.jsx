@@ -13,7 +13,7 @@ export default function ReplayEnquiry() {
         const use = await enquiryReplay(id, response)
         console.log(use.data)
         setResponse(use.data)
-        toast("successfully")
+        toast("replay send successfully")
         //alert("successfully")
 
     }
