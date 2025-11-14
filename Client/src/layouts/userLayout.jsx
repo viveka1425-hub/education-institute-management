@@ -9,6 +9,7 @@ const AdminLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     const userId = localStorage.getItem('user_id');
+    const Role = localStorage.getItem("role");
 
     const handleLogout = () => {
         localStorage.clear();
@@ -37,6 +38,7 @@ const AdminLayout = () => {
                     </button>
 
                     {/* Desktop Navigation */}
+                    {Role !== "admin" && (
                     <div className="hidden sm:flex items-center gap-4">
                         <Link to="/">Home</Link>
                         <Link style={{ marginLeft: 20, marginRight: 20 }} to="/About"> About Us </Link>
@@ -60,6 +62,7 @@ const AdminLayout = () => {
                             </button>
                         )}
                     </div>
+                    )}
                 </div>
 
                 {/* Mobile Dropdown Menu */}
